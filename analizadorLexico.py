@@ -28,10 +28,8 @@ reservadas = {
     'super': 'super',
     'undef': 'undef',
     'when': 'when',
-    'file': '_ _FILE_ _',
     'begin': 'BEGIN',
     'case': 'case',
-    'defined': 'defined?',
     'elsif': 'elsif',
     'ensure': 'ensure',
     'if': 'if',
@@ -40,7 +38,6 @@ reservadas = {
     'return': 'return',
     'unles': 'unles',
     'while': 'while',
-    'line': '_ _LINE_ _',
 }
 
 
@@ -69,6 +66,11 @@ t_IZQPAREN = r'\('
 t_DERPAREN = r'\)'
 t_FLOTANTE = r'\d+\.\d+'
 t_NUMERO = r'\d+'
+t_VGLOBALES = r'^\$[a-z]+[_a-zA-Z0-9]*'
+t_VLOCALES = r'^[a-z]+[_a-zA-Z0-9]*'
+t_VCLASE = r'^@@[a-z]+[_a-zA-Z0-9]*'
+t_VINSTANCIA = r'^@[a-z]+[_a-zA-Z0-9]*'
+t_CONSTANTES = r'^[A-Z]+[_a-zA-Z0-9]*'
 
 
 
