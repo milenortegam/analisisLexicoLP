@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5895030c-1d40-46d9-82e6-ec0497fbfd2b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analizadorLexico.py" beforeDir="false" afterPath="$PROJECT_DIR$/analizadorLexico.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

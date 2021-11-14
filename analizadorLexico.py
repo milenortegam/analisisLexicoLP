@@ -57,7 +57,6 @@ tokens = (
              'PUNTO',
              'COMA',
              'INTERROGACION',
-             'ADMIRACION',
              'COMENTARIO',
 
         # Inicio Tokens Hayleen Carrillo
@@ -75,8 +74,17 @@ tokens = (
             "ASIGNACIONMULT",
             'ASIGNACIONDIV',
             'ASIGNACIONMOD',
-            'ASIGNACIONEXP'
-
+            'ASIGNACIONEXP',
+            'IGUAL_COMP',
+            'DIFERENTE',
+            'MENOR',
+            'MAYOR',
+            'AND',
+            'OR',
+            'IZQ_CORCH',
+            'DER_CORCH',
+            'IZQ_LLAVE',
+            'DER_LLAVE',
 
          ) + tuple(reservadas.values())
 
@@ -127,7 +135,6 @@ def t_CONSTANTES(t):
 t_PUNTO = r'\.'
 t_COMA = r'\,'
 t_INTERROGACION = r'\?'
-t_ADMIRACION = r'\!'
 t_COMENTARIO = r"\#.*"
 
 
@@ -172,6 +179,17 @@ t_ASIGNACIONMULT = r'\*='
 t_ASIGNACIONDIV = r'/='
 t_ASIGNACIONMOD = r'%='
 t_ASIGNACIONEXP = r'\*\*='
+t_IGUAL_COMP=r"=="
+t_DIFERENTE=r"!="
+t_MENOR=r"<"
+t_MAYOR=r">"
+t_AND=r"&&"
+t_OR=r"\|\|"
+t_IZQ_CORCH = r"\["
+t_DER_CORCH = r"\]"
+t_IZQ_LLAVE = r"\{"
+t_DER_LLAVE = r"\}"
+
 
 # General
 def t_newline(t):
@@ -201,6 +219,11 @@ data = '''
     5%3
     4852**233
     a*=5
+    a==5
+    3!=85
+    (3==3) && (8!=90)
+    654>78
+    
 '''
 
 # Give the lexer some input
