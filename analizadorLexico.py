@@ -55,6 +55,13 @@ tokens = (
     'VCLASE',
     'VINSTANCIA',
     'CONSTANTES',
+    'IMAGINARIO',
+    'BOOLEANOV',
+    'BOOLEANOF',
+    'CADENAS',
+    'ARREGLOS',
+    'MAPAS',
+    'SIMBOLOS'
 ) + tuple(reservadas.values())
 
 
@@ -64,13 +71,20 @@ t_MULTIPLICACION = r'\*'
 t_DIVISION = r'/'
 t_IZQPAREN = r'\('
 t_DERPAREN = r'\)'
-t_FLOTANTE = r'\d+\.\d+'
-t_NUMERO = r'\d+'
 t_VGLOBALES = r'^\$[a-z]+[_a-zA-Z0-9]*'
 t_VLOCALES = r'^[a-z]+[_a-zA-Z0-9]*'
 t_VCLASE = r'^@@[a-z]+[_a-zA-Z0-9]*'
 t_VINSTANCIA = r'^@[a-z]+[_a-zA-Z0-9]*'
 t_CONSTANTES = r'^[A-Z]+[_a-zA-Z0-9]*'
+t_FLOTANTE = r'\d+\.\d+'
+t_NUMERO = r'\d+'
+t_IMAGINARIO = r'\d+\+\d'
+t_BOOLEANOV = r'\true'
+t_BOOLEANOF = r'\false'
+t_CADENAS = r'\[a-z]+'
+#t_ARREGLOS =
+#t_MAPAS =
+#t_SIMBOLOS =
 
 
 
