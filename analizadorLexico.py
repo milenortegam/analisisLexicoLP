@@ -69,6 +69,14 @@ tokens = (
              'DERPAREN',
              'EXPONENCIAL',
             'MODULO',
+             'IGUAL',
+            'ASIGNACIONSUMA',
+            'ASIGNACIONRESTA',
+            "ASIGNACIONMULT",
+            'ASIGNACIONDIV',
+            'ASIGNACIONMOD',
+            'ASIGNACIONEXP'
+
 
          ) + tuple(reservadas.values())
 
@@ -157,7 +165,13 @@ t_IZQPAREN = r'\('
 t_DERPAREN = r'\)'
 t_EXPONENCIAL = r'\*\*'
 t_MODULO = r'%'
-
+t_IGUAL = r'='
+t_ASIGNACIONSUMA = r'\+='
+t_ASIGNACIONRESTA = r'-='
+t_ASIGNACIONMULT = r'\*='
+t_ASIGNACIONDIV = r'/='
+t_ASIGNACIONMOD = r'%='
+t_ASIGNACIONEXP = r'\*\*='
 
 # General
 def t_newline(t):
@@ -177,7 +191,7 @@ lexer = lex.lex()
 # Test it out
 data = '''
     3 + 4.4 * 10
-    + -20 *2
+    + -20 *2 /5
     $var_global 
     @@var_clase
     @var_insta
@@ -186,6 +200,7 @@ data = '''
     if
     5%3
     4852**233
+    a*=5
 '''
 
 # Give the lexer some input
