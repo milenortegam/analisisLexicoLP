@@ -2,33 +2,6 @@ import ply.lex as lex
 
 #Milen Ortega Mautong
 
-
-tokens = (
-    'NUMERO',
-    'MAS',
-    'MENOS',
-    'MULTIPLICACION',
-    'DIVISION',
-    'IZQPAREN',
-    'DERPAREN',
-    'FLOTANTE',
-    'VGLOBALES',
-    'VLOCALES',
-    'VCLASE',
-    'VINSTANCIA',
-    'CONSTANTES',
-) + tuple(reservadas.values())
-
-t_MAS = r'\+'
-t_MENOS = r'-'
-t_MULTIPLICACION = r'\*'
-t_DIVISION = r'/'
-t_IZQPAREN = r'\('
-t_DERPAREN = r'\)'
-t_FLOTANTE = r'\d+\.\d+'
-t_NUMERO = r'\d+'
-
-
 reservadas = {
     'alias': 'alias',
     'begin': 'begin',
@@ -71,6 +44,31 @@ reservadas = {
 }
 
 
+tokens = (
+    'NUMERO',
+    'MAS',
+    'MENOS',
+    'MULTIPLICACION',
+    'DIVISION',
+    'IZQPAREN',
+    'DERPAREN',
+    'FLOTANTE',
+    'VGLOBALES',
+    'VLOCALES',
+    'VCLASE',
+    'VINSTANCIA',
+    'CONSTANTES',
+) + tuple(reservadas.values())
+
+
+t_MAS = r'\+'
+t_MENOS = r'-'
+t_MULTIPLICACION = r'\*'
+t_DIVISION = r'/'
+t_IZQPAREN = r'\('
+t_DERPAREN = r'\)'
+t_FLOTANTE = r'\d+\.\d+'
+t_NUMERO = r'\d+'
 
 
 
@@ -83,6 +81,10 @@ def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = reservadas.get(t.value, 'ID')
     return t
+
+def t_error(t):
+    print("Illegal character '%s'" % t.value[0])
+    t.lexer.skip(1)
 
 
 lexer = lex.lex()
