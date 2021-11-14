@@ -42,7 +42,6 @@ reservadas = {
 
 
 tokens = (
-    'NUMERO',
     'MAS',
     'MENOS',
     'MULTIPLICACION',
@@ -55,6 +54,8 @@ tokens = (
     'VCLASE',
     'VINSTANCIA',
     'CONSTANTES',
+#Gabriela Pazmiño Guerrero
+    'NUMERO',
     'IMAGINARIO',
     'BOOLEANOV',
     'BOOLEANOF',
@@ -71,7 +72,14 @@ t_MULTIPLICACION = r'\*'
 t_DIVISION = r'/'
 t_IZQPAREN = r'\('
 t_DERPAREN = r'\)'
-t_FLOTANTE = r'\d+\.\d+'
+
+#Gabriela Pazmiño Guerrero
+t_NUMERO = r'\d+'
+t_IMAGINARIO = r'\d+\+\d'
+t_BOOLEANOV = r'\true'
+t_BOOLEANOF = r'\false'
+t_CADENAS = r'\[a-z]+'
+
 #t_VGLOBALES = r'^\$[a-z]+[_a-zA-Z0-9]*'
 #t_VLOCALES = r'^[a-z]+[_a-zA-Z0-9]*'
 #t_VCLASE = r'^@@[a-z]+[_a-zA-Z0-9]*'
