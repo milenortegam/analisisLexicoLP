@@ -55,6 +55,7 @@ tokens = (
     'VCLASE',
     'VINSTANCIA',
     'CONSTANTES',
+    'VARIABLE', 
 ) + tuple(reservadas.values())
 
 
@@ -65,28 +66,78 @@ t_DIVISION = r'/'
 t_IZQPAREN = r'\('
 t_DERPAREN = r'\)'
 t_FLOTANTE = r'\d+\.\d+'
-t_NUMERO = r'\d+'
-t_VGLOBALES = r'^\$[a-z]+[_a-zA-Z0-9]*'
-t_VLOCALES = r'^[a-z]+[_a-zA-Z0-9]*'
-t_VCLASE = r'^@@[a-z]+[_a-zA-Z0-9]*'
-t_VINSTANCIA = r'^@[a-z]+[_a-zA-Z0-9]*'
-t_CONSTANTES = r'^[A-Z]+[_a-zA-Z0-9]*'
+#t_VGLOBALES = r'^\$[a-z]+[_a-zA-Z0-9]*'
+#t_VLOCALES = r'^[a-z]+[_a-zA-Z0-9]*'
+#t_VCLASE = r'^@@[a-z]+[_a-zA-Z0-9]*'
+#t_VINSTANCIA = r'^@[a-z]+[_a-zA-Z0-9]*'
+#t_CONSTANTES = r'^[A-Z]+[_a-zA-Z0-9]*'
 
+def t_VGLOBALES(t):
+    r'[\$][a-z]+[_a-zA-Z0-9]*'
+    t.type = reservadas.get(t.value, 'VGLOBALES')
+    return t
 
+def t_VLOCALES(t):
+    r'[a-z]+[_a-zA-Z0-9]*'
+    t.type = reservadas.get(t.value, 'VLOCALES')
+    return t
 
-def t_NUMBERO(t):
+def t_VCLASE(t):
+    r'[@][@][a-z]+[_a-zA-Z0-9]*'
+    t.type = reservadas.get(t.value, 'VCLASE')
+    return t
+
+def t_VINSTANCIA(t):
+    r'[@][a-z]+[_a-zA-Z0-9]*'
+    t.type = reservadas.get(t.value, 'VINSTANCIA')
+    return t
+
+def t_CONSTANTES(t):
+    r'[A-Z]+[_a-zA-Z0-9]*'
+    t.type = reservadas.get(t.value, 'CONSTANTES')
+    return t
+
+def t_newline(t):
+     r'\n+'
+     t.lexer.lineno += len(t.value)
+
+def t_NUMERO(t):
     r'\d+'
     t.value = int(t.value)
     return t
 
-def t_ID(t):
-    r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.type = reservadas.get(t.value, 'ID')
+def t_VARIABLE(t):
+    r'[a-zA-Z]+'
+    t.type = reservadas.get(t.value, 'VARIABLE')
     return t
 
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
+t_ignore  = ' \t'
+
 
 lexer = lex.lex()
+
+ # Test it out
+data = '''
+    3 + 4 * 10
+    + -20 *2
+    $var_global 
+    @@var_clase
+    @var_insta
+    CONSTANTE2
+    var_local
+    if
+'''
+ 
+ # Give the lexer some input
+lexer.input(data)
+ 
+ # Tokenize
+while True:
+    tok = lexer.token()
+    if not tok: 
+        break      # No more input
+    print(tok)
