@@ -130,24 +130,13 @@ def t_CONSTANTES(t):
 # Inicio Gabriela Pazmiño Guerrero
 # t_FLOTANTES = r'\d+\.\d+'
 # t_NUMERO = r'\d+'
-# t_CADENAS = r'"[a-zA-Z0-9\s,]*"'
-# t_ARREGLOS = r"\[(('([a-zA-z\s])*'|[0-9]+|[0-9]+,?[0-9]*),?)+\]"
-# t_MAPAS = r"\{((\"|')?[a-zA-Z_][a-zA-Z0-9_\s]*(\"|')?(\:|\=>)([0-9]|[1-9][0-9]*|(\"|')[\w\s]+(\"|')),?)+\}"
+t_CADENAS = r'"[a-zA-Z0-9\s,]*"'
+t_ARREGLOS = r"\[(('([a-zA-z\s])*'|[0-9]+|[0-9]+,?[0-9]*),?)+\]"
+t_MAPAS = r"\{((\"|')?[a-zA-Z_][a-zA-Z0-9_\s]*(\"|')?(\:|\=>)([0-9]|[1-9][0-9]*|(\"|')[\w\s]+(\"|')),?)+\}"
 t_PUNTO = r'\.'
 t_COMA = r'\,'
 t_INTERROGACION = r'\?'
 t_COMENTARIO = r"\#.*"
-
-def t_ARREGLOS(t):
-    r"\[(('([a-zA-z\s])*'|[0-9]+|[0-9]+,?[0-9]*),?)+\]"
-    t.value = int(t.value)
-    return t
-
-
-def t_MAPAS(t):
-    r"\{((\"|')?[a-zA-Z_][a-zA-Z0-9_\s]*(\"|')?(\:|\=>)([0-9]|[1-9][0-9]*|(\"|')[\w\s]+(\"|')),?)+\}"
-    t.value = int(t.value)
-    return t
 
 def t_FLOTANTES(t):
     r'\d+\.\d*'
