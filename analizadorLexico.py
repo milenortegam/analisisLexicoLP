@@ -55,7 +55,13 @@ tokens = (
     'VCLASE',
     'VINSTANCIA',
     'CONSTANTES',
-    'VARIABLE', 
+    'IMAGINARIO',
+    'BOOLEANOV',
+    'BOOLEANOF',
+    'CADENAS',
+    'ARREGLOS',
+    'MAPAS',
+    'SIMBOLOS'
 ) + tuple(reservadas.values())
 
 
@@ -104,11 +110,6 @@ def t_newline(t):
 def t_NUMERO(t):
     r'\d+'
     t.value = int(t.value)
-    return t
-
-def t_VARIABLE(t):
-    r'[a-zA-Z]+'
-    t.type = reservadas.get(t.value, 'VARIABLE')
     return t
 
 def t_error(t):
