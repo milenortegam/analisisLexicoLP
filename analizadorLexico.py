@@ -41,23 +41,16 @@ reservadas = {
 }
 
 tokens = (
-             'MAS',
-             'MENOS',
-             'MULTIPLICACION',
-             'DIVISION',
-             'IZQPAREN',
-             'DERPAREN',
-             'FLOTANTE',
+    # Inicio Tokens Milen Ortega
              'VGLOBALES',
              'VLOCALES',
              'VCLASE',
              'VINSTANCIA',
              'CONSTANTES',
-             # Gabriela Pazmiño Guerrero
+
+    # Inicio Tokens Gabriela Pazmiño Guerrero
              'NUMERO',
              'FLOTANTES',
-             'BOOLEANOV',
-             'BOOLEANOF',
              'CADENAS',
              'ARREGLOS',
              'MAPAS',
@@ -65,15 +58,19 @@ tokens = (
              'COMA',
              'INTERROGACION',
              'ADMIRACION',
-             'COMENTARIO'
-         ) + tuple(reservadas.values())
+             'COMENTARIO',
 
-t_MAS = r'\+'
-t_MENOS = r'-'
-t_MULTIPLICACION = r'\*'
-t_DIVISION = r'/'
-t_IZQPAREN = r'\('
-t_DERPAREN = r'\)'
+        # Inicio Tokens Hayleen Carrillo
+             'MAS',
+             'MENOS',
+             'MULTIPLICACION',
+             'DIVISION',
+             'IZQPAREN',
+             'DERPAREN',
+             'EXPONENCIAL',
+            'MODULO',
+
+         ) + tuple(reservadas.values())
 
 
 # Milen Ortega Mautong
@@ -150,11 +147,17 @@ def t_MAPAS(t):
     return t
 
 
-# Escribe tu nombre
-#
-#
-#
-#
+# Inicio Hayleen Carrillo
+
+t_MAS = r'\+'
+t_MENOS = r'-'
+t_MULTIPLICACION = r'\*'
+t_DIVISION = r'/'
+t_IZQPAREN = r'\('
+t_DERPAREN = r'\)'
+t_EXPONENCIAL = r'\*\*'
+t_MODULO = r'%'
+
 
 # General
 def t_newline(t):
@@ -181,6 +184,8 @@ data = '''
     CONSTANTE2
     var_local
     if
+    5%3
+    4852**233
 '''
 
 # Give the lexer some input
