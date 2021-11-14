@@ -1,7 +1,6 @@
 import ply.lex as lex
 
 # Milen Ortega Mautong
-
 reservadas = {
     'alias': 'alias',
     'begin': 'begin',
@@ -89,7 +88,7 @@ tokens = (
          ) + tuple(reservadas.values())
 
 
-# Milen Ortega Mautong
+# Inicio Milen Ortega Mautong
 # t_VGLOBALES = r'^\$[a-z]+[_a-zA-Z0-9]*'
 # t_VLOCALES = r'^[a-z]+[_a-zA-Z0-9]*'
 # t_VCLASE = r'^@@[a-z]+[_a-zA-Z0-9]*'
@@ -125,8 +124,10 @@ def t_CONSTANTES(t):
     t.type = reservadas.get(t.value, 'CONSTANTES')
     return t
 
+# Fin Milen Ortega Mautong
 
-# Gabriela Pazmiño Guerrero
+
+# Inicio Gabriela Pazmiño Guerrero
 # t_FLOTANTES = r'\d+\.\d+'
 # t_NUMERO = r'\d+'
 # t_CADENAS = r'"[a-zA-Z0-9\s,]*"'
@@ -137,6 +138,16 @@ t_COMA = r'\,'
 t_INTERROGACION = r'\?'
 t_COMENTARIO = r"\#.*"
 
+def t_ARREGLOS(t):
+    r"\[(('([a-zA-z\s])*'|[0-9]+|[0-9]+,?[0-9]*),?)+\]"
+    t.value = int(t.value)
+    return t
+
+
+def t_MAPAS(t):
+    r"\{((\"|')?[a-zA-Z_][a-zA-Z0-9_\s]*(\"|')?(\:|\=>)([0-9]|[1-9][0-9]*|(\"|')[\w\s]+(\"|')),?)+\}"
+    t.value = int(t.value)
+    return t
 
 def t_FLOTANTES(t):
     r'\d+\.\d*'
@@ -150,17 +161,7 @@ def t_NUMERO(t):
     return t
 
 
-def t_ARREGLOS(t):
-    r"\[(('([a-zA-z\s])*'|[0-9]+|[0-9]+,?[0-9]*),?)+\]"
-    t.value = int(t.value)
-    return t
-
-
-def t_MAPAS(t):
-    r"\{((\"|')?[a-zA-Z_][a-zA-Z0-9_\s]*(\"|')?(\:|\=>)([0-9]|[1-9][0-9]*|(\"|')[\w\s]+(\"|')),?)+\}"
-    t.value = int(t.value)
-    return t
-
+#Fin Gabriela Pazmiño Guerrero
 
 # Inicio Hayleen Carrillo
 
@@ -190,6 +191,8 @@ t_DER_CORCH = r"\]"
 t_IZQ_LLAVE = r"\{"
 t_DER_LLAVE = r"\}"
 
+#Fin Inicio Hayleen Carrillo
+
 
 # General
 def t_newline(t):
@@ -201,12 +204,12 @@ def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
-
 t_ignore = ' \t'
+
 
 lexer = lex.lex()
 
-# Test it out
+# Pruebas
 data = '''
     3 + 4.4 * 10
     + -20 *2 /5
