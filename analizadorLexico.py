@@ -12,6 +12,11 @@ tokens = (
     'IZQPAREN',
     'DERPAREN',
     'FLOTANTE',
+    'VGLOBALES',
+    'VLOCALES',
+    'VCLASE',
+    'VINSTANCIA',
+    'CONSTANTES',
 ) + tuple(reservadas.values())
 
 t_MAS = r'\+'
