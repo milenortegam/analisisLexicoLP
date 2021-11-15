@@ -46,6 +46,8 @@ tokens = (
              'VCLASE',
              'VINSTANCIA',
              'CONSTANTES',
+             'COMILLASIMPLE',
+             'COMILLADOBLE',
 
     # Inicio Tokens Gabriela Pazmiño Guerrero
              'NUMERO',
@@ -89,11 +91,7 @@ tokens = (
 
 
 # Inicio Milen Ortega Mautong
-# t_VGLOBALES = r'^\$[a-z]+[_a-zA-Z0-9]*'
-# t_VLOCALES = r'^[a-z]+[_a-zA-Z0-9]*'
-# t_VCLASE = r'^@@[a-z]+[_a-zA-Z0-9]*'
-# t_VINSTANCIA = r'^@[a-z]+[_a-zA-Z0-9]*'
-# t_CONSTANTES = r'^[A-Z]+[_a-zA-Z0-9]*'
+
 
 def t_VGLOBALES(t):
     r'[\$][a-z]+[_a-zA-Z0-9]*'
@@ -128,8 +126,6 @@ def t_CONSTANTES(t):
 
 
 # Inicio Gabriela Pazmiño Guerrero
-# t_FLOTANTES = r'\d+\.\d+'
-# t_NUMERO = r'\d+'
 t_CADENAS = r'"[a-zA-Z0-9\s,]*"'
 t_ARREGLOS = r"\[(('([a-zA-z\s])*'|[0-9]+|[0-9]+,?[0-9]*),?)+\]"
 t_MAPAS = r"\{((\"|')?[a-zA-Z_][a-zA-Z0-9_\s]*(\"|')?(\:|\=>)([0-9]|[1-9][0-9]*|(\"|')[\w\s]+(\"|')),?)+\}"
@@ -179,7 +175,8 @@ t_IZQ_CORCH = r"\["
 t_DER_CORCH = r"\]"
 t_IZQ_LLAVE = r"\{"
 t_DER_LLAVE = r"\}"
-
+t_COMILLASIMPLE  = r"\'"
+t_COMILLADOBLE  = r"\""
 #Fin Inicio Hayleen Carrillo
 
 
@@ -215,7 +212,10 @@ data = '''
     3!=85
     (3==3) && (8!=90)
     654>78
-    
+    [aaa]
+    {bbb}
+    '"
+
 '''
 
 # Give the lexer some input
