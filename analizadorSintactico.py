@@ -27,6 +27,7 @@ clear
 '''
 
 
+
 def p_base(p):
     '''base : sentencias
                 | sentencias base
@@ -54,6 +55,16 @@ def p_sentencias(p):
                     | comentarios
 
     '''
+
+
+sentenciaBegin
+sentenciaFuncion
+pop
+push
+clear
+def p_pop(p):
+
+
 # Error rule for syntax errors
 def p_error(p):
      print("Syntax error in input!")
