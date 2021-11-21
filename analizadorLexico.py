@@ -36,7 +36,7 @@ reservadas = {
     'redo': 'redo',
     'return': 'return',
     'unles': 'unles',
-    'while': 'while',
+    'while': 'while'
 }
 
 tokens = (
@@ -59,6 +59,7 @@ tokens = (
              'COMA',
              'INTERROGACION',
              'COMENTARIO',
+             'RANGO',
 
         # Inicio Tokens Hayleen Carrillo
              'MAS',
@@ -68,7 +69,7 @@ tokens = (
              'IZQPAREN',
              'DERPAREN',
              'EXPONENCIAL',
-            'MODULO',
+             'MODULO',
              'IGUAL',
             'ASIGNACIONSUMA',
             'ASIGNACIONRESTA',
@@ -133,7 +134,7 @@ t_PUNTO = r'\.'
 t_COMA = r'\,'
 t_INTERROGACION = r'\?'
 t_COMENTARIO = r"\#.*"
-
+t_RANGO= r"\.\."
 def t_FLOTANTES(t):
     r'\d+\.\d*'
     t.value = float(t.value)
