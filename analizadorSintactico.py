@@ -20,7 +20,7 @@ unless
 '''
 
 '''Reglas definidas por Hayleen Carrillo
-sentenciaBegin
+sentenciaBloquepu
 sentenciaFuncion
 pop
 push
@@ -56,17 +56,8 @@ def p_sentencias(p):
     '''
 
 
-
-sentenciaBegin
-sentenciaFuncion
-pop
-push
-clear
-def p_pop(p):
-
-
 # Error rule for syntax errors
-=======
+
 '''Inicio Gabriela Pazmiño'''
 
 def p_sentenciaFuncion(p):
@@ -108,6 +99,8 @@ def p_sentenciaCase(p):
 def p_unless(p):
     ''' unless : UNLESS comparacion codigo END
     '''
+
+
 
 #errores
 
