@@ -20,10 +20,10 @@ reservadas = {
     'def': "DEF",
     "pop": "POP",
     "push": "PUSH",
-    "in" : "IN"
-    "puts" : "PUTS"
-    "append" : "APPEND"
-    "split" : "SPLIT"
+    "in" : "IN",
+    "puts" : "PUTS",
+    "append" : "APPEND",
+    "split" : "SPLIT",
 
 
 }
