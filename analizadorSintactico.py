@@ -50,7 +50,10 @@ def p_sentencias(p):
                     | operacionMat
                     | slice
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 739165f6917ced84a80195227806e75c80bd6675
                     | print
                     | listas
                     | mapas
@@ -159,6 +162,7 @@ def p_sentBreak(p):
 
 def p_sentIf(p):
     ''' sentIf : IF comparaciones base finalIf
+                | IF comparaciones base ELSEIF comparaciones base finalIf
     '''
 
 def p_finalIf(p):
