@@ -13,7 +13,7 @@ PARTE DE MILEN
 asignacion-
 append-
 split-
-slicing
+slicing-
 puts-
 comentarios-
 '''
@@ -94,6 +94,12 @@ def p_append(p) :
     '''append : variables PUNTO APPEND IZQPAREN expresion DERPAREN
     '''
 
+def p_slice(p) :
+    '''slice : ARREGLOS PUNTO SLICE IZQPAREN NUMERO DERPAREN
+            | variables PUNTO SLICE IZQPAREN NUMERO DERPAREN
+            | variables PUNTO SLICE IZQPAREN NUMERO COMA NUMERO DERPAREN
+            | ARREGLOS PUNTO SLICE IZQPAREN NUMERO COMA NUMERO DERPAREN
+    '''
 #Fin Milen Ortega
 
 
