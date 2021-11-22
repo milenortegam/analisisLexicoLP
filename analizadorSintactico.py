@@ -41,11 +41,16 @@ def p_base(p):
     '''
 
 def p_sentencias(p):
-    ''' sentencias : sentIf
+    ''' sentencias : asignacion
+                    | append
+                    | split
+                    | slicing
+                    | puts
+                    | comentarios
+                    | sentIf
                     | sentFor
                     | sentWhile
                     | unless
-
                     | sentenciaBloque
                     | sentenciaFuncion
                     | pop
@@ -169,7 +174,7 @@ def p_unless(p):
     '''
 
 def p_listas(p):
-    ''' listas: IZQ_CORCH expresion COMA expresion DER_CORCH
+    ''' listas : IZQ_CORCH expresion COMA expresion DER_CORCH
     '''
 
 def p_mapas(p):

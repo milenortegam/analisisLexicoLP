@@ -1,1 +1,3342 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COMILLADOBLE
+    COMILLASIMPLE
+    DIVISION
+    ELSE
+    ELSIF
+    EXPONENCIAL
+    FALSE
+    INTERROGACION
+    MAS
+    MENOS
+    MODULE
+    MODULO
+    MULTIPLICACION
+    NIL
+    NOT
+    RETURN
+
+Grammar
+
+Rule 0     S' -> base
+Rule 1     base -> sentencias
+Rule 2     base -> sentencias base
+Rule 3     sentencias -> asignacion
+Rule 4     sentencias -> append
+Rule 5     sentencias -> split
+Rule 6     sentencias -> puts
+Rule 7     sentencias -> comentarios
+Rule 8     sentencias -> sentIf
+Rule 9     sentencias -> sentFor
+Rule 10    sentencias -> sentWhile
+Rule 11    sentencias -> unless
+Rule 12    sentencias -> sentenciaBloque
+Rule 13    sentencias -> sentenciaFuncion
+Rule 14    sentencias -> pop
+Rule 15    sentencias -> push
+Rule 16    sentencias -> clear
+Rule 17    asignacion -> variables IGUAL expresion
+Rule 18    split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN
+Rule 19    split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN
+Rule 20    split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
+Rule 21    puts -> PUTS expresion
+Rule 22    puts -> PUTS IZQPAREN expresion DERPAREN
+Rule 23    puts -> PUTS IZQPAREN comparacion DERPAREN
+Rule 24    print -> PRINT expresion
+Rule 25    print -> PRINT IZQPAREN expresion DERPAREN
+Rule 26    print -> PRINT IZQPAREN comparacion DERPAREN
+Rule 27    comentarios -> COMENTARIO
+Rule 28    append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN
+Rule 29    variables -> VGLOBALES
+Rule 30    variables -> VLOCALES
+Rule 31    variables -> VCLASE
+Rule 32    variables -> VINSTANCIA
+Rule 33    variables -> CONSTANTES
+Rule 34    valor -> NUMERO
+Rule 35    valor -> FLOTANTES
+Rule 36    valor -> CADENAS
+Rule 37    valor -> ARREGLOS
+Rule 38    valor -> MAPAS
+Rule 39    valor -> variables
+Rule 40    expresion -> valor
+Rule 41    comparacion -> expresion operadorComparador expresion
+Rule 42    comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN
+Rule 43    operadorComparador -> IGUAL_COMP
+Rule 44    operadorComparador -> DIFERENTE
+Rule 45    operadorComparador -> MENOR
+Rule 46    operadorComparador -> MAYOR
+Rule 47    sentAnd -> comparacion AND comparacion
+Rule 48    sentOr -> comparacion OR comparacion
+Rule 49    comparaciones -> comparacion
+Rule 50    comparaciones -> sentAnd
+Rule 51    comparaciones -> sentOr
+Rule 52    rango -> NUMERO RANGO NUMERO
+Rule 53    sentBREAK -> BREAK
+Rule 54    sentBREAK -> BREAK variables
+Rule 55    sentIf -> IF comparaciones base finalIf
+Rule 56    finalIf -> END
+Rule 57    finalIf -> sentBREAK END
+Rule 58    sentFor -> FOR variables IN rango DO base END
+Rule 59    sentWhile -> WHILE comparacion DO base END
+Rule 60    unless -> UNLESS comparacion base END
+Rule 61    listas -> IZQ_CORCH expresion COMA expresion DER_CORCH
+Rule 62    mapa -> IZQ_LLAVE expresion COMA expresion DER_LLAVE
+Rule 63    sentenciaBloque -> BEGIN base END
+Rule 64    sentenciaFuncion -> DEF variables base END
+Rule 65    sentenciaFuncion -> DEF variables parametrosF base END
+Rule 66    parametrosF -> IZQPAREN parametros DERPAREN
+Rule 67    parametros -> variables COMA variables
+Rule 68    parametros -> variables
+Rule 69    parametros -> parametros COMA parametros
+Rule 70    pop -> variables PUNTO POP IZQPAREN valor DERPAREN
+Rule 71    pop -> variables PUNTO POP IZQPAREN DERPAREN
+Rule 72    push -> variables PUNTO PUSH IZQPAREN valor DERPAREN
+Rule 73    clear -> variables PUNTO PUSH IZQPAREN DERPAREN
+
+Terminals, with rules where they appear
+
+AND                  : 47
+APPEND               : 28
+ARREGLOS             : 37
+BEGIN                : 63
+BREAK                : 53 54
+CADENAS              : 18 19 19 20 20 36
+COMA                 : 20 61 62 67 69
+COMENTARIO           : 27
+COMILLADOBLE         : 
+COMILLASIMPLE        : 
+CONSTANTES           : 33
+DEF                  : 64 65
+DERPAREN             : 18 19 20 22 23 25 26 28 42 42 66 70 71 72 73
+DER_CORCH            : 61
+DER_LLAVE            : 62
+DIFERENTE            : 44
+DIVISION             : 
+DO                   : 58 59
+ELSE                 : 
+ELSIF                : 
+END                  : 56 57 58 59 60 63 64 65
+EXPONENCIAL          : 
+FALSE                : 
+FLOTANTES            : 35
+FOR                  : 58
+IF                   : 55
+IGUAL                : 17
+IGUAL_COMP           : 43
+IN                   : 58
+INTERROGACION        : 
+IZQPAREN             : 18 19 20 22 23 25 26 28 42 42 66 70 71 72 73
+IZQ_CORCH            : 61
+IZQ_LLAVE            : 62
+MAPAS                : 38
+MAS                  : 
+MAYOR                : 46
+MENOR                : 45
+MENOS                : 
+MODULE               : 
+MODULO               : 
+MULTIPLICACION       : 
+NIL                  : 
+NOT                  : 
+NUMERO               : 20 34 52 52
+OR                   : 48
+POP                  : 70 71
+PRINT                : 24 25 26
+PUNTO                : 18 19 20 28 70 71 72 73
+PUSH                 : 72 73
+PUTS                 : 21 22 23
+RANGO                : 52
+RETURN               : 
+SPLIT                : 18 19 20
+UNLESS               : 60
+VCLASE               : 31
+VGLOBALES            : 29
+VINSTANCIA           : 32
+VLOCALES             : 30
+WHILE                : 59
+error                : 
+
+Nonterminals, with rules where they appear
+
+append               : 4
+asignacion           : 3
+base                 : 2 55 58 59 60 63 64 65 0
+clear                : 16
+comentarios          : 7
+comparacion          : 23 26 47 47 48 48 49 59 60
+comparaciones        : 55
+expresion            : 17 21 22 24 25 28 41 41 42 42 61 61 62 62
+finalIf              : 55
+listas               : 
+mapa                 : 
+operadorComparador   : 41 42
+parametros           : 66 69 69
+parametrosF          : 65
+pop                  : 14
+print                : 
+push                 : 15
+puts                 : 6
+rango                : 58
+sentAnd              : 50
+sentBREAK            : 57
+sentFor              : 9
+sentIf               : 8
+sentOr               : 51
+sentWhile            : 10
+sentenciaBloque      : 12
+sentenciaFuncion     : 13
+sentencias           : 1 2
+split                : 5
+unless               : 11
+valor                : 40 70 72
+variables            : 17 28 39 54 58 64 65 67 67 68 70 71 72 73
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . base
+    (1) base -> . sentencias
+    (2) base -> . sentencias base
+    (3) sentencias -> . asignacion
+    (4) sentencias -> . append
+    (5) sentencias -> . split
+    (6) sentencias -> . puts
+    (7) sentencias -> . comentarios
+    (8) sentencias -> . sentIf
+    (9) sentencias -> . sentFor
+    (10) sentencias -> . sentWhile
+    (11) sentencias -> . unless
+    (12) sentencias -> . sentenciaBloque
+    (13) sentencias -> . sentenciaFuncion
+    (14) sentencias -> . pop
+    (15) sentencias -> . push
+    (16) sentencias -> . clear
+    (17) asignacion -> . variables IGUAL expresion
+    (28) append -> . variables PUNTO APPEND IZQPAREN expresion DERPAREN
+    (18) split -> . CADENAS PUNTO SPLIT IZQPAREN DERPAREN
+    (19) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN
+    (20) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
+    (21) puts -> . PUTS expresion
+    (22) puts -> . PUTS IZQPAREN expresion DERPAREN
+    (23) puts -> . PUTS IZQPAREN comparacion DERPAREN
+    (27) comentarios -> . COMENTARIO
+    (55) sentIf -> . IF comparaciones base finalIf
+    (58) sentFor -> . FOR variables IN rango DO base END
+    (59) sentWhile -> . WHILE comparacion DO base END
+    (60) unless -> . UNLESS comparacion base END
+    (63) sentenciaBloque -> . BEGIN base END
+    (64) sentenciaFuncion -> . DEF variables base END
+    (65) sentenciaFuncion -> . DEF variables parametrosF base END
+    (70) pop -> . variables PUNTO POP IZQPAREN valor DERPAREN
+    (71) pop -> . variables PUNTO POP IZQPAREN DERPAREN
+    (72) push -> . variables PUNTO PUSH IZQPAREN valor DERPAREN
+    (73) clear -> . variables PUNTO PUSH IZQPAREN DERPAREN
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    CADENAS         shift and go to state 18
+    PUTS            shift and go to state 19
+    COMENTARIO      shift and go to state 20
+    IF              shift and go to state 21
+    FOR             shift and go to state 22
+    WHILE           shift and go to state 23
+    UNLESS          shift and go to state 24
+    BEGIN           shift and go to state 25
+    DEF             shift and go to state 26
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    base                           shift and go to state 1
+    sentencias                     shift and go to state 2
+    asignacion                     shift and go to state 3
+    append                         shift and go to state 4
+    split                          shift and go to state 5
+    puts                           shift and go to state 6
+    comentarios                    shift and go to state 7
+    sentIf                         shift and go to state 8
+    sentFor                        shift and go to state 9
+    sentWhile                      shift and go to state 10
+    unless                         shift and go to state 11
+    sentenciaBloque                shift and go to state 12
+    sentenciaFuncion               shift and go to state 13
+    pop                            shift and go to state 14
+    push                           shift and go to state 15
+    clear                          shift and go to state 16
+    variables                      shift and go to state 17
+
+state 1
+
+    (0) S' -> base .
+
+
+
+state 2
+
+    (1) base -> sentencias .
+    (2) base -> sentencias . base
+    (1) base -> . sentencias
+    (2) base -> . sentencias base
+    (3) sentencias -> . asignacion
+    (4) sentencias -> . append
+    (5) sentencias -> . split
+    (6) sentencias -> . puts
+    (7) sentencias -> . comentarios
+    (8) sentencias -> . sentIf
+    (9) sentencias -> . sentFor
+    (10) sentencias -> . sentWhile
+    (11) sentencias -> . unless
+    (12) sentencias -> . sentenciaBloque
+    (13) sentencias -> . sentenciaFuncion
+    (14) sentencias -> . pop
+    (15) sentencias -> . push
+    (16) sentencias -> . clear
+    (17) asignacion -> . variables IGUAL expresion
+    (28) append -> . variables PUNTO APPEND IZQPAREN expresion DERPAREN
+    (18) split -> . CADENAS PUNTO SPLIT IZQPAREN DERPAREN
+    (19) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN
+    (20) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
+    (21) puts -> . PUTS expresion
+    (22) puts -> . PUTS IZQPAREN expresion DERPAREN
+    (23) puts -> . PUTS IZQPAREN comparacion DERPAREN
+    (27) comentarios -> . COMENTARIO
+    (55) sentIf -> . IF comparaciones base finalIf
+    (58) sentFor -> . FOR variables IN rango DO base END
+    (59) sentWhile -> . WHILE comparacion DO base END
+    (60) unless -> . UNLESS comparacion base END
+    (63) sentenciaBloque -> . BEGIN base END
+    (64) sentenciaFuncion -> . DEF variables base END
+    (65) sentenciaFuncion -> . DEF variables parametrosF base END
+    (70) pop -> . variables PUNTO POP IZQPAREN valor DERPAREN
+    (71) pop -> . variables PUNTO POP IZQPAREN DERPAREN
+    (72) push -> . variables PUNTO PUSH IZQPAREN valor DERPAREN
+    (73) clear -> . variables PUNTO PUSH IZQPAREN DERPAREN
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    $end            reduce using rule 1 (base -> sentencias .)
+    END             reduce using rule 1 (base -> sentencias .)
+    BREAK           reduce using rule 1 (base -> sentencias .)
+    CADENAS         shift and go to state 18
+    PUTS            shift and go to state 19
+    COMENTARIO      shift and go to state 20
+    IF              shift and go to state 21
+    FOR             shift and go to state 22
+    WHILE           shift and go to state 23
+    UNLESS          shift and go to state 24
+    BEGIN           shift and go to state 25
+    DEF             shift and go to state 26
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    sentencias                     shift and go to state 2
+    base                           shift and go to state 32
+    asignacion                     shift and go to state 3
+    append                         shift and go to state 4
+    split                          shift and go to state 5
+    puts                           shift and go to state 6
+    comentarios                    shift and go to state 7
+    sentIf                         shift and go to state 8
+    sentFor                        shift and go to state 9
+    sentWhile                      shift and go to state 10
+    unless                         shift and go to state 11
+    sentenciaBloque                shift and go to state 12
+    sentenciaFuncion               shift and go to state 13
+    pop                            shift and go to state 14
+    push                           shift and go to state 15
+    clear                          shift and go to state 16
+    variables                      shift and go to state 17
+
+state 3
+
+    (3) sentencias -> asignacion .
+
+    CADENAS         reduce using rule 3 (sentencias -> asignacion .)
+    PUTS            reduce using rule 3 (sentencias -> asignacion .)
+    COMENTARIO      reduce using rule 3 (sentencias -> asignacion .)
+    IF              reduce using rule 3 (sentencias -> asignacion .)
+    FOR             reduce using rule 3 (sentencias -> asignacion .)
+    WHILE           reduce using rule 3 (sentencias -> asignacion .)
+    UNLESS          reduce using rule 3 (sentencias -> asignacion .)
+    BEGIN           reduce using rule 3 (sentencias -> asignacion .)
+    DEF             reduce using rule 3 (sentencias -> asignacion .)
+    VGLOBALES       reduce using rule 3 (sentencias -> asignacion .)
+    VLOCALES        reduce using rule 3 (sentencias -> asignacion .)
+    VCLASE          reduce using rule 3 (sentencias -> asignacion .)
+    VINSTANCIA      reduce using rule 3 (sentencias -> asignacion .)
+    CONSTANTES      reduce using rule 3 (sentencias -> asignacion .)
+    $end            reduce using rule 3 (sentencias -> asignacion .)
+    END             reduce using rule 3 (sentencias -> asignacion .)
+    BREAK           reduce using rule 3 (sentencias -> asignacion .)
+
+
+state 4
+
+    (4) sentencias -> append .
+
+    CADENAS         reduce using rule 4 (sentencias -> append .)
+    PUTS            reduce using rule 4 (sentencias -> append .)
+    COMENTARIO      reduce using rule 4 (sentencias -> append .)
+    IF              reduce using rule 4 (sentencias -> append .)
+    FOR             reduce using rule 4 (sentencias -> append .)
+    WHILE           reduce using rule 4 (sentencias -> append .)
+    UNLESS          reduce using rule 4 (sentencias -> append .)
+    BEGIN           reduce using rule 4 (sentencias -> append .)
+    DEF             reduce using rule 4 (sentencias -> append .)
+    VGLOBALES       reduce using rule 4 (sentencias -> append .)
+    VLOCALES        reduce using rule 4 (sentencias -> append .)
+    VCLASE          reduce using rule 4 (sentencias -> append .)
+    VINSTANCIA      reduce using rule 4 (sentencias -> append .)
+    CONSTANTES      reduce using rule 4 (sentencias -> append .)
+    $end            reduce using rule 4 (sentencias -> append .)
+    END             reduce using rule 4 (sentencias -> append .)
+    BREAK           reduce using rule 4 (sentencias -> append .)
+
+
+state 5
+
+    (5) sentencias -> split .
+
+    CADENAS         reduce using rule 5 (sentencias -> split .)
+    PUTS            reduce using rule 5 (sentencias -> split .)
+    COMENTARIO      reduce using rule 5 (sentencias -> split .)
+    IF              reduce using rule 5 (sentencias -> split .)
+    FOR             reduce using rule 5 (sentencias -> split .)
+    WHILE           reduce using rule 5 (sentencias -> split .)
+    UNLESS          reduce using rule 5 (sentencias -> split .)
+    BEGIN           reduce using rule 5 (sentencias -> split .)
+    DEF             reduce using rule 5 (sentencias -> split .)
+    VGLOBALES       reduce using rule 5 (sentencias -> split .)
+    VLOCALES        reduce using rule 5 (sentencias -> split .)
+    VCLASE          reduce using rule 5 (sentencias -> split .)
+    VINSTANCIA      reduce using rule 5 (sentencias -> split .)
+    CONSTANTES      reduce using rule 5 (sentencias -> split .)
+    $end            reduce using rule 5 (sentencias -> split .)
+    END             reduce using rule 5 (sentencias -> split .)
+    BREAK           reduce using rule 5 (sentencias -> split .)
+
+
+state 6
+
+    (6) sentencias -> puts .
+
+    CADENAS         reduce using rule 6 (sentencias -> puts .)
+    PUTS            reduce using rule 6 (sentencias -> puts .)
+    COMENTARIO      reduce using rule 6 (sentencias -> puts .)
+    IF              reduce using rule 6 (sentencias -> puts .)
+    FOR             reduce using rule 6 (sentencias -> puts .)
+    WHILE           reduce using rule 6 (sentencias -> puts .)
+    UNLESS          reduce using rule 6 (sentencias -> puts .)
+    BEGIN           reduce using rule 6 (sentencias -> puts .)
+    DEF             reduce using rule 6 (sentencias -> puts .)
+    VGLOBALES       reduce using rule 6 (sentencias -> puts .)
+    VLOCALES        reduce using rule 6 (sentencias -> puts .)
+    VCLASE          reduce using rule 6 (sentencias -> puts .)
+    VINSTANCIA      reduce using rule 6 (sentencias -> puts .)
+    CONSTANTES      reduce using rule 6 (sentencias -> puts .)
+    $end            reduce using rule 6 (sentencias -> puts .)
+    END             reduce using rule 6 (sentencias -> puts .)
+    BREAK           reduce using rule 6 (sentencias -> puts .)
+
+
+state 7
+
+    (7) sentencias -> comentarios .
+
+    CADENAS         reduce using rule 7 (sentencias -> comentarios .)
+    PUTS            reduce using rule 7 (sentencias -> comentarios .)
+    COMENTARIO      reduce using rule 7 (sentencias -> comentarios .)
+    IF              reduce using rule 7 (sentencias -> comentarios .)
+    FOR             reduce using rule 7 (sentencias -> comentarios .)
+    WHILE           reduce using rule 7 (sentencias -> comentarios .)
+    UNLESS          reduce using rule 7 (sentencias -> comentarios .)
+    BEGIN           reduce using rule 7 (sentencias -> comentarios .)
+    DEF             reduce using rule 7 (sentencias -> comentarios .)
+    VGLOBALES       reduce using rule 7 (sentencias -> comentarios .)
+    VLOCALES        reduce using rule 7 (sentencias -> comentarios .)
+    VCLASE          reduce using rule 7 (sentencias -> comentarios .)
+    VINSTANCIA      reduce using rule 7 (sentencias -> comentarios .)
+    CONSTANTES      reduce using rule 7 (sentencias -> comentarios .)
+    $end            reduce using rule 7 (sentencias -> comentarios .)
+    END             reduce using rule 7 (sentencias -> comentarios .)
+    BREAK           reduce using rule 7 (sentencias -> comentarios .)
+
+
+state 8
+
+    (8) sentencias -> sentIf .
+
+    CADENAS         reduce using rule 8 (sentencias -> sentIf .)
+    PUTS            reduce using rule 8 (sentencias -> sentIf .)
+    COMENTARIO      reduce using rule 8 (sentencias -> sentIf .)
+    IF              reduce using rule 8 (sentencias -> sentIf .)
+    FOR             reduce using rule 8 (sentencias -> sentIf .)
+    WHILE           reduce using rule 8 (sentencias -> sentIf .)
+    UNLESS          reduce using rule 8 (sentencias -> sentIf .)
+    BEGIN           reduce using rule 8 (sentencias -> sentIf .)
+    DEF             reduce using rule 8 (sentencias -> sentIf .)
+    VGLOBALES       reduce using rule 8 (sentencias -> sentIf .)
+    VLOCALES        reduce using rule 8 (sentencias -> sentIf .)
+    VCLASE          reduce using rule 8 (sentencias -> sentIf .)
+    VINSTANCIA      reduce using rule 8 (sentencias -> sentIf .)
+    CONSTANTES      reduce using rule 8 (sentencias -> sentIf .)
+    $end            reduce using rule 8 (sentencias -> sentIf .)
+    END             reduce using rule 8 (sentencias -> sentIf .)
+    BREAK           reduce using rule 8 (sentencias -> sentIf .)
+
+
+state 9
+
+    (9) sentencias -> sentFor .
+
+    CADENAS         reduce using rule 9 (sentencias -> sentFor .)
+    PUTS            reduce using rule 9 (sentencias -> sentFor .)
+    COMENTARIO      reduce using rule 9 (sentencias -> sentFor .)
+    IF              reduce using rule 9 (sentencias -> sentFor .)
+    FOR             reduce using rule 9 (sentencias -> sentFor .)
+    WHILE           reduce using rule 9 (sentencias -> sentFor .)
+    UNLESS          reduce using rule 9 (sentencias -> sentFor .)
+    BEGIN           reduce using rule 9 (sentencias -> sentFor .)
+    DEF             reduce using rule 9 (sentencias -> sentFor .)
+    VGLOBALES       reduce using rule 9 (sentencias -> sentFor .)
+    VLOCALES        reduce using rule 9 (sentencias -> sentFor .)
+    VCLASE          reduce using rule 9 (sentencias -> sentFor .)
+    VINSTANCIA      reduce using rule 9 (sentencias -> sentFor .)
+    CONSTANTES      reduce using rule 9 (sentencias -> sentFor .)
+    $end            reduce using rule 9 (sentencias -> sentFor .)
+    END             reduce using rule 9 (sentencias -> sentFor .)
+    BREAK           reduce using rule 9 (sentencias -> sentFor .)
+
+
+state 10
+
+    (10) sentencias -> sentWhile .
+
+    CADENAS         reduce using rule 10 (sentencias -> sentWhile .)
+    PUTS            reduce using rule 10 (sentencias -> sentWhile .)
+    COMENTARIO      reduce using rule 10 (sentencias -> sentWhile .)
+    IF              reduce using rule 10 (sentencias -> sentWhile .)
+    FOR             reduce using rule 10 (sentencias -> sentWhile .)
+    WHILE           reduce using rule 10 (sentencias -> sentWhile .)
+    UNLESS          reduce using rule 10 (sentencias -> sentWhile .)
+    BEGIN           reduce using rule 10 (sentencias -> sentWhile .)
+    DEF             reduce using rule 10 (sentencias -> sentWhile .)
+    VGLOBALES       reduce using rule 10 (sentencias -> sentWhile .)
+    VLOCALES        reduce using rule 10 (sentencias -> sentWhile .)
+    VCLASE          reduce using rule 10 (sentencias -> sentWhile .)
+    VINSTANCIA      reduce using rule 10 (sentencias -> sentWhile .)
+    CONSTANTES      reduce using rule 10 (sentencias -> sentWhile .)
+    $end            reduce using rule 10 (sentencias -> sentWhile .)
+    END             reduce using rule 10 (sentencias -> sentWhile .)
+    BREAK           reduce using rule 10 (sentencias -> sentWhile .)
+
+
+state 11
+
+    (11) sentencias -> unless .
+
+    CADENAS         reduce using rule 11 (sentencias -> unless .)
+    PUTS            reduce using rule 11 (sentencias -> unless .)
+    COMENTARIO      reduce using rule 11 (sentencias -> unless .)
+    IF              reduce using rule 11 (sentencias -> unless .)
+    FOR             reduce using rule 11 (sentencias -> unless .)
+    WHILE           reduce using rule 11 (sentencias -> unless .)
+    UNLESS          reduce using rule 11 (sentencias -> unless .)
+    BEGIN           reduce using rule 11 (sentencias -> unless .)
+    DEF             reduce using rule 11 (sentencias -> unless .)
+    VGLOBALES       reduce using rule 11 (sentencias -> unless .)
+    VLOCALES        reduce using rule 11 (sentencias -> unless .)
+    VCLASE          reduce using rule 11 (sentencias -> unless .)
+    VINSTANCIA      reduce using rule 11 (sentencias -> unless .)
+    CONSTANTES      reduce using rule 11 (sentencias -> unless .)
+    $end            reduce using rule 11 (sentencias -> unless .)
+    END             reduce using rule 11 (sentencias -> unless .)
+    BREAK           reduce using rule 11 (sentencias -> unless .)
+
+
+state 12
+
+    (12) sentencias -> sentenciaBloque .
+
+    CADENAS         reduce using rule 12 (sentencias -> sentenciaBloque .)
+    PUTS            reduce using rule 12 (sentencias -> sentenciaBloque .)
+    COMENTARIO      reduce using rule 12 (sentencias -> sentenciaBloque .)
+    IF              reduce using rule 12 (sentencias -> sentenciaBloque .)
+    FOR             reduce using rule 12 (sentencias -> sentenciaBloque .)
+    WHILE           reduce using rule 12 (sentencias -> sentenciaBloque .)
+    UNLESS          reduce using rule 12 (sentencias -> sentenciaBloque .)
+    BEGIN           reduce using rule 12 (sentencias -> sentenciaBloque .)
+    DEF             reduce using rule 12 (sentencias -> sentenciaBloque .)
+    VGLOBALES       reduce using rule 12 (sentencias -> sentenciaBloque .)
+    VLOCALES        reduce using rule 12 (sentencias -> sentenciaBloque .)
+    VCLASE          reduce using rule 12 (sentencias -> sentenciaBloque .)
+    VINSTANCIA      reduce using rule 12 (sentencias -> sentenciaBloque .)
+    CONSTANTES      reduce using rule 12 (sentencias -> sentenciaBloque .)
+    $end            reduce using rule 12 (sentencias -> sentenciaBloque .)
+    END             reduce using rule 12 (sentencias -> sentenciaBloque .)
+    BREAK           reduce using rule 12 (sentencias -> sentenciaBloque .)
+
+
+state 13
+
+    (13) sentencias -> sentenciaFuncion .
+
+    CADENAS         reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    PUTS            reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    COMENTARIO      reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    IF              reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    FOR             reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    WHILE           reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    UNLESS          reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    BEGIN           reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    DEF             reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    VGLOBALES       reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    VLOCALES        reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    VCLASE          reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    VINSTANCIA      reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    CONSTANTES      reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    $end            reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    END             reduce using rule 13 (sentencias -> sentenciaFuncion .)
+    BREAK           reduce using rule 13 (sentencias -> sentenciaFuncion .)
+
+
+state 14
+
+    (14) sentencias -> pop .
+
+    CADENAS         reduce using rule 14 (sentencias -> pop .)
+    PUTS            reduce using rule 14 (sentencias -> pop .)
+    COMENTARIO      reduce using rule 14 (sentencias -> pop .)
+    IF              reduce using rule 14 (sentencias -> pop .)
+    FOR             reduce using rule 14 (sentencias -> pop .)
+    WHILE           reduce using rule 14 (sentencias -> pop .)
+    UNLESS          reduce using rule 14 (sentencias -> pop .)
+    BEGIN           reduce using rule 14 (sentencias -> pop .)
+    DEF             reduce using rule 14 (sentencias -> pop .)
+    VGLOBALES       reduce using rule 14 (sentencias -> pop .)
+    VLOCALES        reduce using rule 14 (sentencias -> pop .)
+    VCLASE          reduce using rule 14 (sentencias -> pop .)
+    VINSTANCIA      reduce using rule 14 (sentencias -> pop .)
+    CONSTANTES      reduce using rule 14 (sentencias -> pop .)
+    $end            reduce using rule 14 (sentencias -> pop .)
+    END             reduce using rule 14 (sentencias -> pop .)
+    BREAK           reduce using rule 14 (sentencias -> pop .)
+
+
+state 15
+
+    (15) sentencias -> push .
+
+    CADENAS         reduce using rule 15 (sentencias -> push .)
+    PUTS            reduce using rule 15 (sentencias -> push .)
+    COMENTARIO      reduce using rule 15 (sentencias -> push .)
+    IF              reduce using rule 15 (sentencias -> push .)
+    FOR             reduce using rule 15 (sentencias -> push .)
+    WHILE           reduce using rule 15 (sentencias -> push .)
+    UNLESS          reduce using rule 15 (sentencias -> push .)
+    BEGIN           reduce using rule 15 (sentencias -> push .)
+    DEF             reduce using rule 15 (sentencias -> push .)
+    VGLOBALES       reduce using rule 15 (sentencias -> push .)
+    VLOCALES        reduce using rule 15 (sentencias -> push .)
+    VCLASE          reduce using rule 15 (sentencias -> push .)
+    VINSTANCIA      reduce using rule 15 (sentencias -> push .)
+    CONSTANTES      reduce using rule 15 (sentencias -> push .)
+    $end            reduce using rule 15 (sentencias -> push .)
+    END             reduce using rule 15 (sentencias -> push .)
+    BREAK           reduce using rule 15 (sentencias -> push .)
+
+
+state 16
+
+    (16) sentencias -> clear .
+
+    CADENAS         reduce using rule 16 (sentencias -> clear .)
+    PUTS            reduce using rule 16 (sentencias -> clear .)
+    COMENTARIO      reduce using rule 16 (sentencias -> clear .)
+    IF              reduce using rule 16 (sentencias -> clear .)
+    FOR             reduce using rule 16 (sentencias -> clear .)
+    WHILE           reduce using rule 16 (sentencias -> clear .)
+    UNLESS          reduce using rule 16 (sentencias -> clear .)
+    BEGIN           reduce using rule 16 (sentencias -> clear .)
+    DEF             reduce using rule 16 (sentencias -> clear .)
+    VGLOBALES       reduce using rule 16 (sentencias -> clear .)
+    VLOCALES        reduce using rule 16 (sentencias -> clear .)
+    VCLASE          reduce using rule 16 (sentencias -> clear .)
+    VINSTANCIA      reduce using rule 16 (sentencias -> clear .)
+    CONSTANTES      reduce using rule 16 (sentencias -> clear .)
+    $end            reduce using rule 16 (sentencias -> clear .)
+    END             reduce using rule 16 (sentencias -> clear .)
+    BREAK           reduce using rule 16 (sentencias -> clear .)
+
+
+state 17
+
+    (17) asignacion -> variables . IGUAL expresion
+    (28) append -> variables . PUNTO APPEND IZQPAREN expresion DERPAREN
+    (70) pop -> variables . PUNTO POP IZQPAREN valor DERPAREN
+    (71) pop -> variables . PUNTO POP IZQPAREN DERPAREN
+    (72) push -> variables . PUNTO PUSH IZQPAREN valor DERPAREN
+    (73) clear -> variables . PUNTO PUSH IZQPAREN DERPAREN
+
+    IGUAL           shift and go to state 33
+    PUNTO           shift and go to state 34
+
+
+state 18
+
+    (18) split -> CADENAS . PUNTO SPLIT IZQPAREN DERPAREN
+    (19) split -> CADENAS . PUNTO SPLIT IZQPAREN CADENAS DERPAREN
+    (20) split -> CADENAS . PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
+
+    PUNTO           shift and go to state 35
+
+
+state 19
+
+    (21) puts -> PUTS . expresion
+    (22) puts -> PUTS . IZQPAREN expresion DERPAREN
+    (23) puts -> PUTS . IZQPAREN comparacion DERPAREN
+    (40) expresion -> . valor
+    (34) valor -> . NUMERO
+    (35) valor -> . FLOTANTES
+    (36) valor -> . CADENAS
+    (37) valor -> . ARREGLOS
+    (38) valor -> . MAPAS
+    (39) valor -> . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    IZQPAREN        shift and go to state 37
+    NUMERO          shift and go to state 39
+    FLOTANTES       shift and go to state 40
+    CADENAS         shift and go to state 41
+    ARREGLOS        shift and go to state 42
+    MAPAS           shift and go to state 43
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    expresion                      shift and go to state 36
+    valor                          shift and go to state 38
+    variables                      shift and go to state 44
+
+state 20
+
+    (27) comentarios -> COMENTARIO .
+
+    CADENAS         reduce using rule 27 (comentarios -> COMENTARIO .)
+    PUTS            reduce using rule 27 (comentarios -> COMENTARIO .)
+    COMENTARIO      reduce using rule 27 (comentarios -> COMENTARIO .)
+    IF              reduce using rule 27 (comentarios -> COMENTARIO .)
+    FOR             reduce using rule 27 (comentarios -> COMENTARIO .)
+    WHILE           reduce using rule 27 (comentarios -> COMENTARIO .)
+    UNLESS          reduce using rule 27 (comentarios -> COMENTARIO .)
+    BEGIN           reduce using rule 27 (comentarios -> COMENTARIO .)
+    DEF             reduce using rule 27 (comentarios -> COMENTARIO .)
+    VGLOBALES       reduce using rule 27 (comentarios -> COMENTARIO .)
+    VLOCALES        reduce using rule 27 (comentarios -> COMENTARIO .)
+    VCLASE          reduce using rule 27 (comentarios -> COMENTARIO .)
+    VINSTANCIA      reduce using rule 27 (comentarios -> COMENTARIO .)
+    CONSTANTES      reduce using rule 27 (comentarios -> COMENTARIO .)
+    $end            reduce using rule 27 (comentarios -> COMENTARIO .)
+    END             reduce using rule 27 (comentarios -> COMENTARIO .)
+    BREAK           reduce using rule 27 (comentarios -> COMENTARIO .)
+
+
+state 21
+
+    (55) sentIf -> IF . comparaciones base finalIf
+    (49) comparaciones -> . comparacion
+    (50) comparaciones -> . sentAnd
+    (51) comparaciones -> . sentOr
+    (41) comparacion -> . expresion operadorComparador expresion
+    (42) comparacion -> . IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN
+    (47) sentAnd -> . comparacion AND comparacion
+    (48) sentOr -> . comparacion OR comparacion
+    (40) expresion -> . valor
+    (34) valor -> . NUMERO
+    (35) valor -> . FLOTANTES
+    (36) valor -> . CADENAS
+    (37) valor -> . ARREGLOS
+    (38) valor -> . MAPAS
+    (39) valor -> . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    IZQPAREN        shift and go to state 50
+    NUMERO          shift and go to state 39
+    FLOTANTES       shift and go to state 40
+    CADENAS         shift and go to state 41
+    ARREGLOS        shift and go to state 42
+    MAPAS           shift and go to state 43
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    comparaciones                  shift and go to state 45
+    comparacion                    shift and go to state 46
+    sentAnd                        shift and go to state 47
+    sentOr                         shift and go to state 48
+    expresion                      shift and go to state 49
+    valor                          shift and go to state 38
+    variables                      shift and go to state 44
+
+state 22
+
+    (58) sentFor -> FOR . variables IN rango DO base END
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    variables                      shift and go to state 51
+
+state 23
+
+    (59) sentWhile -> WHILE . comparacion DO base END
+    (41) comparacion -> . expresion operadorComparador expresion
+    (42) comparacion -> . IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN
+    (40) expresion -> . valor
+    (34) valor -> . NUMERO
+    (35) valor -> . FLOTANTES
+    (36) valor -> . CADENAS
+    (37) valor -> . ARREGLOS
+    (38) valor -> . MAPAS
+    (39) valor -> . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    IZQPAREN        shift and go to state 50
+    NUMERO          shift and go to state 39
+    FLOTANTES       shift and go to state 40
+    CADENAS         shift and go to state 41
+    ARREGLOS        shift and go to state 42
+    MAPAS           shift and go to state 43
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    comparacion                    shift and go to state 52
+    expresion                      shift and go to state 49
+    valor                          shift and go to state 38
+    variables                      shift and go to state 44
+
+state 24
+
+    (60) unless -> UNLESS . comparacion base END
+    (41) comparacion -> . expresion operadorComparador expresion
+    (42) comparacion -> . IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN
+    (40) expresion -> . valor
+    (34) valor -> . NUMERO
+    (35) valor -> . FLOTANTES
+    (36) valor -> . CADENAS
+    (37) valor -> . ARREGLOS
+    (38) valor -> . MAPAS
+    (39) valor -> . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    IZQPAREN        shift and go to state 50
+    NUMERO          shift and go to state 39
+    FLOTANTES       shift and go to state 40
+    CADENAS         shift and go to state 41
+    ARREGLOS        shift and go to state 42
+    MAPAS           shift and go to state 43
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    comparacion                    shift and go to state 53
+    expresion                      shift and go to state 49
+    valor                          shift and go to state 38
+    variables                      shift and go to state 44
+
+state 25
+
+    (63) sentenciaBloque -> BEGIN . base END
+    (1) base -> . sentencias
+    (2) base -> . sentencias base
+    (3) sentencias -> . asignacion
+    (4) sentencias -> . append
+    (5) sentencias -> . split
+    (6) sentencias -> . puts
+    (7) sentencias -> . comentarios
+    (8) sentencias -> . sentIf
+    (9) sentencias -> . sentFor
+    (10) sentencias -> . sentWhile
+    (11) sentencias -> . unless
+    (12) sentencias -> . sentenciaBloque
+    (13) sentencias -> . sentenciaFuncion
+    (14) sentencias -> . pop
+    (15) sentencias -> . push
+    (16) sentencias -> . clear
+    (17) asignacion -> . variables IGUAL expresion
+    (28) append -> . variables PUNTO APPEND IZQPAREN expresion DERPAREN
+    (18) split -> . CADENAS PUNTO SPLIT IZQPAREN DERPAREN
+    (19) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN
+    (20) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
+    (21) puts -> . PUTS expresion
+    (22) puts -> . PUTS IZQPAREN expresion DERPAREN
+    (23) puts -> . PUTS IZQPAREN comparacion DERPAREN
+    (27) comentarios -> . COMENTARIO
+    (55) sentIf -> . IF comparaciones base finalIf
+    (58) sentFor -> . FOR variables IN rango DO base END
+    (59) sentWhile -> . WHILE comparacion DO base END
+    (60) unless -> . UNLESS comparacion base END
+    (63) sentenciaBloque -> . BEGIN base END
+    (64) sentenciaFuncion -> . DEF variables base END
+    (65) sentenciaFuncion -> . DEF variables parametrosF base END
+    (70) pop -> . variables PUNTO POP IZQPAREN valor DERPAREN
+    (71) pop -> . variables PUNTO POP IZQPAREN DERPAREN
+    (72) push -> . variables PUNTO PUSH IZQPAREN valor DERPAREN
+    (73) clear -> . variables PUNTO PUSH IZQPAREN DERPAREN
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    CADENAS         shift and go to state 18
+    PUTS            shift and go to state 19
+    COMENTARIO      shift and go to state 20
+    IF              shift and go to state 21
+    FOR             shift and go to state 22
+    WHILE           shift and go to state 23
+    UNLESS          shift and go to state 24
+    BEGIN           shift and go to state 25
+    DEF             shift and go to state 26
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    base                           shift and go to state 54
+    sentencias                     shift and go to state 2
+    asignacion                     shift and go to state 3
+    append                         shift and go to state 4
+    split                          shift and go to state 5
+    puts                           shift and go to state 6
+    comentarios                    shift and go to state 7
+    sentIf                         shift and go to state 8
+    sentFor                        shift and go to state 9
+    sentWhile                      shift and go to state 10
+    unless                         shift and go to state 11
+    sentenciaBloque                shift and go to state 12
+    sentenciaFuncion               shift and go to state 13
+    pop                            shift and go to state 14
+    push                           shift and go to state 15
+    clear                          shift and go to state 16
+    variables                      shift and go to state 17
+
+state 26
+
+    (64) sentenciaFuncion -> DEF . variables base END
+    (65) sentenciaFuncion -> DEF . variables parametrosF base END
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    variables                      shift and go to state 55
+
+state 27
+
+    (29) variables -> VGLOBALES .
+
+    IGUAL           reduce using rule 29 (variables -> VGLOBALES .)
+    PUNTO           reduce using rule 29 (variables -> VGLOBALES .)
+    CADENAS         reduce using rule 29 (variables -> VGLOBALES .)
+    PUTS            reduce using rule 29 (variables -> VGLOBALES .)
+    COMENTARIO      reduce using rule 29 (variables -> VGLOBALES .)
+    IF              reduce using rule 29 (variables -> VGLOBALES .)
+    FOR             reduce using rule 29 (variables -> VGLOBALES .)
+    WHILE           reduce using rule 29 (variables -> VGLOBALES .)
+    UNLESS          reduce using rule 29 (variables -> VGLOBALES .)
+    BEGIN           reduce using rule 29 (variables -> VGLOBALES .)
+    DEF             reduce using rule 29 (variables -> VGLOBALES .)
+    VGLOBALES       reduce using rule 29 (variables -> VGLOBALES .)
+    VLOCALES        reduce using rule 29 (variables -> VGLOBALES .)
+    VCLASE          reduce using rule 29 (variables -> VGLOBALES .)
+    VINSTANCIA      reduce using rule 29 (variables -> VGLOBALES .)
+    CONSTANTES      reduce using rule 29 (variables -> VGLOBALES .)
+    $end            reduce using rule 29 (variables -> VGLOBALES .)
+    END             reduce using rule 29 (variables -> VGLOBALES .)
+    BREAK           reduce using rule 29 (variables -> VGLOBALES .)
+    IGUAL_COMP      reduce using rule 29 (variables -> VGLOBALES .)
+    DIFERENTE       reduce using rule 29 (variables -> VGLOBALES .)
+    MENOR           reduce using rule 29 (variables -> VGLOBALES .)
+    MAYOR           reduce using rule 29 (variables -> VGLOBALES .)
+    IN              reduce using rule 29 (variables -> VGLOBALES .)
+    IZQPAREN        reduce using rule 29 (variables -> VGLOBALES .)
+    DERPAREN        reduce using rule 29 (variables -> VGLOBALES .)
+    AND             reduce using rule 29 (variables -> VGLOBALES .)
+    OR              reduce using rule 29 (variables -> VGLOBALES .)
+    DO              reduce using rule 29 (variables -> VGLOBALES .)
+    COMA            reduce using rule 29 (variables -> VGLOBALES .)
+
+
+state 28
+
+    (30) variables -> VLOCALES .
+
+    IGUAL           reduce using rule 30 (variables -> VLOCALES .)
+    PUNTO           reduce using rule 30 (variables -> VLOCALES .)
+    CADENAS         reduce using rule 30 (variables -> VLOCALES .)
+    PUTS            reduce using rule 30 (variables -> VLOCALES .)
+    COMENTARIO      reduce using rule 30 (variables -> VLOCALES .)
+    IF              reduce using rule 30 (variables -> VLOCALES .)
+    FOR             reduce using rule 30 (variables -> VLOCALES .)
+    WHILE           reduce using rule 30 (variables -> VLOCALES .)
+    UNLESS          reduce using rule 30 (variables -> VLOCALES .)
+    BEGIN           reduce using rule 30 (variables -> VLOCALES .)
+    DEF             reduce using rule 30 (variables -> VLOCALES .)
+    VGLOBALES       reduce using rule 30 (variables -> VLOCALES .)
+    VLOCALES        reduce using rule 30 (variables -> VLOCALES .)
+    VCLASE          reduce using rule 30 (variables -> VLOCALES .)
+    VINSTANCIA      reduce using rule 30 (variables -> VLOCALES .)
+    CONSTANTES      reduce using rule 30 (variables -> VLOCALES .)
+    $end            reduce using rule 30 (variables -> VLOCALES .)
+    END             reduce using rule 30 (variables -> VLOCALES .)
+    BREAK           reduce using rule 30 (variables -> VLOCALES .)
+    IGUAL_COMP      reduce using rule 30 (variables -> VLOCALES .)
+    DIFERENTE       reduce using rule 30 (variables -> VLOCALES .)
+    MENOR           reduce using rule 30 (variables -> VLOCALES .)
+    MAYOR           reduce using rule 30 (variables -> VLOCALES .)
+    IN              reduce using rule 30 (variables -> VLOCALES .)
+    IZQPAREN        reduce using rule 30 (variables -> VLOCALES .)
+    DERPAREN        reduce using rule 30 (variables -> VLOCALES .)
+    AND             reduce using rule 30 (variables -> VLOCALES .)
+    OR              reduce using rule 30 (variables -> VLOCALES .)
+    DO              reduce using rule 30 (variables -> VLOCALES .)
+    COMA            reduce using rule 30 (variables -> VLOCALES .)
+
+
+state 29
+
+    (31) variables -> VCLASE .
+
+    IGUAL           reduce using rule 31 (variables -> VCLASE .)
+    PUNTO           reduce using rule 31 (variables -> VCLASE .)
+    CADENAS         reduce using rule 31 (variables -> VCLASE .)
+    PUTS            reduce using rule 31 (variables -> VCLASE .)
+    COMENTARIO      reduce using rule 31 (variables -> VCLASE .)
+    IF              reduce using rule 31 (variables -> VCLASE .)
+    FOR             reduce using rule 31 (variables -> VCLASE .)
+    WHILE           reduce using rule 31 (variables -> VCLASE .)
+    UNLESS          reduce using rule 31 (variables -> VCLASE .)
+    BEGIN           reduce using rule 31 (variables -> VCLASE .)
+    DEF             reduce using rule 31 (variables -> VCLASE .)
+    VGLOBALES       reduce using rule 31 (variables -> VCLASE .)
+    VLOCALES        reduce using rule 31 (variables -> VCLASE .)
+    VCLASE          reduce using rule 31 (variables -> VCLASE .)
+    VINSTANCIA      reduce using rule 31 (variables -> VCLASE .)
+    CONSTANTES      reduce using rule 31 (variables -> VCLASE .)
+    $end            reduce using rule 31 (variables -> VCLASE .)
+    END             reduce using rule 31 (variables -> VCLASE .)
+    BREAK           reduce using rule 31 (variables -> VCLASE .)
+    IGUAL_COMP      reduce using rule 31 (variables -> VCLASE .)
+    DIFERENTE       reduce using rule 31 (variables -> VCLASE .)
+    MENOR           reduce using rule 31 (variables -> VCLASE .)
+    MAYOR           reduce using rule 31 (variables -> VCLASE .)
+    IN              reduce using rule 31 (variables -> VCLASE .)
+    IZQPAREN        reduce using rule 31 (variables -> VCLASE .)
+    DERPAREN        reduce using rule 31 (variables -> VCLASE .)
+    AND             reduce using rule 31 (variables -> VCLASE .)
+    OR              reduce using rule 31 (variables -> VCLASE .)
+    DO              reduce using rule 31 (variables -> VCLASE .)
+    COMA            reduce using rule 31 (variables -> VCLASE .)
+
+
+state 30
+
+    (32) variables -> VINSTANCIA .
+
+    IGUAL           reduce using rule 32 (variables -> VINSTANCIA .)
+    PUNTO           reduce using rule 32 (variables -> VINSTANCIA .)
+    CADENAS         reduce using rule 32 (variables -> VINSTANCIA .)
+    PUTS            reduce using rule 32 (variables -> VINSTANCIA .)
+    COMENTARIO      reduce using rule 32 (variables -> VINSTANCIA .)
+    IF              reduce using rule 32 (variables -> VINSTANCIA .)
+    FOR             reduce using rule 32 (variables -> VINSTANCIA .)
+    WHILE           reduce using rule 32 (variables -> VINSTANCIA .)
+    UNLESS          reduce using rule 32 (variables -> VINSTANCIA .)
+    BEGIN           reduce using rule 32 (variables -> VINSTANCIA .)
+    DEF             reduce using rule 32 (variables -> VINSTANCIA .)
+    VGLOBALES       reduce using rule 32 (variables -> VINSTANCIA .)
+    VLOCALES        reduce using rule 32 (variables -> VINSTANCIA .)
+    VCLASE          reduce using rule 32 (variables -> VINSTANCIA .)
+    VINSTANCIA      reduce using rule 32 (variables -> VINSTANCIA .)
+    CONSTANTES      reduce using rule 32 (variables -> VINSTANCIA .)
+    $end            reduce using rule 32 (variables -> VINSTANCIA .)
+    END             reduce using rule 32 (variables -> VINSTANCIA .)
+    BREAK           reduce using rule 32 (variables -> VINSTANCIA .)
+    IGUAL_COMP      reduce using rule 32 (variables -> VINSTANCIA .)
+    DIFERENTE       reduce using rule 32 (variables -> VINSTANCIA .)
+    MENOR           reduce using rule 32 (variables -> VINSTANCIA .)
+    MAYOR           reduce using rule 32 (variables -> VINSTANCIA .)
+    IN              reduce using rule 32 (variables -> VINSTANCIA .)
+    IZQPAREN        reduce using rule 32 (variables -> VINSTANCIA .)
+    DERPAREN        reduce using rule 32 (variables -> VINSTANCIA .)
+    AND             reduce using rule 32 (variables -> VINSTANCIA .)
+    OR              reduce using rule 32 (variables -> VINSTANCIA .)
+    DO              reduce using rule 32 (variables -> VINSTANCIA .)
+    COMA            reduce using rule 32 (variables -> VINSTANCIA .)
+
+
+state 31
+
+    (33) variables -> CONSTANTES .
+
+    IGUAL           reduce using rule 33 (variables -> CONSTANTES .)
+    PUNTO           reduce using rule 33 (variables -> CONSTANTES .)
+    CADENAS         reduce using rule 33 (variables -> CONSTANTES .)
+    PUTS            reduce using rule 33 (variables -> CONSTANTES .)
+    COMENTARIO      reduce using rule 33 (variables -> CONSTANTES .)
+    IF              reduce using rule 33 (variables -> CONSTANTES .)
+    FOR             reduce using rule 33 (variables -> CONSTANTES .)
+    WHILE           reduce using rule 33 (variables -> CONSTANTES .)
+    UNLESS          reduce using rule 33 (variables -> CONSTANTES .)
+    BEGIN           reduce using rule 33 (variables -> CONSTANTES .)
+    DEF             reduce using rule 33 (variables -> CONSTANTES .)
+    VGLOBALES       reduce using rule 33 (variables -> CONSTANTES .)
+    VLOCALES        reduce using rule 33 (variables -> CONSTANTES .)
+    VCLASE          reduce using rule 33 (variables -> CONSTANTES .)
+    VINSTANCIA      reduce using rule 33 (variables -> CONSTANTES .)
+    CONSTANTES      reduce using rule 33 (variables -> CONSTANTES .)
+    $end            reduce using rule 33 (variables -> CONSTANTES .)
+    END             reduce using rule 33 (variables -> CONSTANTES .)
+    BREAK           reduce using rule 33 (variables -> CONSTANTES .)
+    IGUAL_COMP      reduce using rule 33 (variables -> CONSTANTES .)
+    DIFERENTE       reduce using rule 33 (variables -> CONSTANTES .)
+    MENOR           reduce using rule 33 (variables -> CONSTANTES .)
+    MAYOR           reduce using rule 33 (variables -> CONSTANTES .)
+    IN              reduce using rule 33 (variables -> CONSTANTES .)
+    IZQPAREN        reduce using rule 33 (variables -> CONSTANTES .)
+    DERPAREN        reduce using rule 33 (variables -> CONSTANTES .)
+    AND             reduce using rule 33 (variables -> CONSTANTES .)
+    OR              reduce using rule 33 (variables -> CONSTANTES .)
+    DO              reduce using rule 33 (variables -> CONSTANTES .)
+    COMA            reduce using rule 33 (variables -> CONSTANTES .)
+
+
+state 32
+
+    (2) base -> sentencias base .
+
+    $end            reduce using rule 2 (base -> sentencias base .)
+    END             reduce using rule 2 (base -> sentencias base .)
+    BREAK           reduce using rule 2 (base -> sentencias base .)
+
+
+state 33
+
+    (17) asignacion -> variables IGUAL . expresion
+    (40) expresion -> . valor
+    (34) valor -> . NUMERO
+    (35) valor -> . FLOTANTES
+    (36) valor -> . CADENAS
+    (37) valor -> . ARREGLOS
+    (38) valor -> . MAPAS
+    (39) valor -> . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    NUMERO          shift and go to state 39
+    FLOTANTES       shift and go to state 40
+    CADENAS         shift and go to state 41
+    ARREGLOS        shift and go to state 42
+    MAPAS           shift and go to state 43
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    variables                      shift and go to state 44
+    expresion                      shift and go to state 56
+    valor                          shift and go to state 38
+
+state 34
+
+    (28) append -> variables PUNTO . APPEND IZQPAREN expresion DERPAREN
+    (70) pop -> variables PUNTO . POP IZQPAREN valor DERPAREN
+    (71) pop -> variables PUNTO . POP IZQPAREN DERPAREN
+    (72) push -> variables PUNTO . PUSH IZQPAREN valor DERPAREN
+    (73) clear -> variables PUNTO . PUSH IZQPAREN DERPAREN
+
+    APPEND          shift and go to state 57
+    POP             shift and go to state 58
+    PUSH            shift and go to state 59
+
+
+state 35
+
+    (18) split -> CADENAS PUNTO . SPLIT IZQPAREN DERPAREN
+    (19) split -> CADENAS PUNTO . SPLIT IZQPAREN CADENAS DERPAREN
+    (20) split -> CADENAS PUNTO . SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
+
+    SPLIT           shift and go to state 60
+
+
+state 36
+
+    (21) puts -> PUTS expresion .
+
+    CADENAS         reduce using rule 21 (puts -> PUTS expresion .)
+    PUTS            reduce using rule 21 (puts -> PUTS expresion .)
+    COMENTARIO      reduce using rule 21 (puts -> PUTS expresion .)
+    IF              reduce using rule 21 (puts -> PUTS expresion .)
+    FOR             reduce using rule 21 (puts -> PUTS expresion .)
+    WHILE           reduce using rule 21 (puts -> PUTS expresion .)
+    UNLESS          reduce using rule 21 (puts -> PUTS expresion .)
+    BEGIN           reduce using rule 21 (puts -> PUTS expresion .)
+    DEF             reduce using rule 21 (puts -> PUTS expresion .)
+    VGLOBALES       reduce using rule 21 (puts -> PUTS expresion .)
+    VLOCALES        reduce using rule 21 (puts -> PUTS expresion .)
+    VCLASE          reduce using rule 21 (puts -> PUTS expresion .)
+    VINSTANCIA      reduce using rule 21 (puts -> PUTS expresion .)
+    CONSTANTES      reduce using rule 21 (puts -> PUTS expresion .)
+    $end            reduce using rule 21 (puts -> PUTS expresion .)
+    END             reduce using rule 21 (puts -> PUTS expresion .)
+    BREAK           reduce using rule 21 (puts -> PUTS expresion .)
+
+
+state 37
+
+    (22) puts -> PUTS IZQPAREN . expresion DERPAREN
+    (23) puts -> PUTS IZQPAREN . comparacion DERPAREN
+    (40) expresion -> . valor
+    (41) comparacion -> . expresion operadorComparador expresion
+    (42) comparacion -> . IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN
+    (34) valor -> . NUMERO
+    (35) valor -> . FLOTANTES
+    (36) valor -> . CADENAS
+    (37) valor -> . ARREGLOS
+    (38) valor -> . MAPAS
+    (39) valor -> . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    IZQPAREN        shift and go to state 50
+    NUMERO          shift and go to state 39
+    FLOTANTES       shift and go to state 40
+    CADENAS         shift and go to state 41
+    ARREGLOS        shift and go to state 42
+    MAPAS           shift and go to state 43
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    expresion                      shift and go to state 61
+    comparacion                    shift and go to state 62
+    valor                          shift and go to state 38
+    variables                      shift and go to state 44
+
+state 38
+
+    (40) expresion -> valor .
+
+    CADENAS         reduce using rule 40 (expresion -> valor .)
+    PUTS            reduce using rule 40 (expresion -> valor .)
+    COMENTARIO      reduce using rule 40 (expresion -> valor .)
+    IF              reduce using rule 40 (expresion -> valor .)
+    FOR             reduce using rule 40 (expresion -> valor .)
+    WHILE           reduce using rule 40 (expresion -> valor .)
+    UNLESS          reduce using rule 40 (expresion -> valor .)
+    BEGIN           reduce using rule 40 (expresion -> valor .)
+    DEF             reduce using rule 40 (expresion -> valor .)
+    VGLOBALES       reduce using rule 40 (expresion -> valor .)
+    VLOCALES        reduce using rule 40 (expresion -> valor .)
+    VCLASE          reduce using rule 40 (expresion -> valor .)
+    VINSTANCIA      reduce using rule 40 (expresion -> valor .)
+    CONSTANTES      reduce using rule 40 (expresion -> valor .)
+    $end            reduce using rule 40 (expresion -> valor .)
+    END             reduce using rule 40 (expresion -> valor .)
+    BREAK           reduce using rule 40 (expresion -> valor .)
+    IGUAL_COMP      reduce using rule 40 (expresion -> valor .)
+    DIFERENTE       reduce using rule 40 (expresion -> valor .)
+    MENOR           reduce using rule 40 (expresion -> valor .)
+    MAYOR           reduce using rule 40 (expresion -> valor .)
+    DERPAREN        reduce using rule 40 (expresion -> valor .)
+    AND             reduce using rule 40 (expresion -> valor .)
+    OR              reduce using rule 40 (expresion -> valor .)
+    DO              reduce using rule 40 (expresion -> valor .)
+
+
+state 39
+
+    (34) valor -> NUMERO .
+
+    CADENAS         reduce using rule 34 (valor -> NUMERO .)
+    PUTS            reduce using rule 34 (valor -> NUMERO .)
+    COMENTARIO      reduce using rule 34 (valor -> NUMERO .)
+    IF              reduce using rule 34 (valor -> NUMERO .)
+    FOR             reduce using rule 34 (valor -> NUMERO .)
+    WHILE           reduce using rule 34 (valor -> NUMERO .)
+    UNLESS          reduce using rule 34 (valor -> NUMERO .)
+    BEGIN           reduce using rule 34 (valor -> NUMERO .)
+    DEF             reduce using rule 34 (valor -> NUMERO .)
+    VGLOBALES       reduce using rule 34 (valor -> NUMERO .)
+    VLOCALES        reduce using rule 34 (valor -> NUMERO .)
+    VCLASE          reduce using rule 34 (valor -> NUMERO .)
+    VINSTANCIA      reduce using rule 34 (valor -> NUMERO .)
+    CONSTANTES      reduce using rule 34 (valor -> NUMERO .)
+    $end            reduce using rule 34 (valor -> NUMERO .)
+    END             reduce using rule 34 (valor -> NUMERO .)
+    BREAK           reduce using rule 34 (valor -> NUMERO .)
+    IGUAL_COMP      reduce using rule 34 (valor -> NUMERO .)
+    DIFERENTE       reduce using rule 34 (valor -> NUMERO .)
+    MENOR           reduce using rule 34 (valor -> NUMERO .)
+    MAYOR           reduce using rule 34 (valor -> NUMERO .)
+    DERPAREN        reduce using rule 34 (valor -> NUMERO .)
+    AND             reduce using rule 34 (valor -> NUMERO .)
+    OR              reduce using rule 34 (valor -> NUMERO .)
+    DO              reduce using rule 34 (valor -> NUMERO .)
+
+
+state 40
+
+    (35) valor -> FLOTANTES .
+
+    CADENAS         reduce using rule 35 (valor -> FLOTANTES .)
+    PUTS            reduce using rule 35 (valor -> FLOTANTES .)
+    COMENTARIO      reduce using rule 35 (valor -> FLOTANTES .)
+    IF              reduce using rule 35 (valor -> FLOTANTES .)
+    FOR             reduce using rule 35 (valor -> FLOTANTES .)
+    WHILE           reduce using rule 35 (valor -> FLOTANTES .)
+    UNLESS          reduce using rule 35 (valor -> FLOTANTES .)
+    BEGIN           reduce using rule 35 (valor -> FLOTANTES .)
+    DEF             reduce using rule 35 (valor -> FLOTANTES .)
+    VGLOBALES       reduce using rule 35 (valor -> FLOTANTES .)
+    VLOCALES        reduce using rule 35 (valor -> FLOTANTES .)
+    VCLASE          reduce using rule 35 (valor -> FLOTANTES .)
+    VINSTANCIA      reduce using rule 35 (valor -> FLOTANTES .)
+    CONSTANTES      reduce using rule 35 (valor -> FLOTANTES .)
+    $end            reduce using rule 35 (valor -> FLOTANTES .)
+    END             reduce using rule 35 (valor -> FLOTANTES .)
+    BREAK           reduce using rule 35 (valor -> FLOTANTES .)
+    IGUAL_COMP      reduce using rule 35 (valor -> FLOTANTES .)
+    DIFERENTE       reduce using rule 35 (valor -> FLOTANTES .)
+    MENOR           reduce using rule 35 (valor -> FLOTANTES .)
+    MAYOR           reduce using rule 35 (valor -> FLOTANTES .)
+    DERPAREN        reduce using rule 35 (valor -> FLOTANTES .)
+    AND             reduce using rule 35 (valor -> FLOTANTES .)
+    OR              reduce using rule 35 (valor -> FLOTANTES .)
+    DO              reduce using rule 35 (valor -> FLOTANTES .)
+
+
+state 41
+
+    (36) valor -> CADENAS .
+
+    CADENAS         reduce using rule 36 (valor -> CADENAS .)
+    PUTS            reduce using rule 36 (valor -> CADENAS .)
+    COMENTARIO      reduce using rule 36 (valor -> CADENAS .)
+    IF              reduce using rule 36 (valor -> CADENAS .)
+    FOR             reduce using rule 36 (valor -> CADENAS .)
+    WHILE           reduce using rule 36 (valor -> CADENAS .)
+    UNLESS          reduce using rule 36 (valor -> CADENAS .)
+    BEGIN           reduce using rule 36 (valor -> CADENAS .)
+    DEF             reduce using rule 36 (valor -> CADENAS .)
+    VGLOBALES       reduce using rule 36 (valor -> CADENAS .)
+    VLOCALES        reduce using rule 36 (valor -> CADENAS .)
+    VCLASE          reduce using rule 36 (valor -> CADENAS .)
+    VINSTANCIA      reduce using rule 36 (valor -> CADENAS .)
+    CONSTANTES      reduce using rule 36 (valor -> CADENAS .)
+    $end            reduce using rule 36 (valor -> CADENAS .)
+    END             reduce using rule 36 (valor -> CADENAS .)
+    BREAK           reduce using rule 36 (valor -> CADENAS .)
+    IGUAL_COMP      reduce using rule 36 (valor -> CADENAS .)
+    DIFERENTE       reduce using rule 36 (valor -> CADENAS .)
+    MENOR           reduce using rule 36 (valor -> CADENAS .)
+    MAYOR           reduce using rule 36 (valor -> CADENAS .)
+    DERPAREN        reduce using rule 36 (valor -> CADENAS .)
+    AND             reduce using rule 36 (valor -> CADENAS .)
+    OR              reduce using rule 36 (valor -> CADENAS .)
+    DO              reduce using rule 36 (valor -> CADENAS .)
+
+
+state 42
+
+    (37) valor -> ARREGLOS .
+
+    CADENAS         reduce using rule 37 (valor -> ARREGLOS .)
+    PUTS            reduce using rule 37 (valor -> ARREGLOS .)
+    COMENTARIO      reduce using rule 37 (valor -> ARREGLOS .)
+    IF              reduce using rule 37 (valor -> ARREGLOS .)
+    FOR             reduce using rule 37 (valor -> ARREGLOS .)
+    WHILE           reduce using rule 37 (valor -> ARREGLOS .)
+    UNLESS          reduce using rule 37 (valor -> ARREGLOS .)
+    BEGIN           reduce using rule 37 (valor -> ARREGLOS .)
+    DEF             reduce using rule 37 (valor -> ARREGLOS .)
+    VGLOBALES       reduce using rule 37 (valor -> ARREGLOS .)
+    VLOCALES        reduce using rule 37 (valor -> ARREGLOS .)
+    VCLASE          reduce using rule 37 (valor -> ARREGLOS .)
+    VINSTANCIA      reduce using rule 37 (valor -> ARREGLOS .)
+    CONSTANTES      reduce using rule 37 (valor -> ARREGLOS .)
+    $end            reduce using rule 37 (valor -> ARREGLOS .)
+    END             reduce using rule 37 (valor -> ARREGLOS .)
+    BREAK           reduce using rule 37 (valor -> ARREGLOS .)
+    IGUAL_COMP      reduce using rule 37 (valor -> ARREGLOS .)
+    DIFERENTE       reduce using rule 37 (valor -> ARREGLOS .)
+    MENOR           reduce using rule 37 (valor -> ARREGLOS .)
+    MAYOR           reduce using rule 37 (valor -> ARREGLOS .)
+    DERPAREN        reduce using rule 37 (valor -> ARREGLOS .)
+    AND             reduce using rule 37 (valor -> ARREGLOS .)
+    OR              reduce using rule 37 (valor -> ARREGLOS .)
+    DO              reduce using rule 37 (valor -> ARREGLOS .)
+
+
+state 43
+
+    (38) valor -> MAPAS .
+
+    CADENAS         reduce using rule 38 (valor -> MAPAS .)
+    PUTS            reduce using rule 38 (valor -> MAPAS .)
+    COMENTARIO      reduce using rule 38 (valor -> MAPAS .)
+    IF              reduce using rule 38 (valor -> MAPAS .)
+    FOR             reduce using rule 38 (valor -> MAPAS .)
+    WHILE           reduce using rule 38 (valor -> MAPAS .)
+    UNLESS          reduce using rule 38 (valor -> MAPAS .)
+    BEGIN           reduce using rule 38 (valor -> MAPAS .)
+    DEF             reduce using rule 38 (valor -> MAPAS .)
+    VGLOBALES       reduce using rule 38 (valor -> MAPAS .)
+    VLOCALES        reduce using rule 38 (valor -> MAPAS .)
+    VCLASE          reduce using rule 38 (valor -> MAPAS .)
+    VINSTANCIA      reduce using rule 38 (valor -> MAPAS .)
+    CONSTANTES      reduce using rule 38 (valor -> MAPAS .)
+    $end            reduce using rule 38 (valor -> MAPAS .)
+    END             reduce using rule 38 (valor -> MAPAS .)
+    BREAK           reduce using rule 38 (valor -> MAPAS .)
+    IGUAL_COMP      reduce using rule 38 (valor -> MAPAS .)
+    DIFERENTE       reduce using rule 38 (valor -> MAPAS .)
+    MENOR           reduce using rule 38 (valor -> MAPAS .)
+    MAYOR           reduce using rule 38 (valor -> MAPAS .)
+    DERPAREN        reduce using rule 38 (valor -> MAPAS .)
+    AND             reduce using rule 38 (valor -> MAPAS .)
+    OR              reduce using rule 38 (valor -> MAPAS .)
+    DO              reduce using rule 38 (valor -> MAPAS .)
+
+
+state 44
+
+    (39) valor -> variables .
+
+    CADENAS         reduce using rule 39 (valor -> variables .)
+    PUTS            reduce using rule 39 (valor -> variables .)
+    COMENTARIO      reduce using rule 39 (valor -> variables .)
+    IF              reduce using rule 39 (valor -> variables .)
+    FOR             reduce using rule 39 (valor -> variables .)
+    WHILE           reduce using rule 39 (valor -> variables .)
+    UNLESS          reduce using rule 39 (valor -> variables .)
+    BEGIN           reduce using rule 39 (valor -> variables .)
+    DEF             reduce using rule 39 (valor -> variables .)
+    VGLOBALES       reduce using rule 39 (valor -> variables .)
+    VLOCALES        reduce using rule 39 (valor -> variables .)
+    VCLASE          reduce using rule 39 (valor -> variables .)
+    VINSTANCIA      reduce using rule 39 (valor -> variables .)
+    CONSTANTES      reduce using rule 39 (valor -> variables .)
+    $end            reduce using rule 39 (valor -> variables .)
+    END             reduce using rule 39 (valor -> variables .)
+    BREAK           reduce using rule 39 (valor -> variables .)
+    IGUAL_COMP      reduce using rule 39 (valor -> variables .)
+    DIFERENTE       reduce using rule 39 (valor -> variables .)
+    MENOR           reduce using rule 39 (valor -> variables .)
+    MAYOR           reduce using rule 39 (valor -> variables .)
+    DERPAREN        reduce using rule 39 (valor -> variables .)
+    AND             reduce using rule 39 (valor -> variables .)
+    OR              reduce using rule 39 (valor -> variables .)
+    DO              reduce using rule 39 (valor -> variables .)
+
+
+state 45
+
+    (55) sentIf -> IF comparaciones . base finalIf
+    (1) base -> . sentencias
+    (2) base -> . sentencias base
+    (3) sentencias -> . asignacion
+    (4) sentencias -> . append
+    (5) sentencias -> . split
+    (6) sentencias -> . puts
+    (7) sentencias -> . comentarios
+    (8) sentencias -> . sentIf
+    (9) sentencias -> . sentFor
+    (10) sentencias -> . sentWhile
+    (11) sentencias -> . unless
+    (12) sentencias -> . sentenciaBloque
+    (13) sentencias -> . sentenciaFuncion
+    (14) sentencias -> . pop
+    (15) sentencias -> . push
+    (16) sentencias -> . clear
+    (17) asignacion -> . variables IGUAL expresion
+    (28) append -> . variables PUNTO APPEND IZQPAREN expresion DERPAREN
+    (18) split -> . CADENAS PUNTO SPLIT IZQPAREN DERPAREN
+    (19) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN
+    (20) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
+    (21) puts -> . PUTS expresion
+    (22) puts -> . PUTS IZQPAREN expresion DERPAREN
+    (23) puts -> . PUTS IZQPAREN comparacion DERPAREN
+    (27) comentarios -> . COMENTARIO
+    (55) sentIf -> . IF comparaciones base finalIf
+    (58) sentFor -> . FOR variables IN rango DO base END
+    (59) sentWhile -> . WHILE comparacion DO base END
+    (60) unless -> . UNLESS comparacion base END
+    (63) sentenciaBloque -> . BEGIN base END
+    (64) sentenciaFuncion -> . DEF variables base END
+    (65) sentenciaFuncion -> . DEF variables parametrosF base END
+    (70) pop -> . variables PUNTO POP IZQPAREN valor DERPAREN
+    (71) pop -> . variables PUNTO POP IZQPAREN DERPAREN
+    (72) push -> . variables PUNTO PUSH IZQPAREN valor DERPAREN
+    (73) clear -> . variables PUNTO PUSH IZQPAREN DERPAREN
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    CADENAS         shift and go to state 18
+    PUTS            shift and go to state 19
+    COMENTARIO      shift and go to state 20
+    IF              shift and go to state 21
+    FOR             shift and go to state 22
+    WHILE           shift and go to state 23
+    UNLESS          shift and go to state 24
+    BEGIN           shift and go to state 25
+    DEF             shift and go to state 26
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    base                           shift and go to state 63
+    sentencias                     shift and go to state 2
+    asignacion                     shift and go to state 3
+    append                         shift and go to state 4
+    split                          shift and go to state 5
+    puts                           shift and go to state 6
+    comentarios                    shift and go to state 7
+    sentIf                         shift and go to state 8
+    sentFor                        shift and go to state 9
+    sentWhile                      shift and go to state 10
+    unless                         shift and go to state 11
+    sentenciaBloque                shift and go to state 12
+    sentenciaFuncion               shift and go to state 13
+    pop                            shift and go to state 14
+    push                           shift and go to state 15
+    clear                          shift and go to state 16
+    variables                      shift and go to state 17
+
+state 46
+
+    (49) comparaciones -> comparacion .
+    (47) sentAnd -> comparacion . AND comparacion
+    (48) sentOr -> comparacion . OR comparacion
+
+    CADENAS         reduce using rule 49 (comparaciones -> comparacion .)
+    PUTS            reduce using rule 49 (comparaciones -> comparacion .)
+    COMENTARIO      reduce using rule 49 (comparaciones -> comparacion .)
+    IF              reduce using rule 49 (comparaciones -> comparacion .)
+    FOR             reduce using rule 49 (comparaciones -> comparacion .)
+    WHILE           reduce using rule 49 (comparaciones -> comparacion .)
+    UNLESS          reduce using rule 49 (comparaciones -> comparacion .)
+    BEGIN           reduce using rule 49 (comparaciones -> comparacion .)
+    DEF             reduce using rule 49 (comparaciones -> comparacion .)
+    VGLOBALES       reduce using rule 49 (comparaciones -> comparacion .)
+    VLOCALES        reduce using rule 49 (comparaciones -> comparacion .)
+    VCLASE          reduce using rule 49 (comparaciones -> comparacion .)
+    VINSTANCIA      reduce using rule 49 (comparaciones -> comparacion .)
+    CONSTANTES      reduce using rule 49 (comparaciones -> comparacion .)
+    AND             shift and go to state 64
+    OR              shift and go to state 65
+
+
+state 47
+
+    (50) comparaciones -> sentAnd .
+
+    CADENAS         reduce using rule 50 (comparaciones -> sentAnd .)
+    PUTS            reduce using rule 50 (comparaciones -> sentAnd .)
+    COMENTARIO      reduce using rule 50 (comparaciones -> sentAnd .)
+    IF              reduce using rule 50 (comparaciones -> sentAnd .)
+    FOR             reduce using rule 50 (comparaciones -> sentAnd .)
+    WHILE           reduce using rule 50 (comparaciones -> sentAnd .)
+    UNLESS          reduce using rule 50 (comparaciones -> sentAnd .)
+    BEGIN           reduce using rule 50 (comparaciones -> sentAnd .)
+    DEF             reduce using rule 50 (comparaciones -> sentAnd .)
+    VGLOBALES       reduce using rule 50 (comparaciones -> sentAnd .)
+    VLOCALES        reduce using rule 50 (comparaciones -> sentAnd .)
+    VCLASE          reduce using rule 50 (comparaciones -> sentAnd .)
+    VINSTANCIA      reduce using rule 50 (comparaciones -> sentAnd .)
+    CONSTANTES      reduce using rule 50 (comparaciones -> sentAnd .)
+
+
+state 48
+
+    (51) comparaciones -> sentOr .
+
+    CADENAS         reduce using rule 51 (comparaciones -> sentOr .)
+    PUTS            reduce using rule 51 (comparaciones -> sentOr .)
+    COMENTARIO      reduce using rule 51 (comparaciones -> sentOr .)
+    IF              reduce using rule 51 (comparaciones -> sentOr .)
+    FOR             reduce using rule 51 (comparaciones -> sentOr .)
+    WHILE           reduce using rule 51 (comparaciones -> sentOr .)
+    UNLESS          reduce using rule 51 (comparaciones -> sentOr .)
+    BEGIN           reduce using rule 51 (comparaciones -> sentOr .)
+    DEF             reduce using rule 51 (comparaciones -> sentOr .)
+    VGLOBALES       reduce using rule 51 (comparaciones -> sentOr .)
+    VLOCALES        reduce using rule 51 (comparaciones -> sentOr .)
+    VCLASE          reduce using rule 51 (comparaciones -> sentOr .)
+    VINSTANCIA      reduce using rule 51 (comparaciones -> sentOr .)
+    CONSTANTES      reduce using rule 51 (comparaciones -> sentOr .)
+
+
+state 49
+
+    (41) comparacion -> expresion . operadorComparador expresion
+    (43) operadorComparador -> . IGUAL_COMP
+    (44) operadorComparador -> . DIFERENTE
+    (45) operadorComparador -> . MENOR
+    (46) operadorComparador -> . MAYOR
+
+    IGUAL_COMP      shift and go to state 67
+    DIFERENTE       shift and go to state 68
+    MENOR           shift and go to state 69
+    MAYOR           shift and go to state 70
+
+    operadorComparador             shift and go to state 66
+
+state 50
+
+    (42) comparacion -> IZQPAREN . expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN
+    (40) expresion -> . valor
+    (34) valor -> . NUMERO
+    (35) valor -> . FLOTANTES
+    (36) valor -> . CADENAS
+    (37) valor -> . ARREGLOS
+    (38) valor -> . MAPAS
+    (39) valor -> . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    NUMERO          shift and go to state 39
+    FLOTANTES       shift and go to state 40
+    CADENAS         shift and go to state 41
+    ARREGLOS        shift and go to state 42
+    MAPAS           shift and go to state 43
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    expresion                      shift and go to state 71
+    valor                          shift and go to state 38
+    variables                      shift and go to state 44
+
+state 51
+
+    (58) sentFor -> FOR variables . IN rango DO base END
+
+    IN              shift and go to state 72
+
+
+state 52
+
+    (59) sentWhile -> WHILE comparacion . DO base END
+
+    DO              shift and go to state 73
+
+
+state 53
+
+    (60) unless -> UNLESS comparacion . base END
+    (1) base -> . sentencias
+    (2) base -> . sentencias base
+    (3) sentencias -> . asignacion
+    (4) sentencias -> . append
+    (5) sentencias -> . split
+    (6) sentencias -> . puts
+    (7) sentencias -> . comentarios
+    (8) sentencias -> . sentIf
+    (9) sentencias -> . sentFor
+    (10) sentencias -> . sentWhile
+    (11) sentencias -> . unless
+    (12) sentencias -> . sentenciaBloque
+    (13) sentencias -> . sentenciaFuncion
+    (14) sentencias -> . pop
+    (15) sentencias -> . push
+    (16) sentencias -> . clear
+    (17) asignacion -> . variables IGUAL expresion
+    (28) append -> . variables PUNTO APPEND IZQPAREN expresion DERPAREN
+    (18) split -> . CADENAS PUNTO SPLIT IZQPAREN DERPAREN
+    (19) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN
+    (20) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
+    (21) puts -> . PUTS expresion
+    (22) puts -> . PUTS IZQPAREN expresion DERPAREN
+    (23) puts -> . PUTS IZQPAREN comparacion DERPAREN
+    (27) comentarios -> . COMENTARIO
+    (55) sentIf -> . IF comparaciones base finalIf
+    (58) sentFor -> . FOR variables IN rango DO base END
+    (59) sentWhile -> . WHILE comparacion DO base END
+    (60) unless -> . UNLESS comparacion base END
+    (63) sentenciaBloque -> . BEGIN base END
+    (64) sentenciaFuncion -> . DEF variables base END
+    (65) sentenciaFuncion -> . DEF variables parametrosF base END
+    (70) pop -> . variables PUNTO POP IZQPAREN valor DERPAREN
+    (71) pop -> . variables PUNTO POP IZQPAREN DERPAREN
+    (72) push -> . variables PUNTO PUSH IZQPAREN valor DERPAREN
+    (73) clear -> . variables PUNTO PUSH IZQPAREN DERPAREN
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    CADENAS         shift and go to state 18
+    PUTS            shift and go to state 19
+    COMENTARIO      shift and go to state 20
+    IF              shift and go to state 21
+    FOR             shift and go to state 22
+    WHILE           shift and go to state 23
+    UNLESS          shift and go to state 24
+    BEGIN           shift and go to state 25
+    DEF             shift and go to state 26
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    base                           shift and go to state 74
+    sentencias                     shift and go to state 2
+    asignacion                     shift and go to state 3
+    append                         shift and go to state 4
+    split                          shift and go to state 5
+    puts                           shift and go to state 6
+    comentarios                    shift and go to state 7
+    sentIf                         shift and go to state 8
+    sentFor                        shift and go to state 9
+    sentWhile                      shift and go to state 10
+    unless                         shift and go to state 11
+    sentenciaBloque                shift and go to state 12
+    sentenciaFuncion               shift and go to state 13
+    pop                            shift and go to state 14
+    push                           shift and go to state 15
+    clear                          shift and go to state 16
+    variables                      shift and go to state 17
+
+state 54
+
+    (63) sentenciaBloque -> BEGIN base . END
+
+    END             shift and go to state 75
+
+
+state 55
+
+    (64) sentenciaFuncion -> DEF variables . base END
+    (65) sentenciaFuncion -> DEF variables . parametrosF base END
+    (1) base -> . sentencias
+    (2) base -> . sentencias base
+    (66) parametrosF -> . IZQPAREN parametros DERPAREN
+    (3) sentencias -> . asignacion
+    (4) sentencias -> . append
+    (5) sentencias -> . split
+    (6) sentencias -> . puts
+    (7) sentencias -> . comentarios
+    (8) sentencias -> . sentIf
+    (9) sentencias -> . sentFor
+    (10) sentencias -> . sentWhile
+    (11) sentencias -> . unless
+    (12) sentencias -> . sentenciaBloque
+    (13) sentencias -> . sentenciaFuncion
+    (14) sentencias -> . pop
+    (15) sentencias -> . push
+    (16) sentencias -> . clear
+    (17) asignacion -> . variables IGUAL expresion
+    (28) append -> . variables PUNTO APPEND IZQPAREN expresion DERPAREN
+    (18) split -> . CADENAS PUNTO SPLIT IZQPAREN DERPAREN
+    (19) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN
+    (20) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
+    (21) puts -> . PUTS expresion
+    (22) puts -> . PUTS IZQPAREN expresion DERPAREN
+    (23) puts -> . PUTS IZQPAREN comparacion DERPAREN
+    (27) comentarios -> . COMENTARIO
+    (55) sentIf -> . IF comparaciones base finalIf
+    (58) sentFor -> . FOR variables IN rango DO base END
+    (59) sentWhile -> . WHILE comparacion DO base END
+    (60) unless -> . UNLESS comparacion base END
+    (63) sentenciaBloque -> . BEGIN base END
+    (64) sentenciaFuncion -> . DEF variables base END
+    (65) sentenciaFuncion -> . DEF variables parametrosF base END
+    (70) pop -> . variables PUNTO POP IZQPAREN valor DERPAREN
+    (71) pop -> . variables PUNTO POP IZQPAREN DERPAREN
+    (72) push -> . variables PUNTO PUSH IZQPAREN valor DERPAREN
+    (73) clear -> . variables PUNTO PUSH IZQPAREN DERPAREN
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    IZQPAREN        shift and go to state 78
+    CADENAS         shift and go to state 18
+    PUTS            shift and go to state 19
+    COMENTARIO      shift and go to state 20
+    IF              shift and go to state 21
+    FOR             shift and go to state 22
+    WHILE           shift and go to state 23
+    UNLESS          shift and go to state 24
+    BEGIN           shift and go to state 25
+    DEF             shift and go to state 26
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    variables                      shift and go to state 17
+    base                           shift and go to state 76
+    parametrosF                    shift and go to state 77
+    sentencias                     shift and go to state 2
+    asignacion                     shift and go to state 3
+    append                         shift and go to state 4
+    split                          shift and go to state 5
+    puts                           shift and go to state 6
+    comentarios                    shift and go to state 7
+    sentIf                         shift and go to state 8
+    sentFor                        shift and go to state 9
+    sentWhile                      shift and go to state 10
+    unless                         shift and go to state 11
+    sentenciaBloque                shift and go to state 12
+    sentenciaFuncion               shift and go to state 13
+    pop                            shift and go to state 14
+    push                           shift and go to state 15
+    clear                          shift and go to state 16
+
+state 56
+
+    (17) asignacion -> variables IGUAL expresion .
+
+    CADENAS         reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    PUTS            reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    COMENTARIO      reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    IF              reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    FOR             reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    WHILE           reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    UNLESS          reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    BEGIN           reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    DEF             reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    VGLOBALES       reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    VLOCALES        reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    VCLASE          reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    VINSTANCIA      reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    CONSTANTES      reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    $end            reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    END             reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+    BREAK           reduce using rule 17 (asignacion -> variables IGUAL expresion .)
+
+
+state 57
+
+    (28) append -> variables PUNTO APPEND . IZQPAREN expresion DERPAREN
+
+    IZQPAREN        shift and go to state 79
+
+
+state 58
+
+    (70) pop -> variables PUNTO POP . IZQPAREN valor DERPAREN
+    (71) pop -> variables PUNTO POP . IZQPAREN DERPAREN
+
+    IZQPAREN        shift and go to state 80
+
+
+state 59
+
+    (72) push -> variables PUNTO PUSH . IZQPAREN valor DERPAREN
+    (73) clear -> variables PUNTO PUSH . IZQPAREN DERPAREN
+
+    IZQPAREN        shift and go to state 81
+
+
+state 60
+
+    (18) split -> CADENAS PUNTO SPLIT . IZQPAREN DERPAREN
+    (19) split -> CADENAS PUNTO SPLIT . IZQPAREN CADENAS DERPAREN
+    (20) split -> CADENAS PUNTO SPLIT . IZQPAREN CADENAS COMA NUMERO DERPAREN
+
+    IZQPAREN        shift and go to state 82
+
+
+state 61
+
+    (22) puts -> PUTS IZQPAREN expresion . DERPAREN
+    (41) comparacion -> expresion . operadorComparador expresion
+    (43) operadorComparador -> . IGUAL_COMP
+    (44) operadorComparador -> . DIFERENTE
+    (45) operadorComparador -> . MENOR
+    (46) operadorComparador -> . MAYOR
+
+    DERPAREN        shift and go to state 83
+    IGUAL_COMP      shift and go to state 67
+    DIFERENTE       shift and go to state 68
+    MENOR           shift and go to state 69
+    MAYOR           shift and go to state 70
+
+    operadorComparador             shift and go to state 66
+
+state 62
+
+    (23) puts -> PUTS IZQPAREN comparacion . DERPAREN
+
+    DERPAREN        shift and go to state 84
+
+
+state 63
+
+    (55) sentIf -> IF comparaciones base . finalIf
+    (56) finalIf -> . END
+    (57) finalIf -> . sentBREAK END
+    (53) sentBREAK -> . BREAK
+    (54) sentBREAK -> . BREAK variables
+
+    END             shift and go to state 86
+    BREAK           shift and go to state 88
+
+    finalIf                        shift and go to state 85
+    sentBREAK                      shift and go to state 87
+
+state 64
+
+    (47) sentAnd -> comparacion AND . comparacion
+    (41) comparacion -> . expresion operadorComparador expresion
+    (42) comparacion -> . IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN
+    (40) expresion -> . valor
+    (34) valor -> . NUMERO
+    (35) valor -> . FLOTANTES
+    (36) valor -> . CADENAS
+    (37) valor -> . ARREGLOS
+    (38) valor -> . MAPAS
+    (39) valor -> . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    IZQPAREN        shift and go to state 50
+    NUMERO          shift and go to state 39
+    FLOTANTES       shift and go to state 40
+    CADENAS         shift and go to state 41
+    ARREGLOS        shift and go to state 42
+    MAPAS           shift and go to state 43
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    comparacion                    shift and go to state 89
+    expresion                      shift and go to state 49
+    valor                          shift and go to state 38
+    variables                      shift and go to state 44
+
+state 65
+
+    (48) sentOr -> comparacion OR . comparacion
+    (41) comparacion -> . expresion operadorComparador expresion
+    (42) comparacion -> . IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN
+    (40) expresion -> . valor
+    (34) valor -> . NUMERO
+    (35) valor -> . FLOTANTES
+    (36) valor -> . CADENAS
+    (37) valor -> . ARREGLOS
+    (38) valor -> . MAPAS
+    (39) valor -> . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    IZQPAREN        shift and go to state 50
+    NUMERO          shift and go to state 39
+    FLOTANTES       shift and go to state 40
+    CADENAS         shift and go to state 41
+    ARREGLOS        shift and go to state 42
+    MAPAS           shift and go to state 43
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    comparacion                    shift and go to state 90
+    expresion                      shift and go to state 49
+    valor                          shift and go to state 38
+    variables                      shift and go to state 44
+
+state 66
+
+    (41) comparacion -> expresion operadorComparador . expresion
+    (40) expresion -> . valor
+    (34) valor -> . NUMERO
+    (35) valor -> . FLOTANTES
+    (36) valor -> . CADENAS
+    (37) valor -> . ARREGLOS
+    (38) valor -> . MAPAS
+    (39) valor -> . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    NUMERO          shift and go to state 39
+    FLOTANTES       shift and go to state 40
+    CADENAS         shift and go to state 41
+    ARREGLOS        shift and go to state 42
+    MAPAS           shift and go to state 43
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    expresion                      shift and go to state 91
+    valor                          shift and go to state 38
+    variables                      shift and go to state 44
+
+state 67
+
+    (43) operadorComparador -> IGUAL_COMP .
+
+    NUMERO          reduce using rule 43 (operadorComparador -> IGUAL_COMP .)
+    FLOTANTES       reduce using rule 43 (operadorComparador -> IGUAL_COMP .)
+    CADENAS         reduce using rule 43 (operadorComparador -> IGUAL_COMP .)
+    ARREGLOS        reduce using rule 43 (operadorComparador -> IGUAL_COMP .)
+    MAPAS           reduce using rule 43 (operadorComparador -> IGUAL_COMP .)
+    VGLOBALES       reduce using rule 43 (operadorComparador -> IGUAL_COMP .)
+    VLOCALES        reduce using rule 43 (operadorComparador -> IGUAL_COMP .)
+    VCLASE          reduce using rule 43 (operadorComparador -> IGUAL_COMP .)
+    VINSTANCIA      reduce using rule 43 (operadorComparador -> IGUAL_COMP .)
+    CONSTANTES      reduce using rule 43 (operadorComparador -> IGUAL_COMP .)
+    IZQPAREN        reduce using rule 43 (operadorComparador -> IGUAL_COMP .)
+
+
+state 68
+
+    (44) operadorComparador -> DIFERENTE .
+
+    NUMERO          reduce using rule 44 (operadorComparador -> DIFERENTE .)
+    FLOTANTES       reduce using rule 44 (operadorComparador -> DIFERENTE .)
+    CADENAS         reduce using rule 44 (operadorComparador -> DIFERENTE .)
+    ARREGLOS        reduce using rule 44 (operadorComparador -> DIFERENTE .)
+    MAPAS           reduce using rule 44 (operadorComparador -> DIFERENTE .)
+    VGLOBALES       reduce using rule 44 (operadorComparador -> DIFERENTE .)
+    VLOCALES        reduce using rule 44 (operadorComparador -> DIFERENTE .)
+    VCLASE          reduce using rule 44 (operadorComparador -> DIFERENTE .)
+    VINSTANCIA      reduce using rule 44 (operadorComparador -> DIFERENTE .)
+    CONSTANTES      reduce using rule 44 (operadorComparador -> DIFERENTE .)
+    IZQPAREN        reduce using rule 44 (operadorComparador -> DIFERENTE .)
+
+
+state 69
+
+    (45) operadorComparador -> MENOR .
+
+    NUMERO          reduce using rule 45 (operadorComparador -> MENOR .)
+    FLOTANTES       reduce using rule 45 (operadorComparador -> MENOR .)
+    CADENAS         reduce using rule 45 (operadorComparador -> MENOR .)
+    ARREGLOS        reduce using rule 45 (operadorComparador -> MENOR .)
+    MAPAS           reduce using rule 45 (operadorComparador -> MENOR .)
+    VGLOBALES       reduce using rule 45 (operadorComparador -> MENOR .)
+    VLOCALES        reduce using rule 45 (operadorComparador -> MENOR .)
+    VCLASE          reduce using rule 45 (operadorComparador -> MENOR .)
+    VINSTANCIA      reduce using rule 45 (operadorComparador -> MENOR .)
+    CONSTANTES      reduce using rule 45 (operadorComparador -> MENOR .)
+    IZQPAREN        reduce using rule 45 (operadorComparador -> MENOR .)
+
+
+state 70
+
+    (46) operadorComparador -> MAYOR .
+
+    NUMERO          reduce using rule 46 (operadorComparador -> MAYOR .)
+    FLOTANTES       reduce using rule 46 (operadorComparador -> MAYOR .)
+    CADENAS         reduce using rule 46 (operadorComparador -> MAYOR .)
+    ARREGLOS        reduce using rule 46 (operadorComparador -> MAYOR .)
+    MAPAS           reduce using rule 46 (operadorComparador -> MAYOR .)
+    VGLOBALES       reduce using rule 46 (operadorComparador -> MAYOR .)
+    VLOCALES        reduce using rule 46 (operadorComparador -> MAYOR .)
+    VCLASE          reduce using rule 46 (operadorComparador -> MAYOR .)
+    VINSTANCIA      reduce using rule 46 (operadorComparador -> MAYOR .)
+    CONSTANTES      reduce using rule 46 (operadorComparador -> MAYOR .)
+    IZQPAREN        reduce using rule 46 (operadorComparador -> MAYOR .)
+
+
+state 71
+
+    (42) comparacion -> IZQPAREN expresion . DERPAREN operadorComparador IZQPAREN expresion DERPAREN
+
+    DERPAREN        shift and go to state 92
+
+
+state 72
+
+    (58) sentFor -> FOR variables IN . rango DO base END
+    (52) rango -> . NUMERO RANGO NUMERO
+
+    NUMERO          shift and go to state 94
+
+    rango                          shift and go to state 93
+
+state 73
+
+    (59) sentWhile -> WHILE comparacion DO . base END
+    (1) base -> . sentencias
+    (2) base -> . sentencias base
+    (3) sentencias -> . asignacion
+    (4) sentencias -> . append
+    (5) sentencias -> . split
+    (6) sentencias -> . puts
+    (7) sentencias -> . comentarios
+    (8) sentencias -> . sentIf
+    (9) sentencias -> . sentFor
+    (10) sentencias -> . sentWhile
+    (11) sentencias -> . unless
+    (12) sentencias -> . sentenciaBloque
+    (13) sentencias -> . sentenciaFuncion
+    (14) sentencias -> . pop
+    (15) sentencias -> . push
+    (16) sentencias -> . clear
+    (17) asignacion -> . variables IGUAL expresion
+    (28) append -> . variables PUNTO APPEND IZQPAREN expresion DERPAREN
+    (18) split -> . CADENAS PUNTO SPLIT IZQPAREN DERPAREN
+    (19) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN
+    (20) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
+    (21) puts -> . PUTS expresion
+    (22) puts -> . PUTS IZQPAREN expresion DERPAREN
+    (23) puts -> . PUTS IZQPAREN comparacion DERPAREN
+    (27) comentarios -> . COMENTARIO
+    (55) sentIf -> . IF comparaciones base finalIf
+    (58) sentFor -> . FOR variables IN rango DO base END
+    (59) sentWhile -> . WHILE comparacion DO base END
+    (60) unless -> . UNLESS comparacion base END
+    (63) sentenciaBloque -> . BEGIN base END
+    (64) sentenciaFuncion -> . DEF variables base END
+    (65) sentenciaFuncion -> . DEF variables parametrosF base END
+    (70) pop -> . variables PUNTO POP IZQPAREN valor DERPAREN
+    (71) pop -> . variables PUNTO POP IZQPAREN DERPAREN
+    (72) push -> . variables PUNTO PUSH IZQPAREN valor DERPAREN
+    (73) clear -> . variables PUNTO PUSH IZQPAREN DERPAREN
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    CADENAS         shift and go to state 18
+    PUTS            shift and go to state 19
+    COMENTARIO      shift and go to state 20
+    IF              shift and go to state 21
+    FOR             shift and go to state 22
+    WHILE           shift and go to state 23
+    UNLESS          shift and go to state 24
+    BEGIN           shift and go to state 25
+    DEF             shift and go to state 26
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    base                           shift and go to state 95
+    sentencias                     shift and go to state 2
+    asignacion                     shift and go to state 3
+    append                         shift and go to state 4
+    split                          shift and go to state 5
+    puts                           shift and go to state 6
+    comentarios                    shift and go to state 7
+    sentIf                         shift and go to state 8
+    sentFor                        shift and go to state 9
+    sentWhile                      shift and go to state 10
+    unless                         shift and go to state 11
+    sentenciaBloque                shift and go to state 12
+    sentenciaFuncion               shift and go to state 13
+    pop                            shift and go to state 14
+    push                           shift and go to state 15
+    clear                          shift and go to state 16
+    variables                      shift and go to state 17
+
+state 74
+
+    (60) unless -> UNLESS comparacion base . END
+
+    END             shift and go to state 96
+
+
+state 75
+
+    (63) sentenciaBloque -> BEGIN base END .
+
+    CADENAS         reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    PUTS            reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    COMENTARIO      reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    IF              reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    FOR             reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    WHILE           reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    UNLESS          reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    BEGIN           reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    DEF             reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    VGLOBALES       reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    VLOCALES        reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    VCLASE          reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    VINSTANCIA      reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    CONSTANTES      reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    $end            reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    END             reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+    BREAK           reduce using rule 63 (sentenciaBloque -> BEGIN base END .)
+
+
+state 76
+
+    (64) sentenciaFuncion -> DEF variables base . END
+
+    END             shift and go to state 97
+
+
+state 77
+
+    (65) sentenciaFuncion -> DEF variables parametrosF . base END
+    (1) base -> . sentencias
+    (2) base -> . sentencias base
+    (3) sentencias -> . asignacion
+    (4) sentencias -> . append
+    (5) sentencias -> . split
+    (6) sentencias -> . puts
+    (7) sentencias -> . comentarios
+    (8) sentencias -> . sentIf
+    (9) sentencias -> . sentFor
+    (10) sentencias -> . sentWhile
+    (11) sentencias -> . unless
+    (12) sentencias -> . sentenciaBloque
+    (13) sentencias -> . sentenciaFuncion
+    (14) sentencias -> . pop
+    (15) sentencias -> . push
+    (16) sentencias -> . clear
+    (17) asignacion -> . variables IGUAL expresion
+    (28) append -> . variables PUNTO APPEND IZQPAREN expresion DERPAREN
+    (18) split -> . CADENAS PUNTO SPLIT IZQPAREN DERPAREN
+    (19) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN
+    (20) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
+    (21) puts -> . PUTS expresion
+    (22) puts -> . PUTS IZQPAREN expresion DERPAREN
+    (23) puts -> . PUTS IZQPAREN comparacion DERPAREN
+    (27) comentarios -> . COMENTARIO
+    (55) sentIf -> . IF comparaciones base finalIf
+    (58) sentFor -> . FOR variables IN rango DO base END
+    (59) sentWhile -> . WHILE comparacion DO base END
+    (60) unless -> . UNLESS comparacion base END
+    (63) sentenciaBloque -> . BEGIN base END
+    (64) sentenciaFuncion -> . DEF variables base END
+    (65) sentenciaFuncion -> . DEF variables parametrosF base END
+    (70) pop -> . variables PUNTO POP IZQPAREN valor DERPAREN
+    (71) pop -> . variables PUNTO POP IZQPAREN DERPAREN
+    (72) push -> . variables PUNTO PUSH IZQPAREN valor DERPAREN
+    (73) clear -> . variables PUNTO PUSH IZQPAREN DERPAREN
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    CADENAS         shift and go to state 18
+    PUTS            shift and go to state 19
+    COMENTARIO      shift and go to state 20
+    IF              shift and go to state 21
+    FOR             shift and go to state 22
+    WHILE           shift and go to state 23
+    UNLESS          shift and go to state 24
+    BEGIN           shift and go to state 25
+    DEF             shift and go to state 26
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    variables                      shift and go to state 17
+    base                           shift and go to state 98
+    sentencias                     shift and go to state 2
+    asignacion                     shift and go to state 3
+    append                         shift and go to state 4
+    split                          shift and go to state 5
+    puts                           shift and go to state 6
+    comentarios                    shift and go to state 7
+    sentIf                         shift and go to state 8
+    sentFor                        shift and go to state 9
+    sentWhile                      shift and go to state 10
+    unless                         shift and go to state 11
+    sentenciaBloque                shift and go to state 12
+    sentenciaFuncion               shift and go to state 13
+    pop                            shift and go to state 14
+    push                           shift and go to state 15
+    clear                          shift and go to state 16
+
+state 78
+
+    (66) parametrosF -> IZQPAREN . parametros DERPAREN
+    (67) parametros -> . variables COMA variables
+    (68) parametros -> . variables
+    (69) parametros -> . parametros COMA parametros
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    parametros                     shift and go to state 99
+    variables                      shift and go to state 100
+
+state 79
+
+    (28) append -> variables PUNTO APPEND IZQPAREN . expresion DERPAREN
+    (40) expresion -> . valor
+    (34) valor -> . NUMERO
+    (35) valor -> . FLOTANTES
+    (36) valor -> . CADENAS
+    (37) valor -> . ARREGLOS
+    (38) valor -> . MAPAS
+    (39) valor -> . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    NUMERO          shift and go to state 39
+    FLOTANTES       shift and go to state 40
+    CADENAS         shift and go to state 41
+    ARREGLOS        shift and go to state 42
+    MAPAS           shift and go to state 43
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    variables                      shift and go to state 44
+    expresion                      shift and go to state 101
+    valor                          shift and go to state 38
+
+state 80
+
+    (70) pop -> variables PUNTO POP IZQPAREN . valor DERPAREN
+    (71) pop -> variables PUNTO POP IZQPAREN . DERPAREN
+    (34) valor -> . NUMERO
+    (35) valor -> . FLOTANTES
+    (36) valor -> . CADENAS
+    (37) valor -> . ARREGLOS
+    (38) valor -> . MAPAS
+    (39) valor -> . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    DERPAREN        shift and go to state 103
+    NUMERO          shift and go to state 39
+    FLOTANTES       shift and go to state 40
+    CADENAS         shift and go to state 41
+    ARREGLOS        shift and go to state 42
+    MAPAS           shift and go to state 43
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    variables                      shift and go to state 44
+    valor                          shift and go to state 102
+
+state 81
+
+    (72) push -> variables PUNTO PUSH IZQPAREN . valor DERPAREN
+    (73) clear -> variables PUNTO PUSH IZQPAREN . DERPAREN
+    (34) valor -> . NUMERO
+    (35) valor -> . FLOTANTES
+    (36) valor -> . CADENAS
+    (37) valor -> . ARREGLOS
+    (38) valor -> . MAPAS
+    (39) valor -> . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    DERPAREN        shift and go to state 105
+    NUMERO          shift and go to state 39
+    FLOTANTES       shift and go to state 40
+    CADENAS         shift and go to state 41
+    ARREGLOS        shift and go to state 42
+    MAPAS           shift and go to state 43
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    variables                      shift and go to state 44
+    valor                          shift and go to state 104
+
+state 82
+
+    (18) split -> CADENAS PUNTO SPLIT IZQPAREN . DERPAREN
+    (19) split -> CADENAS PUNTO SPLIT IZQPAREN . CADENAS DERPAREN
+    (20) split -> CADENAS PUNTO SPLIT IZQPAREN . CADENAS COMA NUMERO DERPAREN
+
+    DERPAREN        shift and go to state 107
+    CADENAS         shift and go to state 106
+
+
+state 83
+
+    (22) puts -> PUTS IZQPAREN expresion DERPAREN .
+
+    CADENAS         reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    PUTS            reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    COMENTARIO      reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    IF              reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    FOR             reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    WHILE           reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    UNLESS          reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    BEGIN           reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    DEF             reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    VGLOBALES       reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    VLOCALES        reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    VCLASE          reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    VINSTANCIA      reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    CONSTANTES      reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    $end            reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    END             reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+    BREAK           reduce using rule 22 (puts -> PUTS IZQPAREN expresion DERPAREN .)
+
+
+state 84
+
+    (23) puts -> PUTS IZQPAREN comparacion DERPAREN .
+
+    CADENAS         reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    PUTS            reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    COMENTARIO      reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    IF              reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    FOR             reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    WHILE           reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    UNLESS          reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    BEGIN           reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    DEF             reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    VGLOBALES       reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    VLOCALES        reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    VCLASE          reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    VINSTANCIA      reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    CONSTANTES      reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    $end            reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    END             reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+    BREAK           reduce using rule 23 (puts -> PUTS IZQPAREN comparacion DERPAREN .)
+
+
+state 85
+
+    (55) sentIf -> IF comparaciones base finalIf .
+
+    CADENAS         reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    PUTS            reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    COMENTARIO      reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    IF              reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    FOR             reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    WHILE           reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    UNLESS          reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    BEGIN           reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    DEF             reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    VGLOBALES       reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    VLOCALES        reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    VCLASE          reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    VINSTANCIA      reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    CONSTANTES      reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    $end            reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    END             reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+    BREAK           reduce using rule 55 (sentIf -> IF comparaciones base finalIf .)
+
+
+state 86
+
+    (56) finalIf -> END .
+
+    CADENAS         reduce using rule 56 (finalIf -> END .)
+    PUTS            reduce using rule 56 (finalIf -> END .)
+    COMENTARIO      reduce using rule 56 (finalIf -> END .)
+    IF              reduce using rule 56 (finalIf -> END .)
+    FOR             reduce using rule 56 (finalIf -> END .)
+    WHILE           reduce using rule 56 (finalIf -> END .)
+    UNLESS          reduce using rule 56 (finalIf -> END .)
+    BEGIN           reduce using rule 56 (finalIf -> END .)
+    DEF             reduce using rule 56 (finalIf -> END .)
+    VGLOBALES       reduce using rule 56 (finalIf -> END .)
+    VLOCALES        reduce using rule 56 (finalIf -> END .)
+    VCLASE          reduce using rule 56 (finalIf -> END .)
+    VINSTANCIA      reduce using rule 56 (finalIf -> END .)
+    CONSTANTES      reduce using rule 56 (finalIf -> END .)
+    $end            reduce using rule 56 (finalIf -> END .)
+    END             reduce using rule 56 (finalIf -> END .)
+    BREAK           reduce using rule 56 (finalIf -> END .)
+
+
+state 87
+
+    (57) finalIf -> sentBREAK . END
+
+    END             shift and go to state 108
+
+
+state 88
+
+    (53) sentBREAK -> BREAK .
+    (54) sentBREAK -> BREAK . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    END             reduce using rule 53 (sentBREAK -> BREAK .)
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    variables                      shift and go to state 109
+
+state 89
+
+    (47) sentAnd -> comparacion AND comparacion .
+
+    CADENAS         reduce using rule 47 (sentAnd -> comparacion AND comparacion .)
+    PUTS            reduce using rule 47 (sentAnd -> comparacion AND comparacion .)
+    COMENTARIO      reduce using rule 47 (sentAnd -> comparacion AND comparacion .)
+    IF              reduce using rule 47 (sentAnd -> comparacion AND comparacion .)
+    FOR             reduce using rule 47 (sentAnd -> comparacion AND comparacion .)
+    WHILE           reduce using rule 47 (sentAnd -> comparacion AND comparacion .)
+    UNLESS          reduce using rule 47 (sentAnd -> comparacion AND comparacion .)
+    BEGIN           reduce using rule 47 (sentAnd -> comparacion AND comparacion .)
+    DEF             reduce using rule 47 (sentAnd -> comparacion AND comparacion .)
+    VGLOBALES       reduce using rule 47 (sentAnd -> comparacion AND comparacion .)
+    VLOCALES        reduce using rule 47 (sentAnd -> comparacion AND comparacion .)
+    VCLASE          reduce using rule 47 (sentAnd -> comparacion AND comparacion .)
+    VINSTANCIA      reduce using rule 47 (sentAnd -> comparacion AND comparacion .)
+    CONSTANTES      reduce using rule 47 (sentAnd -> comparacion AND comparacion .)
+
+
+state 90
+
+    (48) sentOr -> comparacion OR comparacion .
+
+    CADENAS         reduce using rule 48 (sentOr -> comparacion OR comparacion .)
+    PUTS            reduce using rule 48 (sentOr -> comparacion OR comparacion .)
+    COMENTARIO      reduce using rule 48 (sentOr -> comparacion OR comparacion .)
+    IF              reduce using rule 48 (sentOr -> comparacion OR comparacion .)
+    FOR             reduce using rule 48 (sentOr -> comparacion OR comparacion .)
+    WHILE           reduce using rule 48 (sentOr -> comparacion OR comparacion .)
+    UNLESS          reduce using rule 48 (sentOr -> comparacion OR comparacion .)
+    BEGIN           reduce using rule 48 (sentOr -> comparacion OR comparacion .)
+    DEF             reduce using rule 48 (sentOr -> comparacion OR comparacion .)
+    VGLOBALES       reduce using rule 48 (sentOr -> comparacion OR comparacion .)
+    VLOCALES        reduce using rule 48 (sentOr -> comparacion OR comparacion .)
+    VCLASE          reduce using rule 48 (sentOr -> comparacion OR comparacion .)
+    VINSTANCIA      reduce using rule 48 (sentOr -> comparacion OR comparacion .)
+    CONSTANTES      reduce using rule 48 (sentOr -> comparacion OR comparacion .)
+
+
+state 91
+
+    (41) comparacion -> expresion operadorComparador expresion .
+
+    AND             reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    OR              reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    CADENAS         reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    PUTS            reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    COMENTARIO      reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    IF              reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    FOR             reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    WHILE           reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    UNLESS          reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    BEGIN           reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    DEF             reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    VGLOBALES       reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    VLOCALES        reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    VCLASE          reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    VINSTANCIA      reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    CONSTANTES      reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    DO              reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+    DERPAREN        reduce using rule 41 (comparacion -> expresion operadorComparador expresion .)
+
+
+state 92
+
+    (42) comparacion -> IZQPAREN expresion DERPAREN . operadorComparador IZQPAREN expresion DERPAREN
+    (43) operadorComparador -> . IGUAL_COMP
+    (44) operadorComparador -> . DIFERENTE
+    (45) operadorComparador -> . MENOR
+    (46) operadorComparador -> . MAYOR
+
+    IGUAL_COMP      shift and go to state 67
+    DIFERENTE       shift and go to state 68
+    MENOR           shift and go to state 69
+    MAYOR           shift and go to state 70
+
+    operadorComparador             shift and go to state 110
+
+state 93
+
+    (58) sentFor -> FOR variables IN rango . DO base END
+
+    DO              shift and go to state 111
+
+
+state 94
+
+    (52) rango -> NUMERO . RANGO NUMERO
+
+    RANGO           shift and go to state 112
+
+
+state 95
+
+    (59) sentWhile -> WHILE comparacion DO base . END
+
+    END             shift and go to state 113
+
+
+state 96
+
+    (60) unless -> UNLESS comparacion base END .
+
+    CADENAS         reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    PUTS            reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    COMENTARIO      reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    IF              reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    FOR             reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    WHILE           reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    UNLESS          reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    BEGIN           reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    DEF             reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    VGLOBALES       reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    VLOCALES        reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    VCLASE          reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    VINSTANCIA      reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    CONSTANTES      reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    $end            reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    END             reduce using rule 60 (unless -> UNLESS comparacion base END .)
+    BREAK           reduce using rule 60 (unless -> UNLESS comparacion base END .)
+
+
+state 97
+
+    (64) sentenciaFuncion -> DEF variables base END .
+
+    CADENAS         reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    PUTS            reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    COMENTARIO      reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    IF              reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    FOR             reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    WHILE           reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    UNLESS          reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    BEGIN           reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    DEF             reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    VGLOBALES       reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    VLOCALES        reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    VCLASE          reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    VINSTANCIA      reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    CONSTANTES      reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    $end            reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    END             reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+    BREAK           reduce using rule 64 (sentenciaFuncion -> DEF variables base END .)
+
+
+state 98
+
+    (65) sentenciaFuncion -> DEF variables parametrosF base . END
+
+    END             shift and go to state 114
+
+
+state 99
+
+    (66) parametrosF -> IZQPAREN parametros . DERPAREN
+    (69) parametros -> parametros . COMA parametros
+
+    DERPAREN        shift and go to state 115
+    COMA            shift and go to state 116
+
+
+state 100
+
+    (67) parametros -> variables . COMA variables
+    (68) parametros -> variables .
+
+  ! shift/reduce conflict for COMA resolved as shift
+    COMA            shift and go to state 117
+    DERPAREN        reduce using rule 68 (parametros -> variables .)
+
+  ! COMA            [ reduce using rule 68 (parametros -> variables .) ]
+
+
+state 101
+
+    (28) append -> variables PUNTO APPEND IZQPAREN expresion . DERPAREN
+
+    DERPAREN        shift and go to state 118
+
+
+state 102
+
+    (70) pop -> variables PUNTO POP IZQPAREN valor . DERPAREN
+
+    DERPAREN        shift and go to state 119
+
+
+state 103
+
+    (71) pop -> variables PUNTO POP IZQPAREN DERPAREN .
+
+    CADENAS         reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    PUTS            reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    COMENTARIO      reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    IF              reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    FOR             reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    WHILE           reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    UNLESS          reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    BEGIN           reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    DEF             reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    VGLOBALES       reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    VLOCALES        reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    VCLASE          reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    VINSTANCIA      reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    CONSTANTES      reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    $end            reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    END             reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+    BREAK           reduce using rule 71 (pop -> variables PUNTO POP IZQPAREN DERPAREN .)
+
+
+state 104
+
+    (72) push -> variables PUNTO PUSH IZQPAREN valor . DERPAREN
+
+    DERPAREN        shift and go to state 120
+
+
+state 105
+
+    (73) clear -> variables PUNTO PUSH IZQPAREN DERPAREN .
+
+    CADENAS         reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    PUTS            reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    COMENTARIO      reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    IF              reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    FOR             reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    WHILE           reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    UNLESS          reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    BEGIN           reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    DEF             reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    VGLOBALES       reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    VLOCALES        reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    VCLASE          reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    VINSTANCIA      reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    CONSTANTES      reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    $end            reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    END             reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+    BREAK           reduce using rule 73 (clear -> variables PUNTO PUSH IZQPAREN DERPAREN .)
+
+
+state 106
+
+    (19) split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS . DERPAREN
+    (20) split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS . COMA NUMERO DERPAREN
+
+    DERPAREN        shift and go to state 121
+    COMA            shift and go to state 122
+
+
+state 107
+
+    (18) split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .
+
+    CADENAS         reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    PUTS            reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    COMENTARIO      reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    IF              reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    FOR             reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    WHILE           reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    UNLESS          reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    BEGIN           reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    DEF             reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    VGLOBALES       reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    VLOCALES        reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    VCLASE          reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    VINSTANCIA      reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    CONSTANTES      reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    $end            reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    END             reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+    BREAK           reduce using rule 18 (split -> CADENAS PUNTO SPLIT IZQPAREN DERPAREN .)
+
+
+state 108
+
+    (57) finalIf -> sentBREAK END .
+
+    CADENAS         reduce using rule 57 (finalIf -> sentBREAK END .)
+    PUTS            reduce using rule 57 (finalIf -> sentBREAK END .)
+    COMENTARIO      reduce using rule 57 (finalIf -> sentBREAK END .)
+    IF              reduce using rule 57 (finalIf -> sentBREAK END .)
+    FOR             reduce using rule 57 (finalIf -> sentBREAK END .)
+    WHILE           reduce using rule 57 (finalIf -> sentBREAK END .)
+    UNLESS          reduce using rule 57 (finalIf -> sentBREAK END .)
+    BEGIN           reduce using rule 57 (finalIf -> sentBREAK END .)
+    DEF             reduce using rule 57 (finalIf -> sentBREAK END .)
+    VGLOBALES       reduce using rule 57 (finalIf -> sentBREAK END .)
+    VLOCALES        reduce using rule 57 (finalIf -> sentBREAK END .)
+    VCLASE          reduce using rule 57 (finalIf -> sentBREAK END .)
+    VINSTANCIA      reduce using rule 57 (finalIf -> sentBREAK END .)
+    CONSTANTES      reduce using rule 57 (finalIf -> sentBREAK END .)
+    $end            reduce using rule 57 (finalIf -> sentBREAK END .)
+    END             reduce using rule 57 (finalIf -> sentBREAK END .)
+    BREAK           reduce using rule 57 (finalIf -> sentBREAK END .)
+
+
+state 109
+
+    (54) sentBREAK -> BREAK variables .
+
+    END             reduce using rule 54 (sentBREAK -> BREAK variables .)
+
+
+state 110
+
+    (42) comparacion -> IZQPAREN expresion DERPAREN operadorComparador . IZQPAREN expresion DERPAREN
+
+    IZQPAREN        shift and go to state 123
+
+
+state 111
+
+    (58) sentFor -> FOR variables IN rango DO . base END
+    (1) base -> . sentencias
+    (2) base -> . sentencias base
+    (3) sentencias -> . asignacion
+    (4) sentencias -> . append
+    (5) sentencias -> . split
+    (6) sentencias -> . puts
+    (7) sentencias -> . comentarios
+    (8) sentencias -> . sentIf
+    (9) sentencias -> . sentFor
+    (10) sentencias -> . sentWhile
+    (11) sentencias -> . unless
+    (12) sentencias -> . sentenciaBloque
+    (13) sentencias -> . sentenciaFuncion
+    (14) sentencias -> . pop
+    (15) sentencias -> . push
+    (16) sentencias -> . clear
+    (17) asignacion -> . variables IGUAL expresion
+    (28) append -> . variables PUNTO APPEND IZQPAREN expresion DERPAREN
+    (18) split -> . CADENAS PUNTO SPLIT IZQPAREN DERPAREN
+    (19) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN
+    (20) split -> . CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
+    (21) puts -> . PUTS expresion
+    (22) puts -> . PUTS IZQPAREN expresion DERPAREN
+    (23) puts -> . PUTS IZQPAREN comparacion DERPAREN
+    (27) comentarios -> . COMENTARIO
+    (55) sentIf -> . IF comparaciones base finalIf
+    (58) sentFor -> . FOR variables IN rango DO base END
+    (59) sentWhile -> . WHILE comparacion DO base END
+    (60) unless -> . UNLESS comparacion base END
+    (63) sentenciaBloque -> . BEGIN base END
+    (64) sentenciaFuncion -> . DEF variables base END
+    (65) sentenciaFuncion -> . DEF variables parametrosF base END
+    (70) pop -> . variables PUNTO POP IZQPAREN valor DERPAREN
+    (71) pop -> . variables PUNTO POP IZQPAREN DERPAREN
+    (72) push -> . variables PUNTO PUSH IZQPAREN valor DERPAREN
+    (73) clear -> . variables PUNTO PUSH IZQPAREN DERPAREN
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    CADENAS         shift and go to state 18
+    PUTS            shift and go to state 19
+    COMENTARIO      shift and go to state 20
+    IF              shift and go to state 21
+    FOR             shift and go to state 22
+    WHILE           shift and go to state 23
+    UNLESS          shift and go to state 24
+    BEGIN           shift and go to state 25
+    DEF             shift and go to state 26
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    variables                      shift and go to state 17
+    base                           shift and go to state 124
+    sentencias                     shift and go to state 2
+    asignacion                     shift and go to state 3
+    append                         shift and go to state 4
+    split                          shift and go to state 5
+    puts                           shift and go to state 6
+    comentarios                    shift and go to state 7
+    sentIf                         shift and go to state 8
+    sentFor                        shift and go to state 9
+    sentWhile                      shift and go to state 10
+    unless                         shift and go to state 11
+    sentenciaBloque                shift and go to state 12
+    sentenciaFuncion               shift and go to state 13
+    pop                            shift and go to state 14
+    push                           shift and go to state 15
+    clear                          shift and go to state 16
+
+state 112
+
+    (52) rango -> NUMERO RANGO . NUMERO
+
+    NUMERO          shift and go to state 125
+
+
+state 113
+
+    (59) sentWhile -> WHILE comparacion DO base END .
+
+    CADENAS         reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    PUTS            reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    COMENTARIO      reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    IF              reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    FOR             reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    WHILE           reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    UNLESS          reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    BEGIN           reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    DEF             reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    VGLOBALES       reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    VLOCALES        reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    VCLASE          reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    VINSTANCIA      reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    CONSTANTES      reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    $end            reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    END             reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+    BREAK           reduce using rule 59 (sentWhile -> WHILE comparacion DO base END .)
+
+
+state 114
+
+    (65) sentenciaFuncion -> DEF variables parametrosF base END .
+
+    CADENAS         reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    PUTS            reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    COMENTARIO      reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    IF              reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    FOR             reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    WHILE           reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    UNLESS          reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    BEGIN           reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    DEF             reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    VGLOBALES       reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    VLOCALES        reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    VCLASE          reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    VINSTANCIA      reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    CONSTANTES      reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    $end            reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    END             reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+    BREAK           reduce using rule 65 (sentenciaFuncion -> DEF variables parametrosF base END .)
+
+
+state 115
+
+    (66) parametrosF -> IZQPAREN parametros DERPAREN .
+
+    CADENAS         reduce using rule 66 (parametrosF -> IZQPAREN parametros DERPAREN .)
+    PUTS            reduce using rule 66 (parametrosF -> IZQPAREN parametros DERPAREN .)
+    COMENTARIO      reduce using rule 66 (parametrosF -> IZQPAREN parametros DERPAREN .)
+    IF              reduce using rule 66 (parametrosF -> IZQPAREN parametros DERPAREN .)
+    FOR             reduce using rule 66 (parametrosF -> IZQPAREN parametros DERPAREN .)
+    WHILE           reduce using rule 66 (parametrosF -> IZQPAREN parametros DERPAREN .)
+    UNLESS          reduce using rule 66 (parametrosF -> IZQPAREN parametros DERPAREN .)
+    BEGIN           reduce using rule 66 (parametrosF -> IZQPAREN parametros DERPAREN .)
+    DEF             reduce using rule 66 (parametrosF -> IZQPAREN parametros DERPAREN .)
+    VGLOBALES       reduce using rule 66 (parametrosF -> IZQPAREN parametros DERPAREN .)
+    VLOCALES        reduce using rule 66 (parametrosF -> IZQPAREN parametros DERPAREN .)
+    VCLASE          reduce using rule 66 (parametrosF -> IZQPAREN parametros DERPAREN .)
+    VINSTANCIA      reduce using rule 66 (parametrosF -> IZQPAREN parametros DERPAREN .)
+    CONSTANTES      reduce using rule 66 (parametrosF -> IZQPAREN parametros DERPAREN .)
+
+
+state 116
+
+    (69) parametros -> parametros COMA . parametros
+    (67) parametros -> . variables COMA variables
+    (68) parametros -> . variables
+    (69) parametros -> . parametros COMA parametros
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    parametros                     shift and go to state 126
+    variables                      shift and go to state 100
+
+state 117
+
+    (67) parametros -> variables COMA . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    variables                      shift and go to state 127
+
+state 118
+
+    (28) append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .
+
+    CADENAS         reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    PUTS            reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    COMENTARIO      reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    IF              reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    FOR             reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    WHILE           reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    UNLESS          reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    BEGIN           reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    DEF             reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    VGLOBALES       reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    VLOCALES        reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    VCLASE          reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    VINSTANCIA      reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    CONSTANTES      reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    $end            reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    END             reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+    BREAK           reduce using rule 28 (append -> variables PUNTO APPEND IZQPAREN expresion DERPAREN .)
+
+
+state 119
+
+    (70) pop -> variables PUNTO POP IZQPAREN valor DERPAREN .
+
+    CADENAS         reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    PUTS            reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    COMENTARIO      reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    IF              reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    FOR             reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    WHILE           reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    UNLESS          reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    BEGIN           reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    DEF             reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    VGLOBALES       reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    VLOCALES        reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    VCLASE          reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    VINSTANCIA      reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    CONSTANTES      reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    $end            reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    END             reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+    BREAK           reduce using rule 70 (pop -> variables PUNTO POP IZQPAREN valor DERPAREN .)
+
+
+state 120
+
+    (72) push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .
+
+    CADENAS         reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    PUTS            reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    COMENTARIO      reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    IF              reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    FOR             reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    WHILE           reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    UNLESS          reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    BEGIN           reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    DEF             reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    VGLOBALES       reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    VLOCALES        reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    VCLASE          reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    VINSTANCIA      reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    CONSTANTES      reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    $end            reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    END             reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+    BREAK           reduce using rule 72 (push -> variables PUNTO PUSH IZQPAREN valor DERPAREN .)
+
+
+state 121
+
+    (19) split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .
+
+    CADENAS         reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    PUTS            reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    COMENTARIO      reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    IF              reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    FOR             reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    WHILE           reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    UNLESS          reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    BEGIN           reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    DEF             reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    VGLOBALES       reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    VLOCALES        reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    VCLASE          reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    VINSTANCIA      reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    CONSTANTES      reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    $end            reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    END             reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+    BREAK           reduce using rule 19 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN .)
+
+
+state 122
+
+    (20) split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA . NUMERO DERPAREN
+
+    NUMERO          shift and go to state 128
+
+
+state 123
+
+    (42) comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN . expresion DERPAREN
+    (40) expresion -> . valor
+    (34) valor -> . NUMERO
+    (35) valor -> . FLOTANTES
+    (36) valor -> . CADENAS
+    (37) valor -> . ARREGLOS
+    (38) valor -> . MAPAS
+    (39) valor -> . variables
+    (29) variables -> . VGLOBALES
+    (30) variables -> . VLOCALES
+    (31) variables -> . VCLASE
+    (32) variables -> . VINSTANCIA
+    (33) variables -> . CONSTANTES
+
+    NUMERO          shift and go to state 39
+    FLOTANTES       shift and go to state 40
+    CADENAS         shift and go to state 41
+    ARREGLOS        shift and go to state 42
+    MAPAS           shift and go to state 43
+    VGLOBALES       shift and go to state 27
+    VLOCALES        shift and go to state 28
+    VCLASE          shift and go to state 29
+    VINSTANCIA      shift and go to state 30
+    CONSTANTES      shift and go to state 31
+
+    expresion                      shift and go to state 129
+    valor                          shift and go to state 38
+    variables                      shift and go to state 44
+
+state 124
+
+    (58) sentFor -> FOR variables IN rango DO base . END
+
+    END             shift and go to state 130
+
+
+state 125
+
+    (52) rango -> NUMERO RANGO NUMERO .
+
+    DO              reduce using rule 52 (rango -> NUMERO RANGO NUMERO .)
+
+
+state 126
+
+    (69) parametros -> parametros COMA parametros .
+    (69) parametros -> parametros . COMA parametros
+
+  ! shift/reduce conflict for COMA resolved as shift
+    DERPAREN        reduce using rule 69 (parametros -> parametros COMA parametros .)
+    COMA            shift and go to state 116
+
+  ! COMA            [ reduce using rule 69 (parametros -> parametros COMA parametros .) ]
+
+
+state 127
+
+    (67) parametros -> variables COMA variables .
+
+    DERPAREN        reduce using rule 67 (parametros -> variables COMA variables .)
+    COMA            reduce using rule 67 (parametros -> variables COMA variables .)
+
+
+state 128
+
+    (20) split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO . DERPAREN
+
+    DERPAREN        shift and go to state 131
+
+
+state 129
+
+    (42) comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion . DERPAREN
+
+    DERPAREN        shift and go to state 132
+
+
+state 130
+
+    (58) sentFor -> FOR variables IN rango DO base END .
+
+    CADENAS         reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    PUTS            reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    COMENTARIO      reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    IF              reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    FOR             reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    WHILE           reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    UNLESS          reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    BEGIN           reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    DEF             reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    VGLOBALES       reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    VLOCALES        reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    VCLASE          reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    VINSTANCIA      reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    CONSTANTES      reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    $end            reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    END             reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+    BREAK           reduce using rule 58 (sentFor -> FOR variables IN rango DO base END .)
+
+
+state 131
+
+    (20) split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .
+
+    CADENAS         reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    PUTS            reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    COMENTARIO      reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    IF              reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    FOR             reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    WHILE           reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    UNLESS          reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    BEGIN           reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    DEF             reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    VGLOBALES       reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    VLOCALES        reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    VCLASE          reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    VINSTANCIA      reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    CONSTANTES      reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    $end            reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    END             reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+    BREAK           reduce using rule 20 (split -> CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN .)
+
+
+state 132
+
+    (42) comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .
+
+    AND             reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    OR              reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    CADENAS         reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    PUTS            reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    COMENTARIO      reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    IF              reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    FOR             reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    WHILE           reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    UNLESS          reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    BEGIN           reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    DEF             reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    VGLOBALES       reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    VLOCALES        reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    VCLASE          reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    VINSTANCIA      reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    CONSTANTES      reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    DO              reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+    DERPAREN        reduce using rule 42 (comparacion -> IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for COMA in state 100 resolved as shift
+WARNING: shift/reduce conflict for COMA in state 126 resolved as shift
