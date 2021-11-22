@@ -49,16 +49,10 @@ def p_sentencias(p):
                     | clear
                     | operacionMat
                     | slice
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 739165f6917ced84a80195227806e75c80bd6675
                     | print
                     | listas
                     | mapas
 
->>>>>>> 7178453a3dd032bb16477b744c48f4b013c1f748
     '''
 
 #Inicio Milen Ortega
