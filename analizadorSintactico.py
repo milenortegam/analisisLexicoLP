@@ -164,6 +164,7 @@ def p_sentBreak(p):
 
 def p_sentIf(p):
     ''' sentIf : IF comparaciones base finalIf
+                | IF comparaciones base ELSEIF comparaciones base finalIf
     '''
 
 def p_finalIf(p):
