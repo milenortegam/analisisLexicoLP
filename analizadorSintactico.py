@@ -1,5 +1,7 @@
 import ply.yacc as yacc
 
+from analizadorLexico import tokens
+
 
 '''
 LO QUE FALTA
@@ -7,8 +9,6 @@ Operaciones matematicas
 Retorno en funciones!!!
 PARTE DE MILEN
 '''
-from analizadorLexico import tokens
-
 '''Reglas definidas por Milen Ortega
 asignacion
 append
@@ -41,9 +41,7 @@ def p_base(p):
     '''
 
 def p_sentencias(p):
-    ''' sentencias :
-
-                    | sentIf
+    ''' sentencias : sentIf
                     | sentFor
                     | sentWhile
                     | unless
@@ -57,7 +55,15 @@ def p_sentencias(p):
     '''
 
 #Inicio Milen Ortega
+def p_asignacion(p):
+    '''asignacion : variables IGUAL expresion
+    '''
 
+def p_split(p):
+    '''split : CADENAS PUNTO SPLIT IZQPAREN DERPAREN
+                | CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN
+                | CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
+    '''
 
 #Fin Milen Ortega
 
@@ -148,7 +154,7 @@ def p_listas(p):
     '''
 
 def p_mapas(p):
-    ''' mapa: IZQ_LLAVE expresion COMA expresion DER_LLAVE
+    ''' mapa : IZQ_LLAVE expresion COMA expresion DER_LLAVE
     '''
 
 #Fin Gabriela Pazmiño
@@ -200,3 +206,13 @@ def p_error(p):
 #contruccion del parser
 parser = yacc.yacc()
 
+#algoritmo para validar
+
+while True:
+    try:
+        s = input('Python > ')
+    except EOFError:
+        break
+    if not s: continue
+    result = parser.parse(s)
+    print(result)
