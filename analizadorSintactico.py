@@ -1,5 +1,15 @@
 import ply.yacc as yacc
 
+
+'''
+LO QUE FALTA
+Operaciones matematicas
+Creacion de listas (uso de corchetes), tuplas (uso de llaves?)
+Retorno en funciones!!!
+
+PARTE DE MILEN
+
+'''
 from analizadorLexico import tokens
 
 '''Reglas definidas por Milen Ortega
@@ -32,24 +42,18 @@ def p_base(p):
     '''
 
 def p_sentencias(p):
-    ''' sentencias : asignacion
-                    | append
-                    | split
-                    | slicing
+    ''' sentencias :
 
-                    | sentenciaIf
-                    | sentenciaFor
-                    | sentenciaWHILE
+                    | sentIf
+                    | sentFor
+                    | sentWhile
                     | unless
 
-                    | sentenciaBegin
+                    | sentenciaBloque
                     | sentenciaFuncion
                     | pop
                     | push
                     | clear
-
-                    | puts
-                    | comentarios
 
     '''
 
@@ -59,8 +63,7 @@ def p_sentencias(p):
 '''Inicio Gabriela Pazmiño'''
 
 def p_variables(p):
-    '''variables : VARIABLE_LOCAL
-                | VGLOBALES
+    '''variables : VGLOBALES
                 | VLOCALES
                 | VCLASE
                 | VINSTANCIA
@@ -82,10 +85,15 @@ def p_expresion(p):
 
 def p_comparacion(p):
     '''comparacion : expresion operadorComparador expresion
-        | IZQPAREN expresion DERPAREN operadorComparador expresion
-        | IZQPAREN expresion operadorComp operadorComparador DERPAREN
+                    | IZQPAREN expresion DERPAREN operadorComparador IZQPAREN expresion DERPAREN
     '''
 
+def p_operadorComparador (p):
+    '''operadorComparador : IGUAL_COMP
+            | DIFERENTE
+            | MENOR
+            | MAYOR
+    '''
 def p_sentAnd(p):
     ''' sentAnd : comparacion AND comparacion
     '''
@@ -104,17 +112,11 @@ def p_rango(p):
     ''' rango : NUMERO RANGO NUMERO
     '''
 
-def p_sentDef(p):
-    ''' p_sentDef : DEF  variables base  END
-    '''
 
 def p_sentBreak(p):
     ''' sentBREAK : BREAK
             | BREAK variables
     '''
-
-def p_sentBegin(p):
-    '''sentBegin : BEGIN base END'''
 
 def p_sentIf(p):
     ''' sentIf : IF comparaciones base finalIf
@@ -130,7 +132,7 @@ def p_sentFor(p):
     '''
 
 def p_sentWhile(p):
-    '''sentWHILE : WHILE  comparacion DO base END
+    '''sentWhile : WHILE  comparacion DO base END
     '''
 
 

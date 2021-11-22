@@ -2,40 +2,26 @@ import ply.lex as lex
 
 # Milen Ortega Mautong
 reservadas = {
-    'alias': 'ALIAS',
-    'class': 'CLASS',
     'do': 'DO',
     'end': 'END',
     'false': 'FALSE',
     'module': 'MODULE',
     'not': 'NOT',
-    'rescue': 'RESCUE',
-    'self': 'SELF',
-    'true': 'TRUE',
-    'until': 'UNTIL',
-    'yield': 'YIELD',
     'break': 'BREAK',
     'def': 'DEF',
     'else': 'ELSE',
     'for': 'FOR',
-    'next': 'NEXT',
-    'retry': 'RETRY',
-    'super': 'SUPER',
-    'undef': 'UNDEF',
-    'when': 'WHEN',
     'begin': 'BEGIN',
-    'case': 'CASE',
     'elsif': 'ELSIF',
-    'ensure': 'ENSURE',
     'if': 'IF',
     'nil': 'NIL',
-    'redo': 'REDO',
     'return': 'RETURN',
     'unless': 'UNLESS',
     'while': 'WHILE',
     'def': "DEF",
     "pop": "POP",
-    "push": "PUSH"
+    "push": "PUSH",
+    "in": "IN"
 
 }
 
@@ -71,12 +57,6 @@ tokens = (
              'EXPONENCIAL',
              'MODULO',
              'IGUAL',
-            'ASIGNACIONSUMA',
-            'ASIGNACIONRESTA',
-            "ASIGNACIONMULT",
-            'ASIGNACIONDIV',
-            'ASIGNACIONMOD',
-            'ASIGNACIONEXP',
             'IGUAL_COMP',
             'DIFERENTE',
             'MENOR',
@@ -160,12 +140,6 @@ t_DERPAREN = r'\)'
 t_EXPONENCIAL = r'\*\*'
 t_MODULO = r'%'
 t_IGUAL = r'='
-t_ASIGNACIONSUMA = r'\+='
-t_ASIGNACIONRESTA = r'-='
-t_ASIGNACIONMULT = r'\*='
-t_ASIGNACIONDIV = r'/='
-t_ASIGNACIONMOD = r'%='
-t_ASIGNACIONEXP = r'\*\*='
 t_IGUAL_COMP=r"=="
 t_DIFERENTE=r"!="
 t_MENOR=r"<"
