@@ -233,7 +233,10 @@ def p_clear(p):
 
 def p_operacionMat(p):
     ''' operacionMat : valor operadorMat valor
-                        | IZQPAREN valor operadorMat operacionMat DERPAREN
+                        | IZQPAREN valor operadorMat expresion DERPAREN
+                        | IZQPAREN valor operadorMat expresion DERPAREN operadorMat operacionMat
+                        | valor operadorMat valor operadorMat operacionMat
+                        | operacionMat operadorMat operacionMat
     '''
 
 
