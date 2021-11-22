@@ -1,6 +1,5 @@
 import ply.lex as lex
 
-# Milen Ortega Mautong
 reservadas = {
     'do': 'DO',
     'end': 'END',

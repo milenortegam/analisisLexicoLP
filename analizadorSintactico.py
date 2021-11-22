@@ -4,11 +4,8 @@ import ply.yacc as yacc
 '''
 LO QUE FALTA
 Operaciones matematicas
-Creacion de listas (uso de corchetes), tuplas (uso de llaves?)
 Retorno en funciones!!!
-
 PARTE DE MILEN
-
 '''
 from analizadorLexico import tokens
 
@@ -26,6 +23,8 @@ sentIf
 sentFor
 sentWHILE
 unless
+listas
+mapas
 '''
 
 '''Reglas definidas por Hayleen Carrillo
@@ -57,14 +56,14 @@ def p_sentencias(p):
 
     '''
 
-'''Inicio Milen Ortega'''
+#Inicio Milen Ortega
 
 
-'''Fin Milen Ortega'''
+#Fin Milen Ortega
 
 
 
-'''Inicio Gabriela Pazmiño'''
+#Inicio Gabriela Pazmiño
 
 def p_variables(p):
     '''variables : VGLOBALES
@@ -152,11 +151,11 @@ def p_mapas(p):
     ''' mapa: IZQ_LLAVE expresion COMA expresion DER_LLAVE
     '''
 
-'''Fin Gabriela Pazmiño'''
+#Fin Gabriela Pazmiño
 
 
 
-'''Inicio Hayleen Carrillo'''
+#Inicio Hayleen Carrillo
 
 def p_sentenciaBloque(p):
     ''' sentenciaBloque : BEGIN base END
@@ -190,16 +189,14 @@ def p_push(p):
 def p_clear(p):
     ''' clear : variables PUNTO PUSH IZQPAREN DERPAREN
     '''
-
-'''Fin Hayleen Carrillo'''
+    
+#Fin Hayleen Carrillo
 
 
 #errores
 def p_error(p):
      print("Syntax error in input!")
 
-     # Build the parser
-
-
+#contruccion del parser
 parser = yacc.yacc()
 
