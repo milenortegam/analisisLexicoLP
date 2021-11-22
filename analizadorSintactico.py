@@ -65,6 +65,13 @@ def p_split(p):
                 | CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
     '''
 
+def p_puts(p):
+    '''puts : PUTS expresion
+            | PUTS IZQPAREN expresion DERPAREN
+            | PUTS IZQPAREN comparacion DERPAREN
+    '''
+
+
 #Fin Milen Ortega
 
 
