@@ -1,1 +1,237 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ALIAS
+    ASIGNACIONDIV
+    ASIGNACIONEXP
+    ASIGNACIONMOD
+    ASIGNACIONMULT
+    ASIGNACIONRESTA
+    ASIGNACIONSUMA
+    CASE
+    CLASS
+    COMENTARIO
+    COMILLADOBLE
+    COMILLASIMPLE
+    DER_CORCH
+    DER_LLAVE
+    DIFERENTE
+    DIVISION
+    ELSE
+    ELSIF
+    ENSURE
+    EXPONENCIAL
+    FALSE
+    IGUAL
+    IGUAL_COMP
+    INTERROGACION
+    IZQ_CORCH
+    IZQ_LLAVE
+    MAS
+    MAYOR
+    MENOR
+    MENOS
+    MODULE
+    MODULO
+    MULTIPLICACION
+    NEXT
+    NIL
+    NOT
+    REDO
+    RESCUE
+    RETRY
+    RETURN
+    SELF
+    SUPER
+    TRUE
+    UNDEF
+    UNTIL
+    WHEN
+    YIELD
+
+Grammar
+
+Rule 0     S' -> base
+Rule 1     base -> sentencias
+Rule 2     base -> sentencias base
+Rule 3     sentencias -> asignacion
+Rule 4     sentencias -> append
+Rule 5     sentencias -> split
+Rule 6     sentencias -> slicing
+Rule 7     sentencias -> sentenciaIf
+Rule 8     sentencias -> sentenciaFor
+Rule 9     sentencias -> sentenciaWHILE
+Rule 10    sentencias -> unless
+Rule 11    sentencias -> sentenciaBegin
+Rule 12    sentencias -> sentenciaFuncion
+Rule 13    sentencias -> pop
+Rule 14    sentencias -> push
+Rule 15    sentencias -> clear
+Rule 16    sentencias -> puts
+Rule 17    sentencias -> comentarios
+Rule 18    variables -> VARIABLE_LOCAL
+Rule 19    variables -> VGLOBALES
+Rule 20    variables -> VLOCALES
+Rule 21    variables -> VCLASE
+Rule 22    variables -> VINSTANCIA
+Rule 23    variables -> CONSTANTES
+Rule 24    valor -> NUMERO
+Rule 25    valor -> FLOTANTES
+Rule 26    valor -> CADENAS
+Rule 27    valor -> ARREGLOS
+Rule 28    valor -> MAPAS
+Rule 29    valor -> variables
+Rule 30    expresion -> valor
+Rule 31    comparacion -> expresion operadorComparador expresion
+Rule 32    comparacion -> IZQPAREN expresion DERPAREN operadorComparador expresion
+Rule 33    comparacion -> IZQPAREN expresion operadorComp operadorComparador DERPAREN
+Rule 34    sentAnd -> comparacion AND comparacion
+Rule 35    sentOr -> comparacion OR comparacion
+Rule 36    comparaciones -> comparacion
+Rule 37    comparaciones -> sentAnd
+Rule 38    comparaciones -> sentOr
+Rule 39    rango -> NUMERO RANGO NUMERO
+Rule 40    p_sentDef -> DEF variables base END
+Rule 41    sentBREAK -> BREAK
+Rule 42    sentBREAK -> BREAK variables
+Rule 43    sentBegin -> BEGIN base END
+Rule 44    sentIf -> IF comparaciones base finalIf
+Rule 45    finalIf -> END
+Rule 46    finalIf -> sentBREAK END
+Rule 47    sentFor -> FOR variables IN rango DO base END
+Rule 48    sentWHILE -> WHILE comparacion DO base END
+Rule 49    unless -> UNLESS comparacion base END
+Rule 50    sentenciaBloque -> BEGIN base END
+Rule 51    sentenciaFuncion -> DEF variables base END
+Rule 52    sentenciaFuncion -> DEF variables parametrosF base END
+Rule 53    parametrosF -> IZQPAREN parametros DERPAREN
+Rule 54    parametros -> variables COMA variables
+Rule 55    parametros -> variables
+Rule 56    parametros -> parametros COMA parametros
+Rule 57    pop -> variables PUNTO POP IZQPAREN valor DERPAREN
+Rule 58    pop -> variables PUNTO POP IZQPAREN DERPAREN
+Rule 59    push -> variables PUNTO PUSH IZQPAREN valor DERPAREN
+Rule 60    clear -> variables PUNTO PUSH IZQPAREN DERPAREN
+
+Terminals, with rules where they appear
+
+ALIAS                : 
+AND                  : 34
+ARREGLOS             : 27
+ASIGNACIONDIV        : 
+ASIGNACIONEXP        : 
+ASIGNACIONMOD        : 
+ASIGNACIONMULT       : 
+ASIGNACIONRESTA      : 
+ASIGNACIONSUMA       : 
+BEGIN                : 43 50
+BREAK                : 41 42
+CADENAS              : 26
+CASE                 : 
+CLASS                : 
+COMA                 : 54 56
+COMENTARIO           : 
+COMILLADOBLE         : 
+COMILLASIMPLE        : 
+CONSTANTES           : 23
+DEF                  : 40 51 52
+DERPAREN             : 32 33 53 57 58 59 60
+DER_CORCH            : 
+DER_LLAVE            : 
+DIFERENTE            : 
+DIVISION             : 
+DO                   : 47 48
+ELSE                 : 
+ELSIF                : 
+END                  : 40 43 45 46 47 48 49 50 51 52
+ENSURE               : 
+EXPONENCIAL          : 
+FALSE                : 
+FLOTANTES            : 25
+FOR                  : 47
+IF                   : 44
+IGUAL                : 
+IGUAL_COMP           : 
+INTERROGACION        : 
+IZQPAREN             : 32 33 53 57 58 59 60
+IZQ_CORCH            : 
+IZQ_LLAVE            : 
+MAPAS                : 28
+MAS                  : 
+MAYOR                : 
+MENOR                : 
+MENOS                : 
+MODULE               : 
+MODULO               : 
+MULTIPLICACION       : 
+NEXT                 : 
+NIL                  : 
+NOT                  : 
+NUMERO               : 24 39 39
+OR                   : 35
+POP                  : 57 58
+PUNTO                : 57 58 59 60
+PUSH                 : 59 60
+RANGO                : 39
+REDO                 : 
+RESCUE               : 
+RETRY                : 
+RETURN               : 
+SELF                 : 
+SUPER                : 
+TRUE                 : 
+UNDEF                : 
+UNLESS               : 49
+UNTIL                : 
+VCLASE               : 21
+VGLOBALES            : 19
+VINSTANCIA           : 22
+VLOCALES             : 20
+WHEN                 : 
+WHILE                : 48
+YIELD                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+IN                   : 47
+VARIABLE_LOCAL       : 18
+append               : 4
+asignacion           : 3
+base                 : 2 40 43 44 47 48 49 50 51 52 0
+clear                : 15
+comentarios          : 17
+comparacion          : 34 34 35 35 36 48 49
+comparaciones        : 44
+expresion            : 31 31 32 32 33
+finalIf              : 44
+operadorComp         : 33
+operadorComparador   : 31 32 33
+p_sentDef            : 
+parametros           : 53 56 56
+parametrosF          : 52
+pop                  : 13
+push                 : 14
+puts                 : 16
+rango                : 47
+sentAnd              : 37
+sentBREAK            : 46
+sentBegin            : 
+sentFor              : 
+sentIf               : 
+sentOr               : 38
+sentWHILE            : 
+sentenciaBegin       : 11
+sentenciaBloque      : 
+sentenciaFor         : 8
+sentenciaFuncion     : 12
+sentenciaIf          : 7
+sentenciaWHILE       : 9
+sentencias           : 1 2
+slicing              : 6
+split                : 5
+unless               : 10
+valor                : 30 57 59
+variables            : 29 40 42 47 51 52 54 54 55 57 58 59 60
+

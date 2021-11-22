@@ -13,7 +13,7 @@ comentarios
 
 '''Reglas definidas por Gabriela Pazmiño
 sentIf
-sentFOR
+sentFor
 sentWHILE
 unless
 '''
@@ -38,7 +38,7 @@ def p_sentencias(p):
                     | slicing
 
                     | sentenciaIf
-                    | sentenciaFOR
+                    | sentenciaFor
                     | sentenciaWHILE
                     | unless
 
@@ -87,17 +87,17 @@ def p_comparacion(p):
     '''
 
 def p_sentAnd(p):
-    ''' sentAND : comparacion AND comparacion
+    ''' sentAnd : comparacion AND comparacion
     '''
 
 def p_sentOr(p):
-    ''' sentOR : comparacion OR comparacion
+    ''' sentOr : comparacion OR comparacion
     '''
 
 def p_comparaciones(p):
     ''' comparaciones : comparacion
-                      | sentAND
-                      | sentOR
+                      | sentAnd
+                      | sentOr
     '''
 
 def p_rango(p):
@@ -126,7 +126,7 @@ def p_finalIf(p):
     '''
 
 def p_sentFor(p):
-    ''' sentFOR : FOR variables IN rango DO base END
+    ''' sentFor : FOR variables IN rango DO base END
     '''
 
 def p_sentWhile(p):
@@ -164,16 +164,17 @@ def p_parametros(p): #analizar variables
     '''
 
 def p_pop(p):
-    ''' pop: variables PUNTO POP
+    ''' pop : variables PUNTO POP  IZQPAREN valor DERPAREN
+            | variables PUNTO POP IZQPAREN DERPAREN
     '''
 
 def p_push(p):
-    ''' push: variables PUNTO PUSH
+    ''' push : variables PUNTO PUSH  IZQPAREN valor DERPAREN
     '''
 
 
 def p_clear(p):
-    ''' clear: variables PUNTO PUSH
+    ''' clear : variables PUNTO PUSH IZQPAREN DERPAREN
     '''
 
 
@@ -186,11 +187,3 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-while True:
-    try:
-        s = print('calc > ')
-    except EOFError:
-        break
-    if not s: continue
-    result = parser.parse(s)
-    print(result)
