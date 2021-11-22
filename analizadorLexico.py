@@ -25,7 +25,8 @@ reservadas = {
     "append" : "APPEND",
     "split" : "SPLIT",
     "print" : "PRINT",
-    "slice" : "SLICE"
+    "slice" : "SLICE",
+    "clear" : "CLEAR"
 
 }
 
