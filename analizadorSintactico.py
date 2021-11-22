@@ -44,7 +44,6 @@ def p_sentencias(p):
     ''' sentencias : asignacion
                     | append
                     | split
-                    | slicing
                     | puts
                     | comentarios
                     | sentIf
@@ -56,6 +55,7 @@ def p_sentencias(p):
                     | pop
                     | push
                     | clear
+                    | operacionMat
 
     '''
 
@@ -224,7 +224,22 @@ def p_push(p):
 def p_clear(p):
     ''' clear : variables PUNTO PUSH IZQPAREN DERPAREN
     '''
-    
+
+def p_operacionMat(p):
+    ''' operacionMat : valor operadorMat valor
+                        | IZQPAREN valor operadorMat operacionMat DERPAREN
+    '''
+
+
+def p_operadorMat(p):
+    ''' operadorMat : MAS
+             | MENOS
+             | MULTIPLICACION
+             | DIVISION
+             | EXPONENCIAL
+             | MODULO
+    '''
+
 #Fin Hayleen Carrillo
 
 
