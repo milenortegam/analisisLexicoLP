@@ -1,14 +1,6 @@
 import ply.yacc as yacc
-
 from analizadorLexico import tokens
 
-
-'''
-LO QUE FALTA
-Operaciones matematicas
-Retorno en funciones!!!
-PARTE DE MILEN
-'''
 '''Reglas definidas por Milen Ortega
 asignacion-
 append-
@@ -57,7 +49,6 @@ def p_sentencias(p):
                     | clear
                     | operacionMat
                     | slice
-
     '''
 
 #Inicio Milen Ortega
