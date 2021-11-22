@@ -68,6 +68,7 @@ tokens = (
             'IZQ_LLAVE',
             'DER_LLAVE',
 
+
          ) + tuple(reservadas.values())
 
 

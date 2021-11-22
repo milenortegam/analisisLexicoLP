@@ -57,8 +57,12 @@ def p_sentencias(p):
 
     '''
 
+'''Inicio Milen Ortega'''
 
-# Error rule for syntax errors
+
+'''Fin Milen Ortega'''
+
+
 
 '''Inicio Gabriela Pazmiño'''
 
@@ -140,7 +144,15 @@ def p_unless(p):
     ''' unless : UNLESS comparacion base END
     '''
 
-'''Fin'''
+def p_listas(p):
+    ''' listas: IZQ_CORCH expresion COMA expresion DER_CORCH
+    '''
+
+def p_mapas(p):
+    ''' mapa: IZQ_LLAVE expresion COMA expresion DER_LLAVE
+    '''
+
+'''Fin Gabriela Pazmiño'''
 
 
 
@@ -178,6 +190,8 @@ def p_push(p):
 def p_clear(p):
     ''' clear : variables PUNTO PUSH IZQPAREN DERPAREN
     '''
+
+'''Fin Hayleen Carrillo'''
 
 
 #errores
