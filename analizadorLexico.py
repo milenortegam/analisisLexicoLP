@@ -111,7 +111,7 @@ def t_CONSTANTES(t):
 
 
 # Inicio Gabriela Pazmiño Guerrero
-t_CADENAS = r'"[a-zA-Z0-9\s,]*"'
+t_CADENAS = r'(\"|\')[a-zA-Z0-9\s,]*(\"|\')'
 t_ARREGLOS = r"\[(('([a-zA-z\s])*'|[0-9]+|[0-9]+,?[0-9]*),?)+\]"
 t_MAPAS = r"\{((\"|')?[a-zA-Z_][a-zA-Z0-9_\s]*(\"|')?(\:|\=>)([0-9]|[1-9][0-9]*|(\"|')[\w\s]+(\"|')),?)+\}"
 t_PUNTO = r'\.'
