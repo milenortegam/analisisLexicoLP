@@ -11,11 +11,11 @@ PARTE DE MILEN
 '''
 '''Reglas definidas por Milen Ortega
 asignacion-
-append
+append-
 split-
 slicing
 puts-
-comentarios
+comentarios-
 '''
 
 '''Reglas definidas por Gabriela Pazmiño
@@ -84,6 +84,11 @@ def p_comentarios(p):
 def p_append(p) :
     '''append : variables PUNTO APPEND IZQPAREN expresion DERPAREN
     '''
+
+def p_append(p) :
+    '''append : variables PUNTO APPEND IZQPAREN expresion DERPAREN
+    '''
+
 #Fin Milen Ortega
 
 
