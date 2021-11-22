@@ -10,11 +10,11 @@ Retorno en funciones!!!
 PARTE DE MILEN
 '''
 '''Reglas definidas por Milen Ortega
-asignacion
+asignacion-
 append
-split
+split-
 slicing
-puts
+puts-
 comentarios
 '''
 
@@ -71,7 +71,19 @@ def p_puts(p):
             | PUTS IZQPAREN comparacion DERPAREN
     '''
 
+def p_print(p):
+    '''print : PRINT expresion
+            | PRINT IZQPAREN expresion DERPAREN
+            | PRINT IZQPAREN comparacion DERPAREN
+    '''
 
+def p_comentarios(p):
+    '''comentarios : COMENTARIO 
+    '''
+
+def p_append(p) :
+    '''append : variables PUNTO APPEND IZQPAREN expresion DERPAREN
+    '''
 #Fin Milen Ortega
 
 

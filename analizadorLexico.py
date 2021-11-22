@@ -24,7 +24,7 @@ reservadas = {
     "puts" : "PUTS",
     "append" : "APPEND",
     "split" : "SPLIT",
-
+    "print" : "PRINT"
 
 }
 
