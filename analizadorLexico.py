@@ -26,7 +26,9 @@ reservadas = {
     "split" : "SPLIT",
     "print" : "PRINT",
     "slice" : "SLICE",
-    "clear" : "CLEAR"
+    "clear" : "CLEAR",
+    "true" : "TRUE",
+    "false" : "FALSE"
 
 }
 

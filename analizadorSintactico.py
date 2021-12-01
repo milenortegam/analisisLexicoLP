@@ -52,8 +52,11 @@ def p_sentencias(p):
                     | print
                     | listas
                     | mapas
+                    | booleanos
+                    | reglaSemanticaCondiciones
 
     '''
+    p[0] = p[1]
 
 #Inicio Milen Ortega
 def p_asignacion(p):
@@ -92,6 +95,16 @@ def p_slice(p) :
             | variables PUNTO SLICE IZQPAREN NUMERO COMA NUMERO DERPAREN
             | ARREGLOS PUNTO SLICE IZQPAREN NUMERO COMA NUMERO DERPAREN
     '''
+def p_booleanos(p) :
+    '''booleanos : TRUE
+                | FALSE
+    '''
+
+def p_valorNumerico(p) :
+    '''valorNumerico : NUMERO
+                | FLOTANTES
+    '''
+
 #Fin Milen Ortega
 
 
@@ -107,8 +120,7 @@ def p_variables(p):
     '''
 
 def p_valor(p):
-    '''valor : NUMERO
-            | FLOTANTES
+    '''valor : valorNumerico
             | CADENAS
             | ARREGLOS
             | MAPAS
@@ -249,13 +261,68 @@ def p_operadorMat(p):
 def p_error(p):
      print("Syntax error in input!")
 
+##Reglas Semánticas
+
+#Inicio Milen Ortega
+def p_reglaSemanticaCondiciones(p):
+    '''reglaSemanticaCondiciones : valorNumerico IGUAL_COMP valorNumerico
+                                | valorNumerico DIFERENTE valorNumerico
+                                | valorNumerico MENOR valorNumerico
+                                | valorNumerico MAYOR valorNumerico
+                                | valorNumerico OR valorNumerico
+                                | valorNumerico AND valorNumerico
+                                | CADENAS IGUAL_COMP CADENAS
+                                | CADENAS DIFERENTE CADENAS
+                                | CADENAS MENOR CADENAS
+                                | CADENAS MAYOR CADENAS
+                                | CADENAS OR CADENAS
+                                | CADENAS AND CADENAS
+                                | booleanos IGUAL_COMP booleanos
+                                | booleanos DIFERENTE booleanos
+                                | booleanos OR booleanos
+                                | booleanos AND booleanos
+                                '''
+    if p[2] == '==':
+        p[0] = p[1] == p[3]
+    elif p[2] == '!=':
+        p[0] = p[1] != p[3]
+    elif p[2] == '<':
+        p[0] = p[1] < p[3]
+    elif p[2] == '>':
+        p[0] = p[1] > p[3]
+    elif p[2] == '||':
+        p[0] = p[1] or p[3]
+    elif p[2] == '&&':
+        p[0] = p[1] and p[3]
+    elif p[2] == '==':
+        p[0] = p[1] == p[3]
+    elif p[2] == '!=':
+        p[0] = p[1] != p[3]
+    elif p[2] == '<':
+        p[0] = p[1] < p[3]
+    elif p[2] == '>':
+        p[0] = p[1] > p[3]
+    elif p[2] == '||':
+        p[0] = p[1] or p[3]
+    elif p[2] == '&&':
+        p[0] = p[1] and p[3]
+    elif p[2] == '==':
+        p[0] = p[1]== p[3]
+    elif p[2] == '!=':
+        p[0] = p[1] != p[3]
+    elif p[2] == '||':
+        p[0] = p[1] or p[3]
+    elif p[2] == '&&':
+        p[0] = p[1] and p[3]
+
+
+
+
 #contruccion del parser
 parser = yacc.yacc()
 
 
-data = ['if 10<20 a=10 end', 'variable = 2', 'variable.append("cat")','variable.split("s")', 'variable.split()', 'variable.split("s", 3)','puts "Hola"', 'puts ("Hola")', 'puts a=10X', 'puts [1,2,3]X',
-        'print "Hola"', 'print ("Hola")', 'print a = 10 X', 'print [1,2,3]X','#asdas', 'arreglo.append(10)', 'arreglo2.append("Hola")','[1,2,3,4].slice(2)', '[1,2,3,4].slice(1, 3)', 'variable.slice(2)', 'variable.slice(1, 3)','a<bX', "10!=30X", 'for a in 1..2 do puts a=3 end X', 'while 10<8 do puts "Hola" end', 'unless a!=10 do puts "Hola" end X','[10, 9]', '{10, 9}', 'begin puts a=3 end X', 'def suma 8+8 end','a.pop("hola")','a.pop()', 'a.push("hola")', 'a.clear()','7+7+7%7+7-7+7*7/7-7']
-
+data = ["true<false"]
 #algoritmo para validar
 
 for s in data:
