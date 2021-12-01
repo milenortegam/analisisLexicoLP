@@ -198,7 +198,8 @@ data = '''
     '"
 
 '''
-
+def ingresoData(data):
+    print("a")
 # Give the lexer some input
 lexer.input(data)
 
@@ -208,3 +209,4 @@ while True:
     if not tok:
         break  # No more input
     print(tok)
+
