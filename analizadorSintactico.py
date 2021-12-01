@@ -126,10 +126,6 @@ def p_valor(p):
             | variables
     '''
 
-def p_valor_Matematico(p):
-    '''valor_Matematico: NUMERO
-            | FLOTANTES
-    '''
 def p_expresion(p):
     ''' expresion : valor
     '''
@@ -324,12 +320,12 @@ def p_reglaSemanticaCondiciones(p):
 #Inicio Gabriela Pazmiño
 
 def p_regla_Semantica_Operaciones_Matematicas(p):
-    '''p_regla_Semantica_Operaciones_Matematicas : valor_Matematico MAS valor_Matematico
-                                                  | valor_Matematico MENOS valor_Matematico
-                                                  | valor_Matematico MULTIPLICACION valor_Matematico
-                                                  | valor_Matematico DIVISION valor_Matematico
-                                                  | valor_Matematico MODULO valor_Matematico
-                                                  | valor_Matematico EXPONENCIAL valor_Matematico
+    '''regla_Semantica_Operaciones_Matematicas : valor_Numerico MAS valorNumerico
+                                                  | valorNumerico MENOS valorNumerico
+                                                  | valorNumerico MULTIPLICACION valorNumerico
+                                                  | valorNumerico DIVISION valorNumerico
+                                                  | valorNumerico MODULO valorNumerico
+                                                  | valorNumerico EXPONENCIAL valorNumerico
 
     '''
     if p[2] == '+':
@@ -351,7 +347,7 @@ def p_regla_Semantica_Operaciones_Matematicas(p):
 
 
 def p_regla_Semantica_Operaciones(p):
-    '''p_regla_Semantica : valor operadorMat valor
+    '''regla_Semantica : valor operadorMat valor
                               | operacionMat operadorMat valor
     '''
     if (type(p[1]) != type(p[3])):
