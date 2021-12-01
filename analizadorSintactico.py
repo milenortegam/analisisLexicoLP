@@ -1,4 +1,5 @@
 import ply.yacc as yacc
+from analizadorLexico import *
 
 '''Reglas definidas por Milen Ortega
 asignacion-
@@ -127,7 +128,7 @@ def p_valor(p):
     '''
 
 def p_valor_Matematico(p):
-    '''valor_Matematico: NUMERO
+    '''valor_Matematico : NUMERO
             | FLOTANTES
     '''
 def p_expresion(p):
@@ -338,10 +339,21 @@ data = ["true<false"]
 
 #algoritmo para validar
 
+'''
 for s in data:
     if not s: continue
     result = parser.parse(s)
     print(result, s)
+'''
+
+
+
+def inputSint(cadena):
+    result = parser.parse(cadena)
+    print(result)
+    return str(result)
+
+
 
 
 # while True:
@@ -370,3 +382,4 @@ def p_regla_Semantica_Operaciones(p):
     '''
     if (type(p[1]) != type(p[3])):
         print("No se puede realizar la operacion matematica por que los valores no son del mismo tipo")
+

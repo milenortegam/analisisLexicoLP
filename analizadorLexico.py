@@ -199,19 +199,40 @@ data = '''
     '"
 
 '''
-def ingresoData(data):
-    print("a")
+
 # Give the lexer some input
-lexer.input(data)
+#lexer.input(data)
 
 # Tokenize
-
+'''
 while True:
     tok = lexer.token()
     if not tok:
         break  # No more input
     print(tok)
+'''
 
+def Lex():
+    lexer.input(input)
+    analisis = ""
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break
+        print(tok)
+        analisis += str(tok) + "\n"
+    return analisis
+
+def inputLex(input):
+    lexer.input(input)
+    analisis=""
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break
+        print(tok)
+        analisis += str(tok) + "\n"
+    return analisis
 
 #while True:
 #    tok = lexer.token()
