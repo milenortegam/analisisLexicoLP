@@ -127,6 +127,10 @@ def p_valor(p):
             | variables
     '''
 
+def p_valor_Matematico(p):
+    '''valor_Matematico: NUMERO
+            | FLOTANTES
+    '''
 def p_expresion(p):
     ''' expresion : valor
     '''
@@ -339,3 +343,21 @@ for s in data:
 #    if not s: continue
 #    result = parser.parse(s)
 #    print(result)
+
+#reglas Semanticas
+def p_regla_Semantica_Operaciones_Matematicas(p):
+    '''p_regla_Semantica_Operaciones_Matematicas : valor_Matematico MAS valor_Matematico
+                                                  | valor_Matematico MENOS valor_Matematico
+                                                  | valor_Matematico MULTIPLICACION valor_Matematico
+                                                  | valor_Matematico DIVISION valor_Matematico
+                                                  | valor_Matematico EXPONENCIAL valor_Matematico
+                                                  | valor_Matematico MODULO valor_Matematico
+    '''
+
+
+def p_regla_Semantica_Operaciones(p):
+    '''p_regla_Semantica : valor operadorMat valor
+                              | operacionMat operadorMat valor
+    '''
+    if (type(p[1]) != type(p[3])):
+        print("No se puede realizar la operacion matematica por que los valores no son del mismo tipo")
