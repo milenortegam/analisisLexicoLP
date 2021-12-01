@@ -389,13 +389,6 @@ for s in data:
 
 
 
-def inputSint(cadena):
-    result = parser.parse(cadena)
-    print(result)
-    return str(result)
-
-
-
 
 # while True:
 #    try:
@@ -425,4 +418,30 @@ def p_regla_Semantica_Operaciones(p):
     if (type(p[1]) != type(p[3])):
         print("No se puede realizar la operacion matematica por que los valores no son del mismo tipo")
 
+#Inicio Hayleen Carrillo
 
+def p_valor_Variable_Estructura(p):
+    '''
+    valor_Numerico
+    |booleanos
+    |CADENAS
+    '''
+
+
+def p_regla_Semantica_Metodo_Listas(p):
+    '''
+    regla_Semantica_Estructura: listas PUNTO CLEAR IZQPAREN DERPAREN
+
+    '''
+
+    if p[3] == 'CLEAR'
+
+
+
+#Fin Hayleen Carrillo
+
+
+def inputSint(cadena):
+    result = parser.parse(cadena)
+    print(result)
+    return str(result)

@@ -1,4 +1,3 @@
-import tkinter
 from tkinter import *
 from analizadorLexico import *
 from analizadorSintactico import *
