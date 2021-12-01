@@ -273,11 +273,11 @@ for s in data:
 #    result = parser.parse(s)
 #    print(result)
 
-#reglas Sintacticas
+#reglas Semanticas
 def p_operaciones_aritmeticas(p):
     '''
     p_operaciones_aritmeticas : valor operadorMat valor
                               | operacionMat operadorMat valor
     '''
     if (type(p[1]) != type(p[3])):
-        print("No se puede realizar la operacion por que los valores deben ser del mismo tipo")
+        print("No se puede realizar la operacion matematica por que los valores no son del mismo tipo")
