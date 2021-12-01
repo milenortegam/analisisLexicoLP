@@ -17,16 +17,17 @@ reservadas = {
     'return': 'RETURN',
     'unless': 'UNLESS',
     'while': 'WHILE',
-    'def': "DEF",
     "pop": "POP",
     "push": "PUSH",
-    "in" : "IN",
+    "in": "IN",
     "puts" : "PUTS",
     "append" : "APPEND",
     "split" : "SPLIT",
     "print" : "PRINT",
     "slice" : "SLICE",
-    "clear" : "CLEAR"
+    "clear" : "CLEAR",
+    "true" : "TRUE",
+
 
 }
 
@@ -204,9 +205,17 @@ def ingresoData(data):
 lexer.input(data)
 
 # Tokenize
+
 while True:
     tok = lexer.token()
     if not tok:
         break  # No more input
     print(tok)
+
+
+#while True:
+#    tok = lexer.token()
+#    if not tok:
+#        break  # No more input
+#    print(tok)
 

@@ -51,8 +51,11 @@ def p_sentencias(p):
                     | print
                     | listas
                     | mapas
+                    | booleanos
+                    | reglaSemanticaCondiciones
 
     '''
+    p[0] = p[1]
 
 #Inicio Milen Ortega
 def p_asignacion(p):
@@ -60,9 +63,9 @@ def p_asignacion(p):
     '''
 
 def p_split(p):
-    '''split : CADENAS PUNTO SPLIT IZQPAREN DERPAREN
-                | CADENAS PUNTO SPLIT IZQPAREN CADENAS DERPAREN
-                | CADENAS PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
+    '''split : variables PUNTO SPLIT IZQPAREN DERPAREN
+                | variables PUNTO SPLIT IZQPAREN CADENAS DERPAREN
+                | variables PUNTO SPLIT IZQPAREN CADENAS COMA NUMERO DERPAREN
     '''
 
 def p_puts(p):
@@ -91,6 +94,16 @@ def p_slice(p) :
             | variables PUNTO SLICE IZQPAREN NUMERO COMA NUMERO DERPAREN
             | ARREGLOS PUNTO SLICE IZQPAREN NUMERO COMA NUMERO DERPAREN
     '''
+def p_booleanos(p) :
+    '''booleanos : TRUE
+                | FALSE
+    '''
+
+def p_valorNumerico(p) :
+    '''valorNumerico : NUMERO
+                | FLOTANTES
+    '''
+
 #Fin Milen Ortega
 
 
@@ -106,14 +119,17 @@ def p_variables(p):
     '''
 
 def p_valor(p):
-    '''valor : NUMERO
-            | FLOTANTES
+    '''valor : valorNumerico
             | CADENAS
             | ARREGLOS
             | MAPAS
             | variables
     '''
 
+def p_valor_Matematico(p):
+    '''valor_Matematico: NUMERO
+            | FLOTANTES
+    '''
 def p_expresion(p):
     ''' expresion : valor
     '''
@@ -125,9 +141,9 @@ def p_comparacion(p):
 
 def p_operadorComparador (p):
     '''operadorComparador : IGUAL_COMP
-            | DIFERENTE
-            | MENOR
-            | MAYOR
+                            | DIFERENTE
+                            | MENOR
+                            | MAYOR
     '''
 def p_sentAnd(p):
     ''' sentAnd : comparacion AND comparacion
@@ -248,8 +264,66 @@ def p_operadorMat(p):
 def p_error(p):
      print("Syntax error in input!")
 
+##Reglas Semánticas
+
+#Inicio Milen Ortega
+def p_reglaSemanticaCondiciones(p):
+    '''reglaSemanticaCondiciones : valorNumerico IGUAL_COMP valorNumerico
+                                | valorNumerico DIFERENTE valorNumerico
+                                | valorNumerico MENOR valorNumerico
+                                | valorNumerico MAYOR valorNumerico
+                                | valorNumerico OR valorNumerico
+                                | valorNumerico AND valorNumerico
+                                | CADENAS IGUAL_COMP CADENAS
+                                | CADENAS DIFERENTE CADENAS
+                                | CADENAS MENOR CADENAS
+                                | CADENAS MAYOR CADENAS
+                                | CADENAS OR CADENAS
+                                | CADENAS AND CADENAS
+                                | booleanos IGUAL_COMP booleanos
+                                | booleanos DIFERENTE booleanos
+                                | booleanos OR booleanos
+                                | booleanos AND booleanos
+                                '''
+    if p[2] == '==':
+        p[0] = p[1] == p[3]
+    elif p[2] == '!=':
+        p[0] = p[1] != p[3]
+    elif p[2] == '<':
+        p[0] = p[1] < p[3]
+    elif p[2] == '>':
+        p[0] = p[1] > p[3]
+    elif p[2] == '||':
+        p[0] = p[1] or p[3]
+    elif p[2] == '&&':
+        p[0] = p[1] and p[3]
+    elif p[2] == '==':
+        p[0] = p[1] == p[3]
+    elif p[2] == '!=':
+        p[0] = p[1] != p[3]
+    elif p[2] == '<':
+        p[0] = p[1] < p[3]
+    elif p[2] == '>':
+        p[0] = p[1] > p[3]
+    elif p[2] == '||':
+        p[0] = p[1] or p[3]
+    elif p[2] == '&&':
+        p[0] = p[1] and p[3]
+    elif p[2] == '==':
+        p[0] = p[1]== p[3]
+    elif p[2] == '!=':
+        p[0] = p[1] != p[3]
+    elif p[2] == '||':
+        p[0] = p[1] or p[3]
+    elif p[2] == '&&':
+        p[0] = p[1] and p[3]
+
+
+
+
 #contruccion del parser
 parser = yacc.yacc()
+
 
 
 data = [
@@ -259,12 +333,15 @@ data = [
         '[10, 9]', '\{10, 9\}', 'BEGIN PUTS a=3 END', 'DEF suma 8+8 END', 'a.POP("hola")','a.POP()', 'a.PUSH("hola")', 'a.CLEAR()',
         '7+7+7%7+7-7+7*7/7-7']
 
+
+data = ["true<false"]
+
 #algoritmo para validar
 
 for s in data:
     if not s: continue
     result = parser.parse(s)
-    print(result)
+    print(result, s)
 
 
 # while True:
@@ -275,3 +352,21 @@ for s in data:
 #    if not s: continue
 #    result = parser.parse(s)
 #    print(result)
+
+#reglas Semanticas
+def p_regla_Semantica_Operaciones_Matematicas(p):
+    '''p_regla_Semantica_Operaciones_Matematicas : valor_Matematico MAS valor_Matematico
+                                                  | valor_Matematico MENOS valor_Matematico
+                                                  | valor_Matematico MULTIPLICACION valor_Matematico
+                                                  | valor_Matematico DIVISION valor_Matematico
+                                                  | valor_Matematico EXPONENCIAL valor_Matematico
+                                                  | valor_Matematico MODULO valor_Matematico
+    '''
+
+
+def p_regla_Semantica_Operaciones(p):
+    '''p_regla_Semantica : valor operadorMat valor
+                              | operacionMat operadorMat valor
+    '''
+    if (type(p[1]) != type(p[3])):
+        print("No se puede realizar la operacion matematica por que los valores no son del mismo tipo")
