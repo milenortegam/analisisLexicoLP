@@ -30,7 +30,8 @@ def p_base(p):
     '''base : sentencias
                 | sentencias base
     '''
-
+    p[0] = p[1]
+    
 def p_sentencias(p):
     ''' sentencias : asignacion
                     | append
@@ -105,6 +106,7 @@ def p_valorNumerico(p) :
     '''valorNumerico : NUMERO
                 | FLOTANTES
     '''
+    p[0] = p[1]
 
 #Fin Milen Ortega
 
@@ -396,24 +398,6 @@ for s in data:
 #    result = parser.parse(s)
 #    print(result)
 
-
-#reglas Semanticas
-def p_regla_Semantica_Operaciones_Matematicas(p):
-    '''p_regla_Semantica_Operaciones_Matematicas : valorNumerico MAS valorNumerico
-                                                  | valorNumerico MENOS valorNumerico
-                                                  | valorNumerico MULTIPLICACION valorNumerico
-                                                  | valorNumerico DIVISION valorNumerico
-                                                  | valorNumerico EXPONENCIAL valorNumerico
-                                                  | valorNumerico MODULO valorNumerico
-    '''
-
-
-def p_regla_Semantica_Operaciones(p):
-    '''p_regla_Semantica_Operaciones : valor operadorMat valor
-                              | operacionMat operadorMat valor
-    '''
-    if (type(p[1]) != type(p[3])):
-        print("No se puede realizar la operacion matematica por que los valores no son del mismo tipo")
 
 #Inicio Hayleen Carrillo
 
