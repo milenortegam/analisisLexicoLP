@@ -1,5 +1,5 @@
 import ply.yacc as yacc
-
+from analizadorLexico import tokens
 '''Reglas definidas por Milen Ortega
 asignacion-
 append-
@@ -53,6 +53,8 @@ def p_sentencias(p):
                     | mapas
                     | booleanos
                     | reglaSemanticaCondiciones
+                    | regla_Semantica_Operaciones
+                    | regla_Semantica_Operaciones_Matematicas
 
     '''
     p[0] = p[1]
@@ -126,11 +128,6 @@ def p_valor(p):
             | variables
     '''
 
-
-def p_valor_Matematico(p):
-    '''valor_Matematico : NUMERO
-            | FLOTANTES
-    '''
 
 def p_expresion(p):
     ''' expresion : valor
@@ -326,7 +323,7 @@ def p_reglaSemanticaCondiciones(p):
 #Inicio Gabriela Pazmiño
 
 def p_regla_Semantica_Operaciones_Matematicas(p):
-    '''regla_Semantica_Operaciones_Matematicas : valor_Numerico MAS valorNumerico
+    '''regla_Semantica_Operaciones_Matematicas : valorNumerico MAS valorNumerico
                                                   | valorNumerico MENOS valorNumerico
                                                   | valorNumerico MULTIPLICACION valorNumerico
                                                   | valorNumerico DIVISION valorNumerico
@@ -353,7 +350,7 @@ def p_regla_Semantica_Operaciones_Matematicas(p):
 
 
 def p_regla_Semantica_Operaciones(p):
-    '''regla_Semantica : valor operadorMat valor
+    '''regla_Semantica_Operaciones : valor operadorMat valor
                               | operacionMat operadorMat valor
     '''
     if (type(p[1]) != type(p[3])):
@@ -402,17 +399,17 @@ for s in data:
 
 #reglas Semanticas
 def p_regla_Semantica_Operaciones_Matematicas(p):
-    '''p_regla_Semantica_Operaciones_Matematicas : valor_Matematico MAS valor_Matematico
-                                                  | valor_Matematico MENOS valor_Matematico
-                                                  | valor_Matematico MULTIPLICACION valor_Matematico
-                                                  | valor_Matematico DIVISION valor_Matematico
-                                                  | valor_Matematico EXPONENCIAL valor_Matematico
-                                                  | valor_Matematico MODULO valor_Matematico
+    '''p_regla_Semantica_Operaciones_Matematicas : valorNumerico MAS valorNumerico
+                                                  | valorNumerico MENOS valorNumerico
+                                                  | valorNumerico MULTIPLICACION valorNumerico
+                                                  | valorNumerico DIVISION valorNumerico
+                                                  | valorNumerico EXPONENCIAL valorNumerico
+                                                  | valorNumerico MODULO valorNumerico
     '''
 
 
 def p_regla_Semantica_Operaciones(p):
-    '''p_regla_Semantica : valor operadorMat valor
+    '''p_regla_Semantica_Operaciones : valor operadorMat valor
                               | operacionMat operadorMat valor
     '''
     if (type(p[1]) != type(p[3])):
@@ -422,7 +419,7 @@ def p_regla_Semantica_Operaciones(p):
 
 def p_valor_Variable_Estructura(p):
     '''
-    valor_Numerico
+    valorNumerico
     |booleanos
     |CADENAS
     '''
@@ -434,7 +431,6 @@ def p_regla_Semantica_Metodo_Listas(p):
 
     '''
 
-    if p[3] == 'CLEAR'
 
 
 
