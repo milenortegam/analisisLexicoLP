@@ -31,7 +31,7 @@ def p_base(p):
                 | sentencias base
     '''
     p[0] = p[1]
-    
+
 def p_sentencias(p):
     ''' sentencias : asignacion
                     | append
@@ -281,10 +281,6 @@ def p_reglaSemanticaCondiciones(p):
                                 | CADENAS MAYOR CADENAS
                                 | CADENAS OR CADENAS
                                 | CADENAS AND CADENAS
-                                | booleanos IGUAL_COMP booleanos
-                                | booleanos DIFERENTE booleanos
-                                | booleanos OR booleanos
-                                | booleanos AND booleanos
                                 '''
     if p[2] == '==':
         p[0] = p[1] == p[3]
@@ -306,14 +302,6 @@ def p_reglaSemanticaCondiciones(p):
         p[0] = p[1] < p[3]
     elif p[2] == '>':
         p[0] = p[1] > p[3]
-    elif p[2] == '||':
-        p[0] = p[1] or p[3]
-    elif p[2] == '&&':
-        p[0] = p[1] and p[3]
-    elif p[2] == '==':
-        p[0] = p[1]== p[3]
-    elif p[2] == '!=':
-        p[0] = p[1] != p[3]
     elif p[2] == '||':
         p[0] = p[1] or p[3]
     elif p[2] == '&&':

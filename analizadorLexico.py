@@ -196,6 +196,7 @@ data = '''
     654>78
     [aaa]
     {bbb}
+    #probandocomentario
     '"
 
 '''
