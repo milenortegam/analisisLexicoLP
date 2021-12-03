@@ -268,8 +268,19 @@ def p_operadorMat(p):
 
 
 #errores
+#def p_error(p):
+#     print("Syntax error in input!")
+resultadoError = []
 def p_error(p):
-     print("Syntax error in input!")
+    resultadoError.clear()
+    if p:
+        resultado = "Error sintactico de tipo {} en el valor {}".format( str(p.type),str(p.value))
+        print(resultado)
+        resultadoError.append(resultado)
+    else:
+        resultado = "Error sintactico : {}".format(p)
+        print(resultado)
+        resultadoError.append(resultado)
 
 ##Reglas Semánticas
 
@@ -441,4 +452,6 @@ for s in data:
 def inputSint(cadena):
     result = parser.parse(cadena)
     print(result)
+    if(len(resultadoError)>0):
+        return str(resultadoError[0])
     return str(result)
