@@ -56,6 +56,12 @@ def p_sentencias(p):
                     | reglaSemanticaCondiciones
                     | regla_Semantica_Operaciones
                     | regla_Semantica_Operaciones_Matematicas
+                    | semanticaMetodosPila
+                    | metodosPila
+                    | popM
+                    | pushM
+                    | masParam
+
 
     '''
     p[0] = p[1]
@@ -349,6 +355,50 @@ def p_regla_Semantica_Operaciones(p):
 #Fin Gabriela Pazmiño
 
 
+#Inicio Hayleen Carrillo
+
+def p_semanticaMetodosPila(p):
+    '''
+        semanticaMetodosPila : variables PUNTO metodosPila
+    '''
+
+
+def p_metodosPila(p):
+    '''
+        metodosPila : popM
+                | pushM
+
+    '''
+
+def p_popM(p):
+    '''
+        popM : POP
+            | POP IZQPAREN DERPAREN
+            | POP IZQPAREN NUMERO DERPAREN
+
+    '''
+
+
+def p_pushM(p):
+    '''
+        pushM : PUSH IZQPAREN masParam DERPAREN
+                | PUSH masParam
+
+    '''
+
+def p_masParam(p):
+    '''
+        masParam : valor
+                    | valor COMA valor
+                    | masParam COMA masParam
+                    | masParam COMA valor
+                    | masParam COMA masParam COMA masParam
+    '''
+
+
+#Fin Hayleen Carrillo
+
+
 
 #contruccion del parser
 parser = yacc.yacc()
@@ -386,27 +436,6 @@ for s in data:
 #    result = parser.parse(s)
 #    print(result)
 
-
-#Inicio Hayleen Carrillo
-
-def p_valor_Variable_Estructura(p):
-    '''
-    valorNumerico
-    |booleanos
-    |CADENAS
-    '''
-
-
-def p_regla_Semantica_Metodo_Listas(p):
-    '''
-    regla_Semantica_Estructura: listas PUNTO CLEAR IZQPAREN DERPAREN
-
-    '''
-
-
-
-
-#Fin Hayleen Carrillo
 
 
 def inputSint(cadena):
